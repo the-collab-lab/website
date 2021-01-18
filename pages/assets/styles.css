@@ -6,6 +6,10 @@
   --page-width: 800px;
   --base-font-size: 16px;
   --small-font-size: 85%;
+
+  --link-color: blue;
+
+  --z-index-modal: 1000;
 }
 
 body {
@@ -57,6 +61,10 @@ header nav ul li:last-child {
 }
 header nav ul li:last-child:after {
   content: '';
+}
+header nav ul li a:active,
+header nav ul li a.current {
+  --link-color: black;
 }
 
 footer {
@@ -134,11 +142,11 @@ h2 {
 }
 
 a {
-  color: blue;
+  color: var(--link-color);
   text-decoration: none;
 }
 a:hover {
-  border-bottom: solid 1px blue;
+  border-bottom: solid 1px --var(--link-color);
 }
 
 hr {
@@ -156,13 +164,13 @@ figure.float-right img {
   height: auto;
   width: 100%;
 }
-  /* these images come from the cms so for now they have to be the first element
+/* these images come from the cms so for now they have to be the first element
      on the page, so we use css to push them down the page a little to match the
      images on other pages
    */
-  figure.float-right.image-floated-right img {
-    margin-top: 56px;
-  }
+figure.float-right.image-floated-right img {
+  margin-top: 56px;
+}
 figure.float-right figcaption {
   font-size: var(--small-font-size);
   font-style: italic;
@@ -173,20 +181,116 @@ figure.float-right figcaption {
   margin: 1em 0;
   padding: 0;
 }
-  .tech-talks > li {
-    border-bottom: solid 1px #ccc;
-    margin: 1rem 0;
-    padding-bottom: 1rem;
-  }
-    .tech-talks > li:first-child {
-      border-top: solid 1px #ccc;
-    }
-  .tech-talks h3 {
-    margin: 1.5rem 0;
-  }
-    .tech-talks h3 em {
-      font-weight: normal;
-    }
+.tech-talks > li {
+  border-bottom: solid 1px #ccc;
+  margin: 1rem 0;
+  padding-bottom: 1rem;
+}
+.tech-talks > li:first-child {
+  border-top: solid 1px #ccc;
+}
+.tech-talks h3 {
+  margin: 1.5rem 0;
+}
+.tech-talks h3 em {
+  font-weight: normal;
+}
+
+/* Donation */
+.donation-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.checkout-button {
+  --background-color: #f3f4f6;
+  --border-color: #bebebe;
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: black;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  line-height: 1;
+  padding: 10px 15px;
+  text-decoration: none;
+  text-align: center;
+  transition: box-shadow 200ms ease-in-out, color 200ms ease-in-out;
+}
+
+.checkout-button:hover,
+.checkout-button:focus,
+.checkout-button:active {
+  outline: 0;
+  box-shadow: 0 0 40px 40px var(--background-color) inset;
+}
+
+.checkout-button:active {
+  --color: #01579b;
+}
+
+span.donation-option-text::before {
+  display: inline-block;
+  content: '😊';
+  font-size: var(--smal-font-size);
+  font-size: 10px;
+  margin-right: 5px;
+}
+
+.checkout-button:hover span.donation-option-text::before,
+.checkout-button:active span.donation-option-text::before {
+  content: '❤️';
+}
+
+.checkout-button.loading {
+  cursor: wait;
+}
+
+.checkout-button.loading span.donation-option-text::before {
+  content: '⌛️';
+}
+
+.checkout-button:disabled,
+.checkout-button[disabled] {
+  opacity: 0.8;
+}
+
+/* Toast */
+
+.toast {
+  --background-color: #fefefe;
+  --border-color: #bebebe;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  max-width: 350px;
+  padding: 10px;
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  text-align: center;
+  z-index: var(--z-index-modal);
+}
+
+.toast.error {
+  --background-color: #f3e4e5;
+  --border-color: red;
+}
+
+.toast.success {
+  --background-color: #e4f3e6;
+  --border-color: green;
+}
+
+.hidden {
+  display: none;
+}
 
 /* small screens */
 /* under 820px wide, adjust margins, fix the footer and tweak how we display the carousel */

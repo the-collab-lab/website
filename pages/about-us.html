@@ -21,8 +21,8 @@ navigation: <ul> <li>About</li> <li><a href="/who-we-are/">Who We Are</a></li> <
 </p>
 <h2 id="origin-story">Our Origin Story</h2>
 <p>
-  In June of 2019, <a href="/who-we-are/#founder">Andrew Hedges</a> grabbed a quick beer
-  before
+  In June of 2019, <a href="/who-we-are/#founder">Andrew Hedges</a> grabbed a
+  quick beer before
   <a
     href="https://www.meetup.com/Portland-JR-DEVELOPER-Meetup/events/256869529/"
     >that month’s PDX Junior Developer Meetup</a
@@ -39,13 +39,14 @@ navigation: <ul> <li>About</li> <li><a href="/who-we-are/">Who We Are</a></li> <
 </p>
 <p>
   <strong>Collab Lab kicked off our first cohort that August</strong> with
-  Scott, Caitlyn, Stacie Taylor, and Kate Sowles participating as
-  developers with Andrew mentoring the group through the 8-week project.
+  Scott, Caitlyn, Stacie Taylor, and Kate Sowles participating as developers
+  with Andrew mentoring the group through the 8-week project.
 </p>
 <p>
   Since we launched, the response to Collab Lab has been overwhelmingly
-  positive, further confirming the need for what we’re doing. As of November, 2020, we’ve worked with 60 early-career developers in 6 countries and are working hard to scale up the program to accommodate
-  demand.
+  positive, further confirming the need for what we’re doing. As of November,
+  2020, we’ve worked with 60 early-career developers in 6 countries and are
+  working hard to scale up the program to accommodate demand.
 </p>
 <blockquote>
   <q
@@ -71,14 +72,60 @@ navigation: <ul> <li>About</li> <li><a href="/who-we-are/">Who We Are</a></li> <
   We make use of free/<a href="https://www.dictionary.com/browse/freemium"
     >freemium</a
   >
-  tools (i.e. Airtable, Firebase, GitHub, Google Docs, Netlify, Slack, Notion, and Zoom)
-  as much as possible. We would love to have the ability to use upgraded
-  versions of some of these tools to provide a better experience for our
-  volunteers and participants. To this end, we accept
-  <a href="https://github.com/sponsors/the-collab-lab">sponsorships through GitHub</a>.
-  ❤️
+  tools (i.e. Airtable, Firebase, GitHub, Google Docs, Netlify, Slack, Notion,
+  and Zoom) as much as possible. We would love to have the ability to use
+  upgraded versions of some of these tools to provide a better experience for
+  our volunteers and participants. To this end, we accept
+  <a href="https://github.com/sponsors/the-collab-lab"
+    >sponsorships through GitHub</a
+  >. ❤️
 </p>
-<iframe src="https://github.com/sponsors/the-collab-lab/button" title="Sponsor the-collab-lab" height="35" width="116" style="border: 0;"></iframe>
+<iframe
+  src="https://github.com/sponsors/the-collab-lab/button"
+  title="Sponsor the-collab-lab"
+  height="35"
+  width="116"
+  style="border: 0"
+></iframe>
+
+{%- if isDonationEnabled %}
+<div>
+  We also accept donations. Please consider becoming a:
+  <form class="donation-options">
+    {%- for donationOption in donationOptions -%}
+    <button
+      id="checkout-button-#{{donationOption.price.id}}"
+      class="checkout-button"
+      data-stripe-price-id="{{donationOption.price.id}}"
+      role="link"
+      type="button"
+    >
+      <span class="donation-option-text">
+        {{donationOption.name}} for ${{ donationOption.price.formatted_amount }}
+      </span>
+    </button>
+    {%- endfor -%}
+  </form>
+</div>
+
+<script src="https://js.stripe.com/v3"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    (function () {
+      // initialize Stripe using your publishable key
+      const stripe = Stripe('{{ stripePublishableKey }}');
+
+      // find the buttons and error message elements
+      const checkoutButtons = document.getElementsByClassName(
+        'checkout-button',
+      );
+
+      new DonationForm({ stripe, checkoutButtons });
+    })();
+  });
+</script>
+{%- endif %}
+
 <h2>Get in touch!</h2>
 <p>
   The Collab Lab is on Twitter

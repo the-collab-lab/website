@@ -113,8 +113,111 @@ class Gallery {
   }
 }
 
+class Toast {
+  constructor({
+    element,
+    type,
+    message,
+    autoClose = true,
+    hideTimeout = 5000,
+  }) {
+    this.element = element;
+    this.type = type;
+    this.message = message;
+    this.autoClose = autoClose;
+    this.hideTimeout = hideTimeout;
+
+    this.loaded();
+  }
+
+  loaded() {
+    this.element.className = '';
+    this.element.classList.add('toast', 'hidden', this.type);
+    this.element.textContent = this.message;
+  }
+
+  show() {
+    this.element.classList.remove('hidden');
+
+    if (this.autoClose) {
+      setTimeout(() => {
+        this.hide();
+      }, this.hideTimeout);
+    }
+  }
+
+  hide() {
+    this.element.classList.add('hidden');
+  }
+}
+
+class DonationNotification {
+  constructor() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const donation = urlParams.get('donation');
+
+    this.status = donation;
+
+    this.loaded();
+  }
+
+  loaded() {
+    const toast = new Toast({
+      element: document.getElementById('toast'),
+      type: 'success',
+      message: 'Thank you very much for supporting us! ❤️',
+    });
+
+    if (this.status === 'success') {
+      toast.show();
+    }
+  }
+}
+
+class DonationForm {
+  constructor({ stripe, checkoutButtons }) {
+    this.stripe = stripe;
+    this.checkoutButtons = checkoutButtons;
+
+    this.loaded();
+  }
+
+  loaded() {
+    Array.from(this.checkoutButtons).forEach((checkoutButton) => {
+      // on click, send the user to Stripe Checkout to process the donation
+      checkoutButton.addEventListener('click', () => {
+        const price = checkoutButton.dataset['stripePriceId'];
+
+        checkoutButton.classList.add('loading');
+        checkoutButton.disabled = true;
+
+        this.stripe
+          .redirectToCheckout({
+            lineItems: [{ price, quantity: 1 }],
+            mode: 'payment',
+            successUrl: `${window.location.origin}/about-us?donation=success`,
+            cancelUrl: window.location.origin,
+          })
+          .then(function (result) {
+            checkoutButton.classList.remove('loading');
+            checkoutButton.disabled = false;
+
+            if (result.error) {
+              new Toast({
+                element: document.getElementById('toast'),
+                type: 'error',
+                message: result.error.message,
+              }).show();
+            }
+          });
+      });
+    });
+  }
+}
+
 function init() {
-  let gallery = new Gallery();
+  new Gallery();
+  new DonationNotification();
 }
 
 document.addEventListener('DOMContentLoaded', init);
