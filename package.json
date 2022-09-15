@@ -16,6 +16,8 @@
     "prettier-plugin-astro": "^0.5.4"
   },
   "dependencies": {
-    "graphql-request": "^5.0.0"
+    "@astrojs/preact": "^1.1.0",
+    "graphql-request": "^5.0.0",
+    "preact": "^10.11.0"
   }
 }
