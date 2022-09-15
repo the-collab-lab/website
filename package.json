@@ -1,0 +1,21 @@
+{
+  "name": "@example/basics",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "devDependencies": {
+    "astro": "^1.2.4",
+    "prettier": "^2.7.1",
+    "prettier-plugin-astro": "^0.5.4"
+  },
+  "dependencies": {
+    "graphql-request": "^5.0.0"
+  }
+}

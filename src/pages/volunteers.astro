@@ -1,0 +1,9 @@
+---
+import { Volunteer } from '@components';
+import { volunteers } from '@graphql';
+import { BaseLayout } from '@layouts';
+---
+
+<BaseLayout title="Volunteers">
+	{volunteers.map((volunteer) => <Volunteer collabie={volunteer} />)}
+</BaseLayout>

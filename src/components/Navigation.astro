@@ -1,0 +1,47 @@
+---
+const routes = [
+	{
+		path: '/',
+		name: 'Home',
+	},
+	{
+		path: '/volunteers',
+		name: 'Volunteers',
+	},
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="nav">
+	{
+		routes.map(({ path, name }) => (
+			<a
+				class="nav-link"
+				href={path}
+				aria-current={path === currentPath || null}
+			>
+				{name}
+			</a>
+		))
+	}
+</nav>
+
+<style>
+	.nav {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: flex-start;
+	}
+
+	.nav > .nav-link {
+		padding: 0.5rem 1rem;
+	}
+
+	.nav > .nav-link[aria-current='true']::after {
+		content: '(you are here)';
+		display: inline-block;
+		text-decoration: underline;
+	}
+</style>

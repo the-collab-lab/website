@@ -1,0 +1,50 @@
+---
+import { BaseLayout } from '@layouts';
+import { Card } from '@components';
+---
+
+<BaseLayout title="The Collab Lab" useTitleGradient>
+	<ul role="list" class="link-card-grid">
+		<Card href="/volunteers" title="Volunteers" body="Meet our volunteers!" />
+	</ul>
+</BaseLayout>
+
+<style>
+	h1 {
+		margin: 2rem 0;
+	}
+
+
+	@keyframes pulse {
+		0%,
+		100% {
+			background-position-y: 0%;
+		}
+		50% {
+			background-position-y: 80%;
+		}
+	}
+
+	.instructions {
+		line-height: 1.6;
+		margin: 1rem 0;
+		background: #4f39fa;
+		padding: 1rem;
+		border-radius: 0.4rem;
+		color: var(--color-bg);
+	}
+
+	.instructions code {
+		font-size: 0.875em;
+		border: 0.1em solid var(--color-border);
+		border-radius: 4px;
+		padding: 0.15em 0.25em;
+	}
+
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
+</style>

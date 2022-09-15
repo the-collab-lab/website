@@ -1,0 +1,96 @@
+---
+import { Navigation } from '@components';
+
+export interface Props {
+	title: string;
+	useTitleGradient?: boolean;
+}
+
+const currentPath = Astro.url.pathname;
+const { title, useTitleGradient } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<header>
+			<h1 class={useTitleGradient ? 'text-gradient' : null}>{title}</h1>
+		</header>
+		{currentPath !== '/' && <Navigation />}
+		<main>
+			<slot />
+		</main>
+		<style>
+			:root {
+				font-size: 62.5%;
+
+				--font-size-base: clamp(1.6rem, 0.34vw + 1.456rem, 1.904rem);
+				--font-size-lg: clamp(1.92rem, 0.7vw + 1.92rem, 2.4rem);
+				--font-size-xl: clamp(3.904rem, 2.38vw + 2.96rem, 6rem);
+
+				--color-text: hsl(12, 5%, 4%);
+				--color-bg: hsl(10, 21%, 95%);
+				--color-border: hsl(17, 24%, 90%);
+				--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
+			}
+
+			html {
+				font-family: system-ui, sans-serif;
+				color: var(--color-text);
+				background-color: var(--color-bg);
+			}
+
+			body {
+				font-size: var(--font-size-base);
+				margin: 0;
+			}
+
+			:global(:is(footer, header, main, nav, section)) {
+				margin: auto;
+				max-width: 95%;
+			}
+
+			:global(main) {
+				padding: 1em;
+			}
+
+			:global(h1) {
+				font-size: var(--font-size-xl);
+				text-align: center;
+			}
+
+			:global(h2) {
+				font-size: var(--font-size-lg);
+			}
+
+			:global(code) {
+				font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+					DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+			}
+
+			:global(.text-gradient) {
+				font-weight: 900;
+				background-image: var(--astro-gradient);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-size: 100% 200%;
+				background-position-y: 100%;
+				border-radius: 0.4rem;
+				animation: pulse 4s ease-in-out infinite;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.text-gradient {
+					animation: none;
+				}
+			}
+		</style>
+	</body>
+</html>
