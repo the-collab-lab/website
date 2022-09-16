@@ -9,7 +9,7 @@ const graphQLEndpoint =
 let _mentors: CollabieData[] = [];
 let _volunteers: CollabieData[] = [];
 try {
-	const response = (await request(graphQLEndpoint, VolunteerQuery)) as GQLResponse;
+	const response = await request<GQLResponse>(graphQLEndpoint, VolunteerQuery);
 	const collabies = response.collabies.map((c) => {
 		// Flatten the bio prop to just the `html` string
 		c.bio = (c.bio as Bio)?.html;
@@ -19,15 +19,15 @@ try {
 	});
 
 	_mentors = collabies.filter((collabie) => {
-    let keep = false;
-    for (const role of collabie.roles) {
-      if (role === 'Founder') return false;
-      if (role === 'Mentor') {
-        keep = true;
-      }
-    }
-    return keep;
-  });
+		let keep = false;
+		for (const role of collabie.roles) {
+			if (role === 'Founder') return false;
+			if (role === 'Mentor') {
+				keep = true;
+			}
+		}
+		return keep;
+	});
 
 	_volunteers = collabies.filter((c) => {
 		return !c.roles.includes('Founder');
