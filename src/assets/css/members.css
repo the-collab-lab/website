@@ -1,0 +1,103 @@
+.member-gallery {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	padding-left: 0;
+}
+.member-gallery .member-container {
+	height: 200px;
+	justify-self: center;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	width: 200px;
+}
+.member-gallery .member-container.span-3 {
+	display: grid;
+	grid-column: span 3;
+	height: auto;
+	justify-self: left;
+	width: auto;
+}
+.member-gallery .member-container.span-3 p {
+	align-self: flex-end;
+	margin: 0 1rem 1rem;
+}
+.member-gallery .member-container.span-3 p:last-child {
+	align-self: flex-start;
+	margin: 0 1rem;
+}
+.member-gallery .team-member-photo {
+	width: 200px;
+	height: 200px;
+}
+.member-gallery .social-media-logo {
+}
+.member-gallery .social-media-logo img {
+	height: 20px;
+	padding: 0.125rem 0 0 0.25rem;
+	width: 20px;
+}
+.member-gallery .social-media-logo a:hover {
+	border-bottom: none;
+}
+.member-gallery .social-media-logo img:hover {
+	filter: brightness(2);
+}
+
+.member-gallery .member-caption {
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+	bottom: 0;
+	height: 1.5rem;
+	left: 0;
+	padding: 0.25rem 0.5rem;
+	position: absolute;
+	right: 0;
+	text-align: right;
+}
+.member-gallery .member-caption p {
+	display: inline-block;
+	margin: 0;
+	float: left;
+}
+.member-gallery .member-caption a {
+	border: none;
+}
+
+/* small screens */
+/* under 820px wide, adjust margins, fix the footer and tweak how we display the carousel */
+@media screen and (max-width: 819px) {
+	.member-gallery {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.member-gallery .member-container.span-3 {
+		grid-column: auto;
+		justify-self: stretch;
+		width: 100%;
+	}
+	.member-gallery .member-container:nth-child(odd) {
+		justify-self: end;
+	}
+	.member-gallery .member-container:nth-child(even) {
+		justify-self: start;
+	}
+}
+
+@media screen and (max-width: 440px) {
+	.member-gallery {
+		grid-template-columns: repeat(1, 1fr);
+	}
+	.member-gallery .member-container.span-3 p {
+		margin-top: 1rem;
+	}
+	.member-gallery .member-container.span-3 p:last-child {
+		margin-bottom: 2rem;
+	}
+	.member-gallery .member-container:nth-child(odd) {
+		justify-self: center;
+	}
+	.member-gallery .member-container:nth-child(even) {
+		justify-self: center;
+	}
+}

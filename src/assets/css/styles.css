@@ -1,0 +1,551 @@
+@import 'carousel.css';
+@import 'toast.css';
+@import 'donations.css';
+@import 'members.css';
+@import 'volunteer.css';
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-display: swap;
+	font-style: normal;
+	font-weight: 300;
+	src: url('/assets/fonts/source-sans-pro-latin-300.woff2') format('woff2'),
+		url('/assets/fonts/source-sans-pro-latin-300.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-display: swap;
+	font-style: normal;
+	font-weight: 600;
+	src: url('/assets/fonts/source-sans-pro-latin-600.woff2') format('woff2'),
+		url('/assets/fonts/source-sans-pro-latin-600.woff') format('woff');
+}
+
+:root {
+	--page-width: 1146px;
+	--base-font-size: 1rem;
+	--small-font-size: 85%;
+	--main-color: #2b373b;
+	--neutral-color: whitesmoke;
+	--neutral-dark-color: #ccc;
+	--accent-color: #e88d67;
+	--link-color: #0075f2;
+}
+
+body {
+	background: var(--neutral-color);
+	color: black;
+	font: var(--base-font-size) / 1.5 'Source Sans Pro', Sans-Serif;
+	margin: 0;
+	font-weight: 300;
+}
+
+header,
+main {
+	max-width: 95%;
+	width: var(--page-width);
+	margin: 1rem auto;
+}
+
+.roles__details > p,
+.tech-talks > li,
+main li,
+main > p {
+	max-width: 92ch;
+}
+
+header {
+	position: relative;
+	color: var(--main-color);
+}
+header h1 {
+	font-size: 2.5rem;
+	line-height: 1;
+	margin-bottom: 0.5rem;
+	margin-top: 2.5rem;
+}
+header h2 {
+	margin-top: 0.5rem;
+}
+header nav {
+	position: absolute;
+	right: 0;
+	top: -2rem;
+	font-size: 1.1rem;
+}
+header nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+header nav ul li {
+	display: inline-block;
+	padding: 0 0.2rem;
+}
+header nav ul li:after {
+	content: '|';
+	position: relative;
+	left: 0.3rem;
+}
+header nav ul li:last-child {
+	padding-right: 0;
+}
+header nav ul li:last-child:after {
+	content: '';
+}
+
+/* homepage ctas, 3 across */
+.ctas-container {
+	display: grid;
+	grid-column-gap: 1rem;
+	grid-template-columns: 1fr 1fr 1fr;
+	list-style: none;
+	margin: 0 0 1rem 0;
+	padding: 0;
+}
+.ctas-container h3 {
+	margin-top: 0;
+}
+
+.testimonials-container,
+.support-container {
+	padding: 0 7%;
+}
+
+.testimonials-container {
+	min-height: 400px;
+	border-right: 1px solid var(--neutral-color);
+}
+
+.testimonials-container > div {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	gap: 15px;
+}
+
+.testimonials-container button {
+	cursor: pointer;
+	font-size: 2.5rem;
+	border: none;
+	background: transparent;
+	color: var(--neutral-color);
+}
+
+.testimonials-container svg {
+	position: relative;
+	left: 175px;
+	top: 25px;
+	color: var(--neutral-dark-color);
+	width: 32px;
+	height: auto;
+}
+
+.testimonials-container svg:hover {
+	color: var(--neutral-color);
+}
+
+.testimonial {
+	text-align: center;
+	overflow-wrap: anywhere;
+	grid-column: 2;
+	grid-row: 1;
+	align-self: start;
+}
+
+.testimonial img {
+	display: block;
+	width: 130px;
+	height: 130px;
+	border-radius: 100%;
+	margin: auto;
+}
+
+.testimonial > div {
+	font-size: 1.1rem;
+	font-weight: 700;
+}
+
+footer {
+	background: var(--main-color);
+	color: var(--neutral-color);
+	display: flex;
+	padding: 4rem 1rem;
+}
+
+footer > * {
+	flex: 1;
+}
+
+footer h2 {
+	color: var(--accent-color);
+	font-size: 2rem;
+}
+
+footer ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+footer li {
+	padding: 0.2rem 0;
+	display: flex;
+	align-items: center;
+}
+
+footer .copyright {
+	padding-top: 2.4rem;
+	font-size: var(--small-font-size);
+}
+
+.copyright p {
+	margin: 0;
+	padding: 0;
+}
+
+h3 {
+	margin-bottom: 0.5rem;
+	margin-top: 1.5rem;
+}
+
+blockquote {
+	background: var(--main-color);
+	color: var(--neutral-color);
+	margin: 2.5rem 0;
+	padding: 1rem 2rem;
+	box-sizing: border-box;
+	width: 100vw;
+	max-width: calc(100% + 2rem);
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+blockquote p,
+blockquote dl {
+	margin: 0;
+}
+footer a,
+blockquote a {
+	color: var(--neutral-dark-color);
+}
+footer a:hover,
+blockquote a:hover {
+	color: var(--neutral-color);
+	border-bottom: solid 1px var(--neutral-color);
+}
+
+.q__attribute {
+	display: inline-block;
+}
+
+q {
+	display: block;
+	position: relative;
+	padding: 1.2rem;
+	border-right: 2px solid var(--accent-color);
+}
+q::before {
+	color: var(--neutral-dark-color);
+	content: '“';
+	font-size: xx-large;
+	font-weight: bold;
+	left: -0.9rem;
+	position: absolute;
+	top: -0.36rem;
+}
+q::after {
+	content: '';
+}
+
+dl {
+}
+dl dt {
+	float: left;
+	font-weight: bold;
+	margin-right: 0.5rem;
+}
+dl dd {
+	margin-left: 1rem;
+}
+
+h2 {
+	font-weight: normal;
+}
+
+a {
+	color: var(--link-color);
+	text-decoration: none;
+}
+a:hover {
+	border-bottom: solid 1px var(--link-color);
+}
+
+hr {
+	border-style: solid;
+	border-width: 1px;
+	color: var(--neutral-dark-color);
+}
+
+figure.float-right {
+	float: right;
+	margin: 0 0 1rem 1rem;
+	width: 50%;
+}
+figure.float-right img {
+	height: auto;
+	width: 100%;
+}
+/* these images come from the cms so for now they have to be the first element
+     on the page, so we use css to push them down the page a little to match the
+     images on other pages
+   */
+figure.float-right.image-floated-right img {
+	margin-top: 56px;
+}
+figure.float-right figcaption {
+	font-size: var(--small-font-size);
+	font-style: italic;
+}
+figure img {
+	max-width: 95%;
+	height: auto;
+}
+
+.tech-talks {
+	list-style: none;
+	margin: 1em 0;
+	padding: 0;
+}
+.tech-talks > li {
+	border-bottom: solid 1px var(--neutral-dark-color);
+	margin: 1rem 0;
+	padding-bottom: 1rem;
+}
+.tech-talks > li:first-child {
+	border-top: solid 1px var(--neutral-dark-color);
+}
+.tech-talks h3 {
+	margin: 1.5rem 0;
+}
+.tech-talks h3 em {
+	font-weight: normal;
+}
+
+.stats-enlarge {
+	max-width: 60%;
+	object-fit: cover;
+}
+
+.donut-graph {
+	width: 100%;
+}
+
+.donut-graph-center {
+	object-fit: cover;
+	display: block;
+	margin: 0 auto;
+	width: 80%;
+}
+
+.stats-graphs {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	padding: 1.8em 0;
+}
+
+.stats-graphs > figure {
+	align-self: stretch;
+	padding: 25px 0;
+}
+
+.stats-graphs figcaption {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	width: 130px;
+	font-size: 1.2rem;
+	font-weight: bold;
+	padding-top: 20px;
+}
+
+.stats-graphs img {
+	display: block;
+	margin: auto;
+	width: 65%;
+}
+
+.stats-p {
+	width: 80%;
+	margin: auto;
+	text-align: center;
+}
+
+.display-stats {
+	display: flex;
+	width: 90%;
+	margin: auto;
+	padding: 1.5em 0;
+}
+
+.stats-list {
+	width: 50%;
+}
+
+.stats-list h3 {
+	text-align: center;
+	width: 70%;
+}
+
+.block {
+	background-color: var(--main-color);
+	display: block;
+	height: 35px;
+	margin: 0 10px;
+}
+
+.block-270px {
+	width: 270px;
+}
+
+.block-65px {
+	width: 65px;
+}
+
+.block-40px {
+	width: 40px;
+}
+
+.block-170px {
+	width: 170px;
+}
+
+.block-100px {
+	width: 100px;
+}
+
+.block-45px {
+	width: 45px;
+}
+
+.display-stats ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.display-stats ul li {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+}
+
+.display-stats .ethnicity-list {
+	margin-left: 15%;
+}
+
+.display-stats ul li span:first-child {
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.stats {
+	flex: 1 1 auto;
+	max-width: 360px;
+}
+
+.banner > blockquote {
+	margin: 0;
+	text-align: center;
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1em;
+	text-align: center;
+	flex-wrap: wrap;
+}
+
+.flex-item {
+	flex: 1 1 auto;
+	max-width: 250px;
+}
+
+.flex-text {
+	font-size: 1.5em;
+	font-weight: 500;
+}
+
+.icons {
+	fill: var(--neutral-color);
+	width: 22px;
+	height: auto;
+	padding-right: 1.2rem;
+}
+
+.hidden {
+	display: none;
+	transition: all 200ms ease-in-out;
+}
+/* small screens */
+/* under 820px wide, adjust margins, fix the footer and tweak how we display the carousel */
+@media screen and (max-width: 819px) {
+	header h1 {
+		padding-top: 2rem;
+	}
+
+	header nav {
+		font-size: 1rem;
+	}
+
+	footer {
+		flex-direction: column;
+		padding: 0 1rem;
+	}
+
+	.ctas-container {
+		display: block;
+	}
+
+	.testimonials-container {
+		border: 0;
+	}
+
+	.testimonials-container svg {
+		left: 75px;
+	}
+
+	.stats-p {
+		width: 90%;
+	}
+
+	.display-stats {
+		display: block;
+	}
+
+	.display-stats .ethnicity-list {
+		margin-left: 0;
+	}
+
+	.stats-list {
+		width: 100%;
+		margin: auto;
+		text-align: left;
+	}
+
+	.stats-list h3 {
+		text-align: left;
+	}
+
+	.copyright p:first-child {
+		float: none;
+	}
+	.copyright p:last-child {
+		text-align: left;
+	}
+}

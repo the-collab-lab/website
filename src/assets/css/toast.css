@@ -1,0 +1,25 @@
+.toast {
+	--background-color: #fefefe;
+	--border-color: #bebebe;
+
+	position: fixed;
+	top: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	max-width: 350px;
+	padding: 10px 20px;
+	background: var(--background-color);
+	border: 1px solid var(--border-color);
+	text-align: center;
+	z-index: 1000;
+}
+
+.toast.error {
+	--background-color: #f3e4e5;
+	--border-color: red;
+}
+
+.toast.success {
+	--background-color: #e4f3e6;
+	--border-color: green;
+}
