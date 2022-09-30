@@ -2,12 +2,22 @@
 import { Navigation } from '@components';
 
 export interface Props {
+	subtitle?: string;
 	title: string;
 	useTitleGradient?: boolean;
 }
 
-const currentPath = Astro.url.pathname;
-const { title, useTitleGradient } = Astro.props as Props;
+const { subtitle, title, useTitleGradient } = Astro.props as Props;
+
+const jsonLDSchema = {
+	'@context': 'http://www.schema.org',
+	'@type': 'EducationalOrganization',
+	name: 'The Collab Lab',
+	logo: 'https://the-collab-lab.codes/assets/img/sig-logo.png',
+	image: 'https://the-collab-lab.codes/assets/img/sig-logo.png',
+	description:
+		'Gain practical experience by working remotely on real world projects with other early-career developers.',
+};
 ---
 
 <!DOCTYPE html>
@@ -18,12 +28,14 @@ const { title, useTitleGradient } = Astro.props as Props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script type="application/ld+json" set:html={jsonLDSchema}></script>
 	</head>
 	<body>
 		<header>
 			<h1 class={useTitleGradient ? 'text-gradient' : null}>{title}</h1>
 		</header>
-		{currentPath !== '/' && <Navigation />}
+		<Navigation />
+		{subtitle && <h2>{subtitle}</h2>}
 		<main>
 			<slot />
 		</main>
