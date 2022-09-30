@@ -28,6 +28,20 @@ const jsonLDSchema = {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="/fonts/source-sans-pro-latin-300.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="/fonts/source-sans-pro-latin-600.woff2"
+			crossorigin
+		/>
 		<script type="application/ld+json" set:html={jsonLDSchema}></script>
 	</head>
 	<body>
@@ -40,6 +54,23 @@ const jsonLDSchema = {
 			<slot />
 		</main>
 		<style>
+			@font-face {
+				font-family: 'Source Sans Pro';
+				font-display: swap;
+				font-style: normal;
+				font-weight: 300;
+				src: url('/fonts/source-sans-pro-latin-300.woff2') format('woff2'),
+					url('/fonts/source-sans-pro-latin-300.woff') format('woff');
+			}
+
+			@font-face {
+				font-family: 'Source Sans Pro';
+				font-display: swap;
+				font-style: normal;
+				font-weight: 600;
+				src: url('/fonts/source-sans-pro-latin-600.woff2') format('woff2'),
+					url('/fonts/source-sans-pro-latin-600.woff') format('woff');
+			}
 			:root {
 				font-size: 62.5%;
 
