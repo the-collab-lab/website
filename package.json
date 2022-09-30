@@ -31,6 +31,7 @@
 		"stripe": "^10.12.0"
 	},
 	"lint-staged": {
-		"*.js": "eslint --cache --fix"
+		"*.{astro,js,ts,jsx,tsx}": "eslint --cache --fix",
+		"*.{astro,js,ts,jsx,tsx,css,scss,md,mdx}": "prettier --write"
 	}
 }
