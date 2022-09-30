@@ -1,4 +1,4 @@
-export type CollabieRoles = 'Founder' | 'Volunteer' | 'Mentor';;
+export type CollabieRoles = 'Founder' | 'Volunteer' | 'Mentor';
 
 export interface Bio {
 	html: string;

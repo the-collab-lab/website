@@ -34,7 +34,7 @@ function renderSocials(collabie: CollabieData) {
 					<a href={siteUrl}>
 						Connect with {collabie.firstName} on {formattedSiteName}!
 					</a>
-				</li>
+				</li>,
 			);
 		}
 	}
