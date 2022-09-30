@@ -1,23 +1,36 @@
 {
-  "name": "@example/basics",
-  "version": "0.0.1",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "devDependencies": {
-    "astro": "^1.2.4",
-    "prettier": "^2.7.1",
-    "prettier-plugin-astro": "^0.5.4"
-  },
-  "dependencies": {
-    "@astrojs/preact": "^1.1.0",
-    "graphql-request": "^5.0.0",
-    "preact": "^10.11.0"
-  }
+	"name": "@example/basics",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"prepare": "husky install"
+	},
+	"devDependencies": {
+		"@types/stripe-v3": "^3.1.27",
+		"@typescript-eslint/parser": "^5.38.1",
+		"astro": "^1.4.1",
+		"eslint": "^8.24.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"husky": "^8.0.1",
+		"lint-staged": "^13.0.3",
+		"prettier": "^2.7.1",
+		"prettier-plugin-astro": "^0.5.5"
+	},
+	"dependencies": {
+		"@astrojs/preact": "^1.1.1",
+		"graphql-request": "^5.0.0",
+		"preact": "^10.11.0",
+		"stripe": "^10.12.0"
+	},
+	"lint-staged": {
+		"*.js": "eslint --cache --fix"
+	}
 }
