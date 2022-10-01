@@ -1,23 +1,29 @@
 import { gql } from 'graphql-request';
 
+const COLLABIE_DATA_FRAGMENT = gql`
+	fragment collabieData on Collabie {
+		bio {
+			html
+		}
+		firstName
+		fullName
+		pathToPhoto
+		gitHubUrl
+		linkedInUrl
+		twitterUrl
+	}
+`;
+
 export const CollabiesAndTeamsQuery = gql`
-	query {
+	query CollabiesAndTeams {
 		collabies(
 			where: { NOT: { roles_every: { name: "Participant" } }, visible: true }
 			orderBy: firstName_ASC
 		) {
-			bio {
-				html
-			}
+			...collabieData
 			roles(where: { name_not: "Participant" }) {
 				name
 			}
-			firstName
-			fullName
-			pathToPhoto
-			gitHubUrl
-			linkedInUrl
-			twitterUrl
 		}
 		teams(where: { visible: true }, orderBy: startDate_DESC) {
 			anchor
@@ -25,16 +31,9 @@ export const CollabiesAndTeamsQuery = gql`
 			startDate
 			endDate
 			developers: participants(orderBy: firstName_ASC) {
-				firstName
-				fullName
-				pathToPhoto
-				gitHubUrl
-				linkedInUrl
-				twitterUrl
-				bio {
-					html
-				}
+				...collabieData
 			}
 		}
 	}
+	${COLLABIE_DATA_FRAGMENT}
 `;
