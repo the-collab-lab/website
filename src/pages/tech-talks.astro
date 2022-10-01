@@ -1,5 +1,6 @@
 ---
 import { BaseLayout } from '@layouts';
+import { techTalks } from '@graphql';
 ---
 
 <BaseLayout title="Tech talks">
@@ -20,4 +21,34 @@ import { BaseLayout } from '@layouts';
 			>.
 		</p>
 	</blockquote>
+
+	<ul>
+		{
+			techTalks.map((talk) => (
+				<li>
+					<h3>
+						{talk.title} <em>{talk.formattedDate}</em>
+					</h3>
+					{talk.youTubeEmbedUrl && (
+						<iframe
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen
+							frameborder="0"
+							loading="lazy"
+							height="315"
+							src={talk.youTubeEmbedUrl}
+							width="560"
+						/>
+					)}
+					<Fragment set:html={talk.description.html} />
+				</li>
+			))
+		}
+	</ul>
+
+	<h2>Have a talk idea? Get in touch!</h2>
+	<p>
+		Interested in speaking at our Meetup?
+		<a href="https://airtable.com/shrmy5hJ8tEiQsxI6">Submit your idea here</a>.
+	</p>
 </BaseLayout>
