@@ -22,21 +22,17 @@ export function Volunteer({ collabie }: VolunteerProps) {
 }
 
 function renderSocials(collabie: CollabieData) {
-	const ret = [];
-	for (const site of socialSiteNames) {
+	return socialSiteNames.map((site) => {
 		const siteUrl = collabie[`${site}Url` as const];
 
-		if (siteUrl && siteUrl.length > 0) {
-			const formattedSiteName =
-				site.charAt(0).toUpperCase() + site.substring(1);
-			ret.push(
-				<li>
-					<a href={siteUrl}>
-						Connect with {collabie.firstName} on {formattedSiteName}!
-					</a>
-				</li>,
-			);
-		}
-	}
-	return ret;
+		if (!siteUrl || siteUrl.length === 0) return null;
+		const formattedSiteName = site.charAt(0).toUpperCase() + site.slice(1);
+		return (
+			<li>
+				<a href={siteUrl}>
+					Connect with {collabie.firstName} on {formattedSiteName}!
+				</a>
+			</li>
+		);
+	});
 }
