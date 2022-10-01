@@ -1,5 +1,4 @@
 import { GraphQLClient } from 'graphql-request';
-import { format, parseISO } from 'date-fns';
 
 import { CollabiesAndTeamsQuery, TechTalksQuery } from './queries';
 import type {
@@ -12,6 +11,16 @@ import type {
 
 const EMPTY_ARRAY = [] as const;
 
+const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
+	month: 'long',
+	year: 'numeric',
+});
+const fullDateShortMonthFormat = new Intl.DateTimeFormat('en-US', {
+	month: 'short',
+	day: 'numeric',
+	year: 'numeric',
+});
+
 /**
  * Transforms two dates of type 2020-10-10 and 2020-11-11 to
  * October 2020 - November 2020
@@ -19,18 +28,14 @@ const EMPTY_ARRAY = [] as const;
  * Used in the Teams section.
  */
 const calculatedDate = ({ startDate, endDate }: Record<string, string>) => {
-	let startMask = 'MMMM y';
-	const endMask = 'MMMM y';
+	const formattedStartDate = monthAndYearFormat.format(new Date(startDate));
+	const formattedEndDate = monthAndYearFormat.format(new Date(endDate));
 
-	// if the years are the same, don’t show the year twice
-	// e.g., "December 2019 – January 2020"
-	// e.g., "October – November 2020"
-	if (startDate.slice(0, 4) === endDate.slice(0, 4)) {
-		startMask = 'MMMM';
+	// if the months are the same, don’t show the month twice
+	// e.g. "October 2020 – November 2020" -> "October – November 2020"
+	if (formattedStartDate.slice(-4) === formattedEndDate.slice(-4)) {
+		return `${formattedStartDate.slice(-4)} – ${formattedEndDate}`;
 	}
-
-	const formattedStartDate = format(parseISO(startDate), startMask);
-	const formattedEndDate = format(parseISO(endDate), endMask);
 
 	return `${formattedStartDate} – ${formattedEndDate}`;
 };
@@ -86,7 +91,9 @@ async function getData() {
 
 		const techTalks = techTalkResponse.techTalks.map((talk) => {
 			const rgx = /(v=([\w-]+))|(be\/([\w-]+))/; // there's probably room for improvement here
-			talk.formattedDate = format(parseISO(talk.dateAndTime), 'd MMM y');
+			talk.formattedDate = fullDateShortMonthFormat.format(
+				new Date(talk.dateAndTime),
+			);
 			talk.youTubeEmbedUrl = null;
 			if (talk.youTubeUrl) {
 				// source = https://www.youtube.com/watch?v=3mci0a8AWnI
