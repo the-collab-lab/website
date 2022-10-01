@@ -1,6 +1,5 @@
 import { request } from 'graphql-request';
-import format from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
+import { format, parseISO } from 'date-fns';
 
 import { TeamsQuery, VolunteerQuery } from './queries';
 import type { Bio, CollabieData, GQLResponse, Role } from './types';
