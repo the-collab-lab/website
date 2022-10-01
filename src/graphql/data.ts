@@ -1,12 +1,44 @@
 import { request } from 'graphql-request';
+import format from 'date-fns/format';
+import parseISO from 'date-fns/parseISO';
 
-import { VolunteerQuery } from './queries';
+import { TeamsQuery, VolunteerQuery } from './queries';
 import type { Bio, CollabieData, GQLResponse, Role } from './types';
+
+/**
+ * Transforms two dates of type 2020-10-10 and 2020-11-11 to
+ * October 2020 - November 2020
+ *
+ * Used in the Teams section.
+ */
+const calculatedDate = ({ startDate, endDate }: Record<string, string>) => {
+	let startMask = 'MMMM y';
+	const endMask = 'MMMM y';
+
+	// if the years are the same, don’t show the year twice
+	// e.g., "December 2019 – January 2020"
+	// e.g., "October – November 2020"
+	if (startDate.slice(0, 4) === endDate.slice(0, 4)) {
+		startMask = 'MMMM';
+	}
+
+	const formattedStartDate = format(parseISO(startDate), startMask);
+	const formattedEndDate = format(parseISO(endDate), endMask);
+
+	return `${formattedStartDate} – ${formattedEndDate}`;
+};
+
+// Generate Team Number for sorting
+const calculateTeamNumber = (anchor: string) =>
+	anchor.includes('pilot')
+		? 8.5
+		: parseInt(anchor.split('-').pop() as string, 10);
 
 const graphQLEndpoint =
 	'https://api-us-east-1.hygraph.com/v2/ckfwosu634r7l01xpco7z3hvq/master';
 
 let _mentors: CollabieData[] = [];
+let _teams = [];
 let _volunteers: CollabieData[] = [];
 try {
 	const response = await request<GQLResponse>(graphQLEndpoint, VolunteerQuery);
@@ -33,8 +65,25 @@ try {
 		return !c.roles.includes('Founder');
 	});
 } catch (error) {
-	console.log('Error fetching data');
+	console.log('Error fetching mentor and volunteer data');
+}
+
+try {
+	const { teams } = await request(graphQLEndpoint, TeamsQuery);
+	_teams = teams.map(
+		(team: { startDate: string; endDate: string; anchor: string }) => ({
+			...team,
+			calculatedDate: calculatedDate({
+				startDate: team.startDate,
+				endDate: team.endDate,
+			}),
+			teamNumber: calculateTeamNumber(team.anchor),
+		}),
+	);
+} catch (error) {
+	console.log('Error fetching teams data.');
 }
 
 export const mentors = _mentors;
+export const teams = _teams;
 export const volunteers = _volunteers;
