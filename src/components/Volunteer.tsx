@@ -1,16 +1,13 @@
 import type { CollabieData, CollabieRoles } from '@graphql';
+import {
+	AVATAR_PLACEHOLDER_PATH,
+	SOCIAL_SITE_NAMES,
+	fixAssetPath,
+} from '@utils';
 
 export interface VolunteerProps {
 	collabie: CollabieData;
 }
-
-const socialSiteNames = ['gitHub', 'linkedIn', 'twitter'] as const;
-
-function correctPhotoPath(path: string | null) {
-	return path?.replace(/^\/assets/, '');
-}
-
-const avatarPlaceholderPath = '/img/members/generic-avatar.png';
 
 export function Volunteer({ collabie }: VolunteerProps) {
 	const { fullName, pathToPhoto, roles } = collabie;
@@ -22,7 +19,7 @@ export function Volunteer({ collabie }: VolunteerProps) {
 					className="volunteer__photo"
 					loading="lazy"
 					height="300"
-					src={correctPhotoPath(pathToPhoto) || avatarPlaceholderPath}
+					src={fixAssetPath(pathToPhoto) || AVATAR_PLACEHOLDER_PATH}
 					width="300"
 				/>
 				<figcaption>
@@ -46,7 +43,7 @@ function renderRolesList(roles: CollabieRoles[]) {
 }
 
 function renderSocialsList(collabie: CollabieData) {
-	const socialItems = socialSiteNames.map((site) => {
+	const socialItems = SOCIAL_SITE_NAMES.map((site) => {
 		const siteUrl = collabie[`${site}Url` as const];
 
 		if (!siteUrl || siteUrl.length === 0) return null;
