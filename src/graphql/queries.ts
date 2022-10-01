@@ -37,3 +37,26 @@ export const CollabiesAndTeamsQuery = gql`
 	}
 	${COLLABIE_DATA_FRAGMENT}
 `;
+
+export const TechTalksQuery = gql`
+	query TechTalks {
+		techTalks(orderBy: dateAndTime_DESC) {
+			title
+			presenters {
+				fullName
+			}
+			dateAndTime
+			description {
+				html
+			}
+			meetupUrl
+			youTubeUrl
+			image {
+				url
+				width
+				height
+			}
+			visible
+		}
+	}
+`;

@@ -31,7 +31,28 @@ export interface DeveloperTeam {
 	teamNumber: number;
 }
 
-export interface GQLResponse {
+export interface CollabiesAndTeamsResponse {
 	collabies: Collabie<Bio | string, Role | CollabieRoles>[];
 	teams: DeveloperTeam[];
+}
+
+export interface TechTalk {
+	title: string;
+	presenters: Pick<CollabieData, 'fullName'>;
+	dateAndTime: string;
+	description: { html: string };
+	formattedDate?: string;
+	meetupUrl: string;
+	youTubeUrl?: string;
+	image: {
+		url: string;
+		width: number;
+		height: number;
+	};
+	visible: boolean;
+	youTubeEmbedUrl?: string | null;
+}
+
+export interface TechTalkResponse {
+	techTalks: TechTalk[];
 }
