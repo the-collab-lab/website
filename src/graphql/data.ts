@@ -92,11 +92,13 @@ async function getData() {
 				// source = https://www.youtube.com/watch?v=3mci0a8AWnI
 				// source = https://youtu.be/FU7v7JI5-pg
 				// target = https://www.youtube.com/embed/3mci0a8AWnI
-				const matches = talk.youTubeUrl.match(rgx) || EMPTY_ARRAY;
-				// depending on the format of the input URL, the slug will be
-				// at either position 2 or position 4 of the `matches` array
-				const id = matches[2] || matches[4];
-				talk.youTubeEmbedUrl = id && `https://www.youtube.com/embed/${id}`;
+				const matches = talk.youTubeUrl.match(rgx);
+				if (matches) {
+					// depending on the format of the input URL, the slug will be
+					// at either position 2 or position 4 of the `matches` array
+					const id = matches[2] || matches[4];
+					talk.youTubeEmbedUrl = `https://www.youtube.com/embed/${id}`;
+				}
 			}
 			return talk;
 		});
