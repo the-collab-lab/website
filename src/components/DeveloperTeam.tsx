@@ -1,3 +1,5 @@
+import type { DeveloperTeam as DeveloperTeamT } from '@graphql';
+
 const avatarPlaceholderPath = '/img/members/generic-avatar.png';
 const socials = ['gitHub', 'linkedIn', 'twitter'] as const;
 
@@ -5,24 +7,8 @@ function correctPhotoPath(path: string) {
 	return path.replace(/^\/assets/, '');
 }
 
-interface Developer {
-	fullName: string;
-	firstName: string;
-	pathToPhoto: string;
-	gitHubUrl?: string;
-	linkedInUrl?: string;
-	twitterUrl?: string;
-}
-
-export interface DeveloperTeamT {
-	anchor: string;
-	calculatedDate: string;
-	developers: Developer[];
-	displayName: string;
-}
-
-function renderSocials(developer: Developer) {
-	socials.map((site) => {
+function renderSocials(developer: DeveloperTeamT['developers'][number]) {
+	return socials.map((site) => {
 		const siteUrl = developer[`${site}Url` as const];
 
 		if (!siteUrl) return null;
@@ -52,6 +38,7 @@ export function DeveloperTeam({ team }: { team: DeveloperTeamT }) {
 					<li class="member-container">
 						<img
 							alt={developer.fullName}
+							className="team-member-photo"
 							loading="lazy"
 							height="200"
 							src={correctPhotoPath(developer.pathToPhoto)}
