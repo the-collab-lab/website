@@ -1,4 +1,4 @@
-import type { CollabieData } from '@graphql';
+import type { CollabieData, CollabieRoles } from '@graphql';
 
 export interface VolunteerProps {
 	collabie: CollabieData;
@@ -15,30 +15,38 @@ const avatarPlaceholderPath = '/img/members/generic-avatar.png';
 export function Volunteer({ collabie }: VolunteerProps) {
 	const { fullName, pathToPhoto, roles } = collabie;
 	return (
-		<div class="volunteer__grid-item">
+		<div className="volunteer__grid-item">
 			<figure className="volunteer">
 				<img
 					alt=""
-					class="volunteer__photo"
+					className="volunteer__photo"
 					loading="lazy"
 					height="300"
 					src={correctPhotoPath(pathToPhoto) || avatarPlaceholderPath}
 					width="300"
 				/>
+				<figcaption>
+					<b>{fullName}</b>
+					{renderRolesList(roles)}
+					{renderSocialsList(collabie)}
+				</figcaption>
 			</figure>
-			<b>{fullName}</b>
-			<ul class="volunteer__roles">
-				{roles.map((role) => (
-					<li class="volunteer__roles-item">{role}</li>
-				))}
-			</ul>
-			<ul className="volunteer__socials">{renderSocials(collabie)}</ul>
 		</div>
 	);
 }
 
-function renderSocials(collabie: CollabieData) {
-	return socialSiteNames.map((site) => {
+function renderRolesList(roles: CollabieRoles[]) {
+	return (
+		<ul className="volunteer__roles">
+			{roles.map((role) => (
+				<li className="volunteer__roles-item">{role}</li>
+			))}
+		</ul>
+	);
+}
+
+function renderSocialsList(collabie: CollabieData) {
+	const socialItems = socialSiteNames.map((site) => {
 		const siteUrl = collabie[`${site}Url` as const];
 
 		if (!siteUrl || siteUrl.length === 0) return null;
@@ -51,4 +59,5 @@ function renderSocials(collabie: CollabieData) {
 			</li>
 		);
 	});
+	return <ul className="volunteer__socials">{socialItems}</ul>;
 }
