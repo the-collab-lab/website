@@ -1,7 +1,7 @@
 import { request } from 'graphql-request';
 import { format, parseISO } from 'date-fns';
 
-import { TeamsQuery, VolunteerQuery } from './queries';
+import { CollabiesAndTeamsQuery } from './queries';
 import type { Bio, CollabieData, GQLResponse, Role } from './types';
 
 /**
@@ -36,53 +36,55 @@ const calculateTeamNumber = (anchor: string) =>
 const graphQLEndpoint =
 	'https://api-us-east-1.hygraph.com/v2/ckfwosu634r7l01xpco7z3hvq/master';
 
-let _mentors: CollabieData[] = [];
-let _teams = [];
-let _volunteers: CollabieData[] = [];
-try {
-	const response = await request<GQLResponse>(graphQLEndpoint, VolunteerQuery);
-	const collabies = response.collabies.map((c) => {
-		// Flatten the bio prop to just the `html` string
-		c.bio = (c.bio as Bio)?.html;
-		// Flatten the role objects to just their `name` string
-		c.roles = c.roles.map((r) => (r as Role).name);
-		return c as CollabieData;
-	});
+async function getData() {
+	return request<GQLResponse>(graphQLEndpoint, CollabiesAndTeamsQuery)
+		.then((response) => {
+			const collabies = response.collabies.map((c) => {
+				// Flatten the bio prop to just the `html` string
+				c.bio = (c.bio as Bio)?.html;
+				// Flatten the role objects to just their `name` string
+				c.roles = c.roles.map((r) => (r as Role).name);
+				return c as CollabieData;
+			});
 
-	_mentors = collabies.filter((collabie) => {
-		let keep = false;
-		for (const role of collabie.roles) {
-			if (role === 'Founder') return false;
-			if (role === 'Mentor') {
-				keep = true;
-			}
-		}
-		return keep;
-	});
+			const mentors = collabies.filter((collabie) => {
+				let keep = false;
+				for (const role of collabie.roles) {
+					if (role === 'Founder') return false;
+					if (role === 'Mentor') {
+						keep = true;
+					}
+				}
+				return keep;
+			});
 
-	_volunteers = collabies.filter((c) => {
-		return !c.roles.includes('Founder');
-	});
-} catch (error) {
-	console.log('Error fetching mentor and volunteer data');
+			const volunteers = collabies.filter((c) => {
+				return !c.roles.includes('Founder');
+			});
+
+			const teams = response.teams.map((team) => ({
+				...team,
+				calculatedDate: calculatedDate({
+					startDate: team.startDate,
+					endDate: team.endDate,
+				}),
+				teamNumber: calculateTeamNumber(team.anchor),
+			}));
+
+			return {
+				mentors,
+				teams,
+				volunteers,
+			};
+		})
+		.catch((error) => {
+			console.error(error);
+			return {
+				mentors: [],
+				teams: [],
+				volunteers: [],
+			};
+		});
 }
 
-try {
-	const { teams } = await request(graphQLEndpoint, TeamsQuery);
-	_teams = teams.map(
-		(team: { startDate: string; endDate: string; anchor: string }) => ({
-			...team,
-			calculatedDate: calculatedDate({
-				startDate: team.startDate,
-				endDate: team.endDate,
-			}),
-			teamNumber: calculateTeamNumber(team.anchor),
-		}),
-	);
-} catch (error) {
-	console.log('Error fetching teams data.');
-}
-
-export const mentors = _mentors;
-export const teams = _teams;
-export const volunteers = _volunteers;
+export const { mentors, teams, volunteers } = await getData();

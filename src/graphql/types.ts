@@ -19,8 +19,19 @@ export interface Collabie<BioT, RoleT> {
 	roles: RoleT[];
 }
 
-export interface GQLResponse {
-	collabies: Collabie<Bio | string, Role | CollabieRoles>[];
+export type CollabieData = Collabie<string, CollabieRoles>;
+
+export interface DeveloperTeam {
+	anchor: string;
+	calculatedDate: string;
+	developers: CollabieData[];
+	displayName: string;
+	endDate: string;
+	startDate: string;
+	teamNumber: number;
 }
 
-export type CollabieData = Collabie<string, CollabieRoles>;
+export interface GQLResponse {
+	collabies: Collabie<Bio | string, Role | CollabieRoles>[];
+	teams: DeveloperTeam[];
+}
