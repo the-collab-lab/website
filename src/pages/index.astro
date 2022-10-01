@@ -3,9 +3,106 @@ import { BaseLayout } from '@layouts';
 import { Card } from '@components';
 ---
 
-<BaseLayout title="The Collab Lab" useTitleGradient>
-	<ul role="list" class="link-card-grid">
-		<Card href="/volunteer" title="Volunteers" body="Meet our volunteers!" />
+<BaseLayout
+	title="The Collab Lab"
+	subtitle={`Gain <strong>practical experience</strong> by working remotely on<strong> real world projects</strong> with other<strong> early-career developers.</strong>`}
+>
+	<h2 id="mission">Our Mission</h2>
+	<p>
+		The Collab Lab increases access to web development jobs for early-career
+		developers and, in particular, people in under-represented groups in tech by
+		providing experiential skills training in software team collaboration and
+		career management.
+	</p>
+	<figure>
+		<picture>
+			<source srcset="/img/weekly-call-800w.webp 800w" type="image/webp" />
+			<source srcset="/img/weekly-call-800w.jpg 800w" type="image/jpg" />
+			<img
+				alt="Collab Lab mentors and developers taking part in one of our weekly check-in calls"
+				height="500"
+				width="800"
+				src="/img/weekly-call-800w.jpg"
+			/>
+		</picture>
+		<figcaption>
+			Cohort 2 and mentors taking part in a weekly check-in call
+		</figcaption>
+	</figure>
+	<h3>The Collab Lab is…</h3>
+	<ul>
+		<li><strong>Collaborative</strong> group project practice</li>
+		<li>
+			A place to work alongside your <strong>peers</strong> in a fully remote setting
+		</li>
+		<li>
+			An opportunity to <strong>learn</strong> from experienced developers
+		</li>
+		<li>Volunteer run and <strong>free</strong> for developers</li>
+	</ul>
+
+	<blockquote>
+		<q
+			>Collab Lab gave me agile team experience I didn’t get through my coding
+			bootcamp. I honestly don’t think I would have landed that first job offer
+			without being able to talk about my experience with pair programming and
+			resolving merge conflicts. Beyond that, I made some great friends!</q
+		>
+		<span class="q__attribute"
+			>~ <a href="https://caitlyngreffly.com">Caitlyn Greffly</a>, Software
+			Engineer at
+			<a href="https://www.fool.com">The Motley Fool</a>
+		</span>
+	</blockquote>
+
+	<!-- TODO: Add application block -->
+
+	<h2>So you want to…</h2>
+
+	<ul class="ctas-container">
+		<li>
+			<h3>Learn how software teams collaborate?</h3>
+			<p>
+				There’s no better way to gain real-world experience in a supportive,
+				inclusive environment than being a developer on a Collab Lab project.
+				Join the over 170 early-career developers from around the world who have
+				learned valuable skills that have helped them land their first
+				programming job.
+			</p>
+			<p>
+				You can do it! Head to <a href="/apply">our apply page</a> for the dates
+				of our next cohort!
+			</p>
+		</li>
+		<li>
+			<h3>Help fix tech?</h3>
+			<p>
+				The Collab Lab is on a mission to fix tech, an industry rife with
+				gatekeeping and inequity. Our developers reflect the diversity we want
+				to see in tech, with an emphasis on supporting people from groups
+				typically underrepresented on software teams. Joining us as a volunteer
+				is a way to give back and help early-career developers gain their
+				footholds in tech.
+			</p>
+			<p>
+				Ready to do this? Check out <a href="/volunteer">our volunteer page</a>!
+			</p>
+		</li>
+		<li>
+			<h3>Hire amazing early-career devs?</h3>
+			<p>
+				Collab Lab developers are more ready than the average bootcamp grad to
+				step in and start contributing to your company’s success. Our alums
+				currently work at companies including 1Password, Datadog, Discord,
+				Divvy, Google, IBM, Intercom, New Relic, PayPal, POLITICO, SAP, Shopify,
+				The Motley Fool, The Washington Post, Twilio, Twitter, and Zapier, among
+				others.
+			</p>
+			<p>
+				<a href="mailto:contact@the-collab-lab.codes">Get in touch</a> to diversify
+				your pipeline and hire developers you can grow!
+			</p>
+		</li>
 	</ul>
 </BaseLayout>
 

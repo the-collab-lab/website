@@ -52,11 +52,11 @@ const jsonLDSchema = JSON.stringify(
 		></script>
 	</head>
 	<body>
+		<Navigation />
 		<header>
 			<h1 class={useTitleGradient ? 'text-gradient' : null}>{title}</h1>
+			{subtitle && <h2 set:html={subtitle} />}
 		</header>
-		<Navigation />
-		{subtitle && <h2>{subtitle}</h2>}
 		<main>
 			<slot />
 		</main>
@@ -119,6 +119,10 @@ const jsonLDSchema = JSON.stringify(
 
 			:global(h2) {
 				font-size: var(--font-size-lg);
+			}
+
+			:global(header > h2) {
+				font-weight: 400;
 			}
 
 			:global(code) {
