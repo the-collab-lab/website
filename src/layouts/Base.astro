@@ -1,5 +1,10 @@
 ---
-import { GetInTouch, Navigation } from '@components';
+import { DonationButtons, GetInTouch, Navigation } from '@components';
+import { getDonationOptions } from '../data/stripe';
+
+const { enabled: donationsEnabled, options: donationOptions } =
+	await getDonationOptions();
+
 export interface Props {
 	subtitle?: string;
 	title: string;
@@ -45,6 +50,11 @@ const jsonLDSchema = JSON.stringify(
 			href="/fonts/source-sans-pro-latin-600.woff2"
 			crossorigin
 		/>
+		{
+			donationsEnabled && (
+				<link rel="dns-prefetch" href="https://js.stripe.com/v3" />
+			)
+		}
 		<script
 			type="application/ld+json"
 			set:html={JSON.stringify(jsonLDSchema, null, 0)}
@@ -87,12 +97,19 @@ const jsonLDSchema = JSON.stringify(
 					title="Sponsor the-collab-lab"
 					width="116"></iframe>
 			</div>
+			We also accept direct donations. Please consider supporting The Collab Lab
+			with a one-time donation.
+			<DonationButtons
+				options={donationOptions}
+				enabled={donationsEnabled}
+				client:visible
+			/>
 			<GetInTouch />
 			<div class="copyright">
 				<p>
 					Made with
-					<a href="https://www.11ty.dev/">Eleventy</a> and
-					<a href="https://graphcms.com/">GraphCMS</a>. Deployed on <a
+					<a href="https://astro.build/">Astro</a> and
+					<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
 						href="https://www.netlify.com/">Netlify</a
 					>.
 				</p>
