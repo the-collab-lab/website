@@ -36,7 +36,7 @@ export interface CollabiesAndTeamsResponse {
 	teams: DeveloperTeam[];
 }
 
-export interface FrontPageApplicationBlockResponse {
+export interface ApplicationBlockResponse {
 	textBlocks: {
 		textContent: {
 			html: string;

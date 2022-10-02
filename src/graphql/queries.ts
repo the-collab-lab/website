@@ -1,5 +1,20 @@
 import { gql } from 'graphql-request';
 
+export const ApplicationBlockQuery = gql`
+	query ApplicationBlock {
+		textBlocks(
+			where: {
+				internalName_contains: "Front Page – Applications"
+				visible: true
+			}
+		) {
+			textContent {
+				html
+			}
+		}
+	}
+`;
+
 const COLLABIE_DATA_FRAGMENT = gql`
 	fragment collabieData on Collabie {
 		bio {
@@ -36,21 +51,6 @@ export const CollabiesAndTeamsQuery = gql`
 		}
 	}
 	${COLLABIE_DATA_FRAGMENT}
-`;
-
-export const FrontPageApplicationBlockQuery = gql`
-	query FrontPageApplicationBlock {
-		textBlocks(
-			where: {
-				internalName_contains: "Front Page – Applications"
-				visible: true
-			}
-		) {
-			textContent {
-				html
-			}
-		}
-	}
 `;
 
 export const TechTalksQuery = gql`

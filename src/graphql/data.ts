@@ -1,15 +1,15 @@
 import { GraphQLClient } from 'graphql-request';
 
 import {
+	ApplicationBlockQuery,
 	CollabiesAndTeamsQuery,
-	FrontPageApplicationBlockQuery,
 	TechTalksQuery,
 } from './queries';
 import type {
+	ApplicationBlockResponse,
 	Bio,
 	CollabieData,
 	CollabiesAndTeamsResponse,
-	FrontPageApplicationBlockResponse,
 	Role,
 	TechTalkResponse,
 } from './types';
@@ -57,14 +57,15 @@ const client = new GraphQLClient(
 
 async function getData() {
 	try {
-		const [collabiesResponse, frontPageApplicationBlock, techTalkResponse] =
+		const [applicationBlockResponse, collabiesResponse, techTalkResponse] =
 			await Promise.all([
+				client.request<ApplicationBlockResponse>(ApplicationBlockQuery),
 				client.request<CollabiesAndTeamsResponse>(CollabiesAndTeamsQuery),
-				client.request<FrontPageApplicationBlockResponse>(
-					FrontPageApplicationBlockQuery,
-				),
 				client.request<TechTalkResponse>(TechTalksQuery),
 			]);
+
+		const applicationBlock =
+			applicationBlockResponse.textBlocks[0].textContent.html;
 
 		const collabies = collabiesResponse.collabies.map((c) => {
 			// Flatten the bio prop to just the `html` string
@@ -97,9 +98,6 @@ async function getData() {
 			team.teamNumber = calculateTeamNumber(team.anchor);
 			return team;
 		});
-
-		const applicationBlock =
-			frontPageApplicationBlock.textBlocks[0].textContent.html;
 
 		const techTalks = techTalkResponse.techTalks.map((talk) => {
 			const rgx = /(v=([\w-]+))|(be\/([\w-]+))/; // there's probably room for improvement here
