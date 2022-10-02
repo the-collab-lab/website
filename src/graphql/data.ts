@@ -15,7 +15,6 @@ import type {
 } from './types';
 
 const EMPTY_ARRAY = [] as const;
-const EMPTY_OBJECT = {} as const;
 
 const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
 	month: 'long',
@@ -58,7 +57,7 @@ const client = new GraphQLClient(
 
 async function getData() {
 	try {
-		const [collabiesResponse, FrontPageApplicationBlock, techTalkResponse] =
+		const [collabiesResponse, frontPageApplicationBlock, techTalkResponse] =
 			await Promise.all([
 				client.request<CollabiesAndTeamsResponse>(CollabiesAndTeamsQuery),
 				client.request<FrontPageApplicationBlockResponse>(
@@ -99,6 +98,9 @@ async function getData() {
 			return team;
 		});
 
+		const applicationBlock =
+			frontPageApplicationBlock.textBlocks[0].textContent.html;
+
 		const techTalks = techTalkResponse.techTalks.map((talk) => {
 			const rgx = /(v=([\w-]+))|(be\/([\w-]+))/; // there's probably room for improvement here
 			talk.formattedDate = fullDateShortMonthFormat.format(
@@ -121,6 +123,7 @@ async function getData() {
 		});
 
 		return {
+			applicationBlock,
 			mentors,
 			teams,
 			techTalks,
@@ -130,6 +133,7 @@ async function getData() {
 		console.error('Error fetching GraphQL data', err);
 
 		return {
+			applicationBlock: '',
 			mentors: EMPTY_ARRAY,
 			teams: EMPTY_ARRAY,
 			techTalks: EMPTY_ARRAY,
@@ -138,4 +142,5 @@ async function getData() {
 	}
 }
 
-export const { mentors, teams, techTalks, volunteers } = await getData();
+export const { applicationBlock, mentors, teams, techTalks, volunteers } =
+	await getData();

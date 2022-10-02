@@ -37,9 +37,11 @@ export interface CollabiesAndTeamsResponse {
 }
 
 export interface FrontPageApplicationBlockResponse {
-	textContent: {
-		html: string;
-	};
+	textBlocks: {
+		textContent: {
+			html: string;
+		};
+	}[];
 }
 
 export interface TechTalk {
