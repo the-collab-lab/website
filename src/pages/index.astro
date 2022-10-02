@@ -1,5 +1,6 @@
 ---
 import { BaseLayout } from '@layouts';
+import { applicationBlock } from '@graphql';
 ---
 
 <BaseLayout
@@ -54,7 +55,7 @@ import { BaseLayout } from '@layouts';
 		</span>
 	</blockquote>
 
-	<!-- TODO: Add application block -->
+	<Fragment set:html={applicationBlock} />
 
 	<h2>So you want to…</h2>
 
