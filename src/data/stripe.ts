@@ -5,7 +5,7 @@ interface FormattedPrice extends Stripe.Price {
 	unit_amount: number;
 }
 
-interface FormattedProduct extends Stripe.Product {
+export interface FormattedProduct extends Stripe.Product {
 	default_price: FormattedPrice;
 	price: {
 		id: string;
@@ -46,26 +46,26 @@ export const getDonationOptions = async () => {
 			options: [
 				{
 					price: {
-						id: '000',
+						id: 'donation-option-000',
 						formatted_amount: '5',
 					},
 					name: 'Yaaaay',
 				},
 				{
 					price: {
-						id: '001',
+						id: 'donation-option-001',
 						formatted_amount: '10',
 					},
 					name: 'Booster',
 				},
 				{
 					price: {
-						id: '002',
+						id: 'donation-option-002',
 						formatted_amount: '15',
 						name: 'Amplifier',
 					},
 				},
-			],
+			] as FormattedProduct[],
 		};
 	}
 };
