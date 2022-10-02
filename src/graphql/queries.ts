@@ -38,6 +38,21 @@ export const CollabiesAndTeamsQuery = gql`
 	${COLLABIE_DATA_FRAGMENT}
 `;
 
+export const FrontPageApplicationBlockQuery = gql`
+	query FrontPageApplicationBlock {
+		textBlocks(
+			where: {
+				internalName_contains: "Front Page – Applications"
+				visible: true
+			}
+		) {
+			textContent {
+				html
+			}
+		}
+	}
+`;
+
 export const TechTalksQuery = gql`
 	query TechTalks {
 		techTalks(orderBy: dateAndTime_DESC) {

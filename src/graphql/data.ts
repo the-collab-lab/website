@@ -1,15 +1,21 @@
 import { GraphQLClient } from 'graphql-request';
 
-import { CollabiesAndTeamsQuery, TechTalksQuery } from './queries';
+import {
+	CollabiesAndTeamsQuery,
+	FrontPageApplicationBlockQuery,
+	TechTalksQuery,
+} from './queries';
 import type {
 	Bio,
 	CollabieData,
 	CollabiesAndTeamsResponse,
+	FrontPageApplicationBlockResponse,
 	Role,
 	TechTalkResponse,
 } from './types';
 
 const EMPTY_ARRAY = [] as const;
+const EMPTY_OBJECT = {} as const;
 
 const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
 	month: 'long',
@@ -52,10 +58,14 @@ const client = new GraphQLClient(
 
 async function getData() {
 	try {
-		const [collabiesResponse, techTalkResponse] = await Promise.all([
-			client.request<CollabiesAndTeamsResponse>(CollabiesAndTeamsQuery),
-			client.request<TechTalkResponse>(TechTalksQuery),
-		]);
+		const [collabiesResponse, FrontPageApplicationBlock, techTalkResponse] =
+			await Promise.all([
+				client.request<CollabiesAndTeamsResponse>(CollabiesAndTeamsQuery),
+				client.request<FrontPageApplicationBlockResponse>(
+					FrontPageApplicationBlockQuery,
+				),
+				client.request<TechTalkResponse>(TechTalksQuery),
+			]);
 
 		const collabies = collabiesResponse.collabies.map((c) => {
 			// Flatten the bio prop to just the `html` string

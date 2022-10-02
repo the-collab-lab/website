@@ -36,6 +36,12 @@ export interface CollabiesAndTeamsResponse {
 	teams: DeveloperTeam[];
 }
 
+export interface FrontPageApplicationBlockResponse {
+	textContent: {
+		html: string;
+	};
+}
+
 export interface TechTalk {
 	title: string;
 	presenters: Pick<CollabieData, 'fullName'>;
