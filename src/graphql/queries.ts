@@ -1,5 +1,20 @@
 import { gql } from 'graphql-request';
 
+export const ApplicationBlockQuery = gql`
+	query ApplicationBlock {
+		textBlocks(
+			where: {
+				internalName_contains: "Front Page – Applications"
+				visible: true
+			}
+		) {
+			textContent {
+				html
+			}
+		}
+	}
+`;
+
 const COLLABIE_DATA_FRAGMENT = gql`
 	fragment collabieData on Collabie {
 		bio {

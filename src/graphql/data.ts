@@ -1,7 +1,12 @@
 import { GraphQLClient } from 'graphql-request';
 
-import { CollabiesAndTeamsQuery, TechTalksQuery } from './queries';
+import {
+	ApplicationBlockQuery,
+	CollabiesAndTeamsQuery,
+	TechTalksQuery,
+} from './queries';
 import type {
+	ApplicationBlockResponse,
 	Bio,
 	CollabieData,
 	CollabiesAndTeamsResponse,
@@ -52,10 +57,15 @@ const client = new GraphQLClient(
 
 async function getData() {
 	try {
-		const [collabiesResponse, techTalkResponse] = await Promise.all([
-			client.request<CollabiesAndTeamsResponse>(CollabiesAndTeamsQuery),
-			client.request<TechTalkResponse>(TechTalksQuery),
-		]);
+		const [applicationBlockResponse, collabiesResponse, techTalkResponse] =
+			await Promise.all([
+				client.request<ApplicationBlockResponse>(ApplicationBlockQuery),
+				client.request<CollabiesAndTeamsResponse>(CollabiesAndTeamsQuery),
+				client.request<TechTalkResponse>(TechTalksQuery),
+			]);
+
+		const applicationBlock =
+			applicationBlockResponse.textBlocks[0].textContent.html;
 
 		const collabies = collabiesResponse.collabies.map((c) => {
 			// Flatten the bio prop to just the `html` string
@@ -111,6 +121,7 @@ async function getData() {
 		});
 
 		return {
+			applicationBlock,
 			mentors,
 			teams,
 			techTalks,
@@ -120,6 +131,7 @@ async function getData() {
 		console.error('Error fetching GraphQL data', err);
 
 		return {
+			applicationBlock: '',
 			mentors: EMPTY_ARRAY,
 			teams: EMPTY_ARRAY,
 			techTalks: EMPTY_ARRAY,
@@ -128,4 +140,5 @@ async function getData() {
 	}
 }
 
-export const { mentors, teams, techTalks, volunteers } = await getData();
+export const { applicationBlock, mentors, teams, techTalks, volunteers } =
+	await getData();
