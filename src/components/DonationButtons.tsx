@@ -7,11 +7,16 @@ export function DonationButtons({
 	enabled: boolean;
 	options: FormattedProduct[];
 }) {
+	function goToCheckout(option: FormattedProduct) {
+		// TODO: replace with real checkout logic.
+		alert(`Checking out ${option.name}`);
+	}
+
 	return (
 		<>
 			<div className="donation-options">
 				{options.map((option) => (
-					<button>{option.name}</button>
+					<button onClick={() => goToCheckout(option)}>{option.name}</button>
 				))}
 			</div>
 			{enabled && <script src="https://js.stripe.com/v3"></script>}
