@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-const { STRIPE_PK, STRIPE_SK } = import.meta.env;
+const { MODE, STRIPE_PK, STRIPE_SK } = import.meta.env;
 
 interface FormattedPrice extends Stripe.Price {
 	unit_amount: number;
@@ -12,7 +12,12 @@ export interface FormattedProduct extends Stripe.Product {
 		formatted_amount: string;
 	};
 }
-
+/**
+ * Get the data for the donation buttons rendered in the global site footer.
+ * If we have access to Stripe environment variables, we get data from Stripe;
+ * else (if there's a problem in production, or we're a dev who's not
+ * using the Netlify CLI), we return some mock data.
+ */
 export const getDonationOptions = async () => {
 	try {
 		const stripe = new Stripe(STRIPE_SK, {
@@ -37,35 +42,39 @@ export const getDonationOptions = async () => {
 		);
 
 		return {
-			enabled: options?.length > 0 && STRIPE_PK !== undefined,
 			options,
+			enabled: options?.length > 0 && STRIPE_PK !== undefined,
 		};
 	} catch (err) {
+		const options =
+			MODE === 'development'
+				? ([
+						{
+							price: {
+								id: 'donation-option-000',
+								formatted_amount: '5',
+							},
+							name: 'Yaaaay',
+						},
+						{
+							price: {
+								id: 'donation-option-001',
+								formatted_amount: '10',
+							},
+							name: 'Booster',
+						},
+						{
+							price: {
+								id: 'donation-option-002',
+								formatted_amount: '15',
+							},
+							name: 'Amplifier',
+						},
+				  ] as FormattedProduct[])
+				: [];
 		return {
+			options,
 			enabled: false,
-			options: [
-				{
-					price: {
-						id: 'donation-option-000',
-						formatted_amount: '5',
-					},
-					name: 'Yaaaay',
-				},
-				{
-					price: {
-						id: 'donation-option-001',
-						formatted_amount: '10',
-					},
-					name: 'Booster',
-				},
-				{
-					price: {
-						id: 'donation-option-002',
-						formatted_amount: '15',
-						name: 'Amplifier',
-					},
-				},
-			] as FormattedProduct[],
 		};
 	}
 };
