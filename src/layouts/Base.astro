@@ -1,9 +1,8 @@
 ---
-import { DonationButtons, GetInTouch, Navigation } from '@components';
+import { DonationLink, GetInTouch, Navigation } from '@components';
 import { getDonationOptions } from '../data/stripe';
 
-const { enabled: donationsEnabled, options: donationOptions } =
-	await getDonationOptions();
+const { options: donationOptions } = await getDonationOptions();
 
 export interface Props {
 	subtitle?: string;
@@ -50,11 +49,6 @@ const jsonLDSchema = JSON.stringify(
 			href="/fonts/source-sans-pro-latin-600.woff2"
 			crossorigin
 		/>
-		{
-			donationsEnabled && (
-				<link rel="dns-prefetch" href="https://js.stripe.com/v3" />
-			)
-		}
 		<script
 			type="application/ld+json"
 			set:html={JSON.stringify(jsonLDSchema, null, 0)}
@@ -99,11 +93,9 @@ const jsonLDSchema = JSON.stringify(
 			</div>
 			We also accept direct donations. Please consider supporting The Collab Lab
 			with a one-time donation.
-			<DonationButtons
-				options={donationOptions}
-				enabled={donationsEnabled}
-				client:visible
-			/>
+			<div class="donation-options">
+				{donationOptions.map((option) => <DonationLink option={option} />)}
+			</div>
 			<GetInTouch />
 			<div class="copyright">
 				<p>
