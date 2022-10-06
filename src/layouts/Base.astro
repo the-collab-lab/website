@@ -1,5 +1,5 @@
 ---
-import { DonationButton, GetInTouch, Navigation } from '@components';
+import { GetInTouch, Navigation } from '@components';
 import { getDonationOptions } from '../data/stripe';
 
 const { options: donationOptions } = await getDonationOptions();
@@ -201,7 +201,7 @@ const jsonLDSchema = JSON.stringify(
 			}
 
 			.donation-button + .donation-button {
-				margin-left: 4px;
+				margin-left: 0.4rem;
 			}
 		</style>
 	</body>
