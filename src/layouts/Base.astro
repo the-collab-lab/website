@@ -1,5 +1,9 @@
 ---
-import { Navigation } from '@components';
+import { DonationButtons, GetInTouch, Navigation } from '@components';
+import { getDonationOptions } from '../data/stripe';
+
+const { enabled: donationsEnabled, options: donationOptions } =
+	await getDonationOptions();
 
 export interface Props {
 	subtitle?: string;
@@ -46,6 +50,11 @@ const jsonLDSchema = JSON.stringify(
 			href="/fonts/source-sans-pro-latin-600.woff2"
 			crossorigin
 		/>
+		{
+			donationsEnabled && (
+				<link rel="dns-prefetch" href="https://js.stripe.com/v3" />
+			)
+		}
 		<script
 			type="application/ld+json"
 			set:html={JSON.stringify(jsonLDSchema, null, 0)}
@@ -60,6 +69,60 @@ const jsonLDSchema = JSON.stringify(
 		<main>
 			<slot />
 		</main>
+		<footer>
+			<div class="sponsors-container">
+				<h2 id="support">Support Collab Lab!</h2>
+				<p>
+					The Collab Lab is
+					<strong>volunteer-driven and free for developers.</strong>
+					We intentionally and actively work to overcome barriers to opportunities
+					for women and under-represented minorities in tech.
+				</p>
+				<p>
+					We make use of free/
+					<a href="https://www.dictionary.com/browse/freemium">freemium</a>
+					tools (i.e. Airtable, Firebase, GitHub, Google Docs, Netlify, Slack, Notion,
+					and Zoom) as much as possible. We would love to have the ability to use
+					upgraded versions of some of these tools to provide a better experience
+					for our volunteers and developers. To this end, we accept
+					<a href="https://github.com/sponsors/the-collab-lab">
+						sponsorships through GitHub
+					</a>. ❤️
+				</p>
+				<iframe
+					height="35"
+					loading="lazy"
+					src="https://github.com/sponsors/the-collab-lab/button"
+					style="border: 0"
+					title="Sponsor the-collab-lab"
+					width="116"></iframe>
+			</div>
+			We also accept direct donations. Please consider supporting The Collab Lab
+			with a one-time donation.
+			<DonationButtons
+				options={donationOptions}
+				enabled={donationsEnabled}
+				client:visible
+			/>
+			<GetInTouch />
+			<div class="copyright">
+				<p>
+					Made with
+					<a href="https://astro.build/">Astro</a> and
+					<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
+						href="https://www.netlify.com/">Netlify</a
+					>.
+				</p>
+				<p>
+					Copyright &copy; 2019 – {new Date().getFullYear()} The Collab Lab. All
+					rights reserved.
+				</p>
+				<p>
+					All participants agree to adhere to our
+					<a href="/code-of-conduct/">Code of Conduct</a>.
+				</p>
+			</div>
+		</footer>
 		<style>
 			@font-face {
 				font-family: 'Source Sans Pro';
