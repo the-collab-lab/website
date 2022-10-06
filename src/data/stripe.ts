@@ -1,17 +1,13 @@
 import Stripe from 'stripe';
 const { MODE, STRIPE_PK, STRIPE_SK } = import.meta.env;
 
-interface FormattedPrice extends Stripe.Price {
-	unit_amount: number;
+export interface DonationOption {
+	amount: number;
+	id: string;
+	url: string;
+	name: string;
 }
 
-export interface FormattedProduct extends Stripe.Product {
-	default_price: FormattedPrice;
-	price: {
-		id: string;
-		formatted_amount: string;
-	};
-}
 /**
  * Get the data for the donation buttons rendered in the global site footer.
  * If we have access to Stripe environment variables, we get data from Stripe;
@@ -23,22 +19,34 @@ export const getDonationOptions = async () => {
 		const stripe = new Stripe(STRIPE_SK, {
 			apiVersion: '2022-08-01',
 		});
-		const { data: products = [] } = await stripe.products.list({
-			expand: ['data.default_price'],
+
+		const { data: paymentLinks = [] } = await stripe.paymentLinks.list({
+			active: true,
+			expand: ['data.line_items'],
 		});
 
-		const _options = products.map((option) => {
-			const default_price = option.default_price as FormattedPrice;
-			(option as unknown as FormattedProduct).price = {
-				id: default_price?.id,
-				formatted_amount: String(default_price.unit_amount / 100),
+		const _options = new Map();
+
+		for (const link of paymentLinks) {
+			const { id, line_items, url } = link;
+			const lineItem = line_items?.data[0] || {
+				amount_total: 0,
+				description: '',
 			};
+			const { amount_total, description } = lineItem;
 
-			return option as unknown as FormattedProduct;
-		});
+			if (!_options.has(description)) {
+				_options.set(description, {
+					id,
+					url,
+					amount: amount_total / 100,
+					name: description,
+				});
+			}
+		}
 
-		const options = _options.sort(
-			(a, b) => a.default_price.unit_amount - b.default_price.unit_amount,
+		const options = Array.from(_options.values()).sort(
+			(a, b) => a.amount - b.amount,
 		);
 
 		return {
@@ -50,27 +58,24 @@ export const getDonationOptions = async () => {
 			MODE === 'development'
 				? ([
 						{
-							price: {
-								id: 'donation-option-000',
-								formatted_amount: '5',
-							},
-							name: 'Yaaaay',
+							id: 'mock-0',
+							url: '#mock-donation-option-0',
+							amount: 5,
+							name: 'Supporter',
 						},
 						{
-							price: {
-								id: 'donation-option-001',
-								formatted_amount: '10',
-							},
+							id: 'mock-1',
+							url: '#mock-donation-option-1',
+							amount: 10,
 							name: 'Booster',
 						},
 						{
-							price: {
-								id: 'donation-option-002',
-								formatted_amount: '15',
-							},
+							id: 'mock-2',
+							url: '#mock-donation-option-2',
+							amount: 15,
 							name: 'Amplifier',
 						},
-				  ] as FormattedProduct[])
+				  ] as DonationOption[])
 				: [];
 		return {
 			options,
