@@ -1,5 +1,5 @@
 ---
-import { DonationLink, GetInTouch, Navigation } from '@components';
+import { DonationButton, GetInTouch, Navigation } from '@components';
 import { getDonationOptions } from '../data/stripe';
 
 const { options: donationOptions } = await getDonationOptions();
@@ -94,7 +94,13 @@ const jsonLDSchema = JSON.stringify(
 			We also accept direct donations. Please consider supporting The Collab Lab
 			with a one-time donation.
 			<div class="donation-options">
-				{donationOptions.map((option) => <DonationLink option={option} />)}
+				{
+					donationOptions.map((option) => (
+						<a href={option.url} class="donation-button">
+							{option.name}
+						</a>
+					))
+				}
 			</div>
 			<GetInTouch />
 			<div class="copyright">
@@ -185,21 +191,17 @@ const jsonLDSchema = JSON.stringify(
 					DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
 			}
 
-			:global(.text-gradient) {
-				font-weight: 900;
-				background-image: var(--astro-gradient);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				background-size: 100% 200%;
-				background-position-y: 100%;
-				border-radius: 0.4rem;
-				animation: pulse 4s ease-in-out infinite;
+			.donation-button {
+				appearance: button;
+				color: inherit;
+				border: 1px solid var(--color-text);
+				border-radius: 4px;
+				padding: 0.5rem 1.6rem;
+				text-decoration: none;
 			}
 
-			@media (prefers-reduced-motion: reduce) {
-				.text-gradient {
-					animation: none;
-				}
+			.donation-button + .donation-button {
+				margin-left: 4px;
 			}
 		</style>
 	</body>
