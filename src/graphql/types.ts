@@ -44,6 +44,31 @@ export interface ApplicationBlockResponse {
 	}[];
 }
 
+export interface TextBlock {
+	__typename: 'TextBlock';
+	textContent?: {
+		html: string;
+	};
+	visible: boolean;
+}
+
+export interface ImageFloatedRight {
+	__typename: 'ImageFloatedRight';
+	caption?: string;
+	path: string;
+}
+
+export type Block = TextBlock | ImageFloatedRight;
+
+export interface Page {
+	slug: string;
+	blocks: Array<Block>;
+}
+
+export interface PagesResponse {
+	pages: Page[];
+}
+
 export interface TechTalk {
 	title: string;
 	presenters: Pick<CollabieData, 'fullName'>;

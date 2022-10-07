@@ -3,18 +3,19 @@ import { GraphQLClient } from 'graphql-request';
 import {
 	ApplicationBlockQuery,
 	CollabiesAndTeamsQuery,
+	PagesQuery,
 	TechTalksQuery,
 } from './queries';
 import type {
 	ApplicationBlockResponse,
 	Bio,
+	Block,
 	CollabieData,
 	CollabiesAndTeamsResponse,
+	PagesResponse,
 	Role,
 	TechTalkResponse,
 } from './types';
-
-const EMPTY_ARRAY = [] as const;
 
 const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
 	month: 'long',
@@ -55,90 +56,128 @@ const client = new GraphQLClient(
 	'https://api-us-east-1.hygraph.com/v2/ckfwosu634r7l01xpco7z3hvq/master',
 );
 
-async function getData() {
-	try {
-		const [applicationBlockResponse, collabiesResponse, techTalkResponse] =
-			await Promise.all([
-				client.request<ApplicationBlockResponse>(ApplicationBlockQuery),
-				client.request<CollabiesAndTeamsResponse>(CollabiesAndTeamsQuery),
-				client.request<TechTalkResponse>(TechTalksQuery),
-			]);
+const [
+	applicationBlockResponse,
+	collabiesResponse,
+	pagesResponse,
+	techTalkResponse,
+] = await Promise.all([
+	client.request<ApplicationBlockResponse>(ApplicationBlockQuery),
+	client.request<CollabiesAndTeamsResponse>(CollabiesAndTeamsQuery),
+	client.request<PagesResponse>(PagesQuery),
+	client.request<TechTalkResponse>(TechTalksQuery),
+]);
 
-		const applicationBlock =
-			applicationBlockResponse.textBlocks[0].textContent.html;
+const getApplicationBlockData = () =>
+	applicationBlockResponse.textBlocks[0].textContent.html;
 
-		const collabies = collabiesResponse.collabies.map((c) => {
-			// Flatten the bio prop to just the `html` string
-			c.bio = (c.bio as Bio)?.html;
-			// Flatten the role objects to just their `name` string
-			c.roles = c.roles.map((r) => (r as Role).name);
-			return c as CollabieData;
-		});
+const getCollabiesData = () => {
+	const collabies = collabiesResponse.collabies.map((c) => {
+		// Flatten the bio prop to just the `html` string
+		c.bio = (c.bio as Bio)?.html;
+		// Flatten the role objects to just their `name` string
+		c.roles = c.roles.map((r) => (r as Role).name);
+		return c as CollabieData;
+	});
 
-		const mentors = collabies.filter((collabie) => {
-			let keep = false;
-			for (const role of collabie.roles) {
-				if (role === 'Founder') return false;
-				if (role === 'Mentor') {
-					keep = true;
-				}
+	const mentors = collabies.filter((collabie) => {
+		let keep = false;
+		for (const role of collabie.roles) {
+			if (role === 'Founder') return false;
+			if (role === 'Mentor') {
+				keep = true;
 			}
-			return keep;
-		});
+		}
+		return keep;
+	});
 
-		const volunteers = collabies.filter((c) => {
-			return !c.roles.includes('Founder');
-		});
+	const volunteers = collabies.filter((c) => {
+		return !c.roles.includes('Founder');
+	});
 
-		const teams = collabiesResponse.teams.map((team) => {
-			team.calculatedDate = calculatedDate({
-				startDate: team.startDate,
-				endDate: team.endDate,
-			});
-			team.teamNumber = calculateTeamNumber(team.anchor);
-			return team;
+	const teams = collabiesResponse.teams.map((team) => {
+		team.calculatedDate = calculatedDate({
+			startDate: team.startDate,
+			endDate: team.endDate,
 		});
+		team.teamNumber = calculateTeamNumber(team.anchor);
+		return team;
+	});
 
-		const techTalks = techTalkResponse.techTalks.map((talk) => {
-			const rgx = /(v=([\w-]+))|(be\/([\w-]+))/; // there's probably room for improvement here
-			talk.formattedDate = fullDateShortMonthFormat.format(
-				new Date(talk.dateAndTime),
-			);
-			talk.youTubeEmbedUrl = null;
-			if (talk.youTubeUrl) {
-				// source = https://www.youtube.com/watch?v=3mci0a8AWnI
-				// source = https://youtu.be/FU7v7JI5-pg
-				// target = https://www.youtube.com/embed/3mci0a8AWnI
-				const matches = talk.youTubeUrl.match(rgx);
-				if (matches) {
-					// depending on the format of the input URL, the slug will be
-					// at either position 2 or position 4 of the `matches` array
-					const id = matches[2] || matches[4];
-					talk.youTubeEmbedUrl = `https://www.youtube.com/embed/${id}`;
-				}
+	return {
+		mentors,
+		volunteers,
+		teams,
+	};
+};
+
+const getPagesData = () => {
+	return pagesResponse.pages.map((page) => {
+		return {
+			html: getPageHTML(page.blocks),
+			slug: page.slug,
+		};
+	});
+};
+
+function getTechTalksData() {
+	return techTalkResponse.techTalks.map((talk) => {
+		const rgx = /(v=([\w-]+))|(be\/([\w-]+))/; // there's probably room for improvement here
+		talk.formattedDate = fullDateShortMonthFormat.format(
+			new Date(talk.dateAndTime),
+		);
+		talk.youTubeEmbedUrl = null;
+		if (talk.youTubeUrl) {
+			// source = https://www.youtube.com/watch?v=3mci0a8AWnI
+			// source = https://youtu.be/FU7v7JI5-pg
+			// target = https://www.youtube.com/embed/3mci0a8AWnI
+			const matches = talk.youTubeUrl.match(rgx);
+			if (matches) {
+				// depending on the format of the input URL, the slug will be
+				// at either position 2 or position 4 of the `matches` array
+				const id = matches[2] || matches[4];
+				talk.youTubeEmbedUrl = `https://www.youtube.com/embed/${id}`;
 			}
-			return talk;
-		});
-
-		return {
-			applicationBlock,
-			mentors,
-			teams,
-			techTalks,
-			volunteers,
-		};
-	} catch (err) {
-		console.error('Error fetching GraphQL data', err);
-
-		return {
-			applicationBlock: '',
-			mentors: EMPTY_ARRAY,
-			teams: EMPTY_ARRAY,
-			techTalks: EMPTY_ARRAY,
-			volunteers: EMPTY_ARRAY,
-		};
-	}
+		}
+		return talk;
+	});
 }
 
-export const { applicationBlock, mentors, teams, techTalks, volunteers } =
-	await getData();
+/**
+ * Blocks allow us to build up arbitrary pages composed of other entities.
+ * This function takes a `blocks` array from a `Pages` query and assembles
+ * the HTML to be rendered.
+ *
+ * The default type is `TextBlock`. Adding new types would entail creatiing
+ * a content model in GraphCMS then adding a `case` statement to this
+ * function to handle rendering of that type.
+ */
+const getPageHTML = (blocks: Block[]) => {
+	let html = '';
+	if (Array.isArray(blocks)) {
+		blocks.forEach((block) => {
+			switch (block.__typename) {
+				case 'ImageFloatedRight':
+					html += `
+						<figure class="float-right image-floated-right">
+							<img
+								src="${block.path}"
+								alt="${block.caption}"
+							/>
+							<figcaption>${block.caption}</figcaption>
+						</figure>
+						`;
+					break;
+				default:
+					html += block.visible ? block.textContent?.html : '';
+					break;
+			}
+		});
+	}
+	return html;
+};
+
+export const applicationBlock = getApplicationBlockData();
+export const { mentors, volunteers, teams } = getCollabiesData();
+export const pages = getPagesData();
+export const techTalks = getTechTalksData();

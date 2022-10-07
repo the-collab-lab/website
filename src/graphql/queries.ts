@@ -53,6 +53,27 @@ export const CollabiesAndTeamsQuery = gql`
 	${COLLABIE_DATA_FRAGMENT}
 `;
 
+export const PagesQuery = gql`
+	query Pages {
+		pages {
+			slug
+			blocks {
+				__typename
+				... on TextBlock {
+					textContent {
+						html
+					}
+					visible
+				}
+				... on ImageFloatedRight {
+					path
+					caption
+				}
+			}
+		}
+	}
+`;
+
 export const TechTalksQuery = gql`
 	query TechTalks {
 		techTalks(orderBy: dateAndTime_DESC) {
