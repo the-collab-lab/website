@@ -1,5 +1,5 @@
 ---
-import { GetInTouch, Navigation } from '@components';
+import { GetInTouch, Navigation } from '~components';
 import { getDonationOptions } from '../data/stripe';
 
 const { options: donationOptions } = await getDonationOptions();
@@ -14,8 +14,8 @@ const { subtitle, title, useTitleGradient } = Astro.props as Props;
 
 const jsonLDSchema = JSON.stringify(
 	{
-		'@context': 'http://www.schema.org',
-		'@type': 'EducationalOrganization',
+		'~context': 'http://www.schema.org',
+		'~type': 'EducationalOrganization',
 		name: 'The Collab Lab',
 		logo: 'https://the-collab-lab.codes/img/sig-logo.png',
 		image: 'https://the-collab-lab.codes/img/sig-logo.png',

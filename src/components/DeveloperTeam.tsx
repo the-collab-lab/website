@@ -1,9 +1,9 @@
-import type { DeveloperTeam as DeveloperTeamT } from '@graphql';
+import type { DeveloperTeam as DeveloperTeamT } from '~graphql';
 import {
 	fixAssetPath,
 	AVATAR_PLACEHOLDER_PATH,
 	SOCIAL_SITE_NAMES,
-} from '@utils';
+} from '~utils';
 
 function renderSocials(developer: DeveloperTeamT['developers'][number]) {
 	return SOCIAL_SITE_NAMES.map((site) => {

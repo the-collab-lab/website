@@ -9,12 +9,12 @@
 		"importsNotUsedAsValues": "error",
 		"paths": {
 			// Enable importing from the root of the project.
-			"@components": ["src/components"],
-			"@components/*": ["src/components/*"],
-			"@graphql": ["src/graphql"],
-			"@layouts": ["src/layouts"],
-			"@layouts/*": ["src/layouts/*"],
-			"@utils": ["src/utils"],
+			"~components": ["src/components"],
+			"~components/*": ["src/components/*"],
+			"~graphql": ["src/graphql"],
+			"~layouts": ["src/layouts"],
+			"~layouts/*": ["src/layouts/*"],
+			"~utils": ["src/utils"],
 		}
 	},
 	"extends": "astro/tsconfigs/base"
