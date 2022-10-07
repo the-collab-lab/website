@@ -1,9 +1,8 @@
 ---
-import { DonationButtons, GetInTouch, Navigation } from '@components';
+import { GetInTouch, Navigation } from '@components';
 import { getDonationOptions } from '../data/stripe';
 
-const { enabled: donationsEnabled, options: donationOptions } =
-	await getDonationOptions();
+const { options: donationOptions } = await getDonationOptions();
 
 export interface Props {
 	subtitle?: string;
@@ -50,11 +49,6 @@ const jsonLDSchema = JSON.stringify(
 			href="/fonts/source-sans-pro-latin-600.woff2"
 			crossorigin
 		/>
-		{
-			donationsEnabled && (
-				<link rel="dns-prefetch" href="https://js.stripe.com/v3" />
-			)
-		}
 		<script
 			type="application/ld+json"
 			set:html={JSON.stringify(jsonLDSchema, null, 0)}
@@ -99,11 +93,15 @@ const jsonLDSchema = JSON.stringify(
 			</div>
 			We also accept direct donations. Please consider supporting The Collab Lab
 			with a one-time donation.
-			<DonationButtons
-				options={donationOptions}
-				enabled={donationsEnabled}
-				client:visible
-			/>
+			<div class="donation-options">
+				{
+					donationOptions.map((option) => (
+						<a href={option.url} class="donation-button">
+							{option.name}
+						</a>
+					))
+				}
+			</div>
 			<GetInTouch />
 			<div class="copyright">
 				<p>
@@ -193,21 +191,17 @@ const jsonLDSchema = JSON.stringify(
 					DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
 			}
 
-			:global(.text-gradient) {
-				font-weight: 900;
-				background-image: var(--astro-gradient);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				background-size: 100% 200%;
-				background-position-y: 100%;
-				border-radius: 0.4rem;
-				animation: pulse 4s ease-in-out infinite;
+			.donation-button {
+				appearance: button;
+				color: inherit;
+				border: 1px solid var(--color-text);
+				border-radius: 4px;
+				padding: 0.5rem 1.6rem;
+				text-decoration: none;
 			}
 
-			@media (prefers-reduced-motion: reduce) {
-				.text-gradient {
-					animation: none;
-				}
+			.donation-button + .donation-button {
+				margin-left: 0.4rem;
 			}
 		</style>
 	</body>
