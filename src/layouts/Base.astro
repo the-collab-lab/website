@@ -7,7 +7,7 @@ export interface Props {
 	title: string;
 }
 
-const { subtitle, title } = Astro.props as Props;
+const { title } = Astro.props as Props;
 
 const jsonLDSchema = JSON.stringify(
 	{
@@ -56,7 +56,6 @@ const jsonLDSchema = JSON.stringify(
 			<div class="l-container">
 				<h1>{title}</h1>
 				<Navigation />
-				{subtitle && <h2 set:html={subtitle} />}
 			</div>
 		</header>
 		<main>
@@ -64,61 +63,66 @@ const jsonLDSchema = JSON.stringify(
 		</main>
 		<footer>
 			<section class="l-container">
-				<h2 id="support">Support Collab Lab!</h2>
-				<p>
-					The Collab Lab is
-					<strong>volunteer-driven and free for developers.</strong>
-					We intentionally and actively work to overcome barriers to opportunities
-					for women and under-represented minorities in tech.
-				</p>
-				<p>
-					We make use of free/
-					<a href="https://www.dictionary.com/browse/freemium">freemium</a>
-					tools (i.e. Airtable, Firebase, GitHub, Google Docs, Netlify, Slack, Notion,
-					and Zoom) as much as possible. We would love to have the ability to use
-					upgraded versions of some of these tools to provide a better experience
-					for our volunteers and developers. To this end, we accept
-					<a href="https://github.com/sponsors/the-collab-lab">
-						sponsorships through GitHub
-					</a>. ❤️
-				</p>
-				<iframe
-					height="35"
-					loading="lazy"
-					src="https://github.com/sponsors/the-collab-lab/button"
-					style="border: 0"
-					title="Sponsor the-collab-lab"
-					width="116"></iframe>
-				<p>
-					We also accept direct donations. Please consider supporting The Collab
-					Lab with a one-time donation.
-				</p>
-				<div class="donation-options">
-					{
-						donationOptions.map((option) => (
-							<a href={option.url} class="c-donation-button">
-								{option.name}
-							</a>
-						))
-					}
-				</div>
-				<GetInTouch />
-				<div class="copyright">
-					<p>
-						Made with
-						<a href="https://astro.build/">Astro</a> and
-						<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
-							href="https://www.netlify.com/">Netlify</a
-						>.
-					</p>
-					<p>
-						Copyright &copy; 2019 – {new Date().getFullYear()} The Collab Lab. All
-						rights reserved.
-					</p>
-					<p>
-						All participants agree to adhere to our
-						<a href="/code-of-conduct/">Code of Conduct</a>.
-					</p>
+				<div class="l-grid">
+					<div class="o-grid-item">
+						<h2 id="support">Support Collab Lab!</h2>
+						<p>
+							The Collab Lab is
+							<strong>volunteer-driven and free for developers.</strong>
+							We intentionally and actively work to overcome barriers to opportunities
+							for women and under-represented minorities in tech.
+						</p>
+						<p>
+							We make use of free/
+							<a href="https://www.dictionary.com/browse/freemium">freemium</a>
+							tools (i.e. Airtable, Firebase, GitHub, Google Docs, Netlify, Slack,
+							Notion, and Zoom) as much as possible. We would love to have the ability
+							to use upgraded versions of some of these tools to provide a better
+							experience for our volunteers and developers. To this end, we accept
+							<a href="https://github.com/sponsors/the-collab-lab">
+								sponsorships through GitHub
+							</a>. ❤️
+						</p>
+						<a
+							href="https://github.com/sponsors/the-collab-lab"
+							class="c-donation-button"
+						>
+							Sponsor on GitHub
+						</a>
+						<p>
+							We also accept direct donations. Please consider supporting The
+							Collab Lab with a one-time donation.
+						</p>
+						<div class="donation-options">
+							{
+								donationOptions.map((option) => (
+									<a href={option.url} class="c-donation-button">
+										{option.name}
+									</a>
+								))
+							}
+						</div>
+					</div>
+					<div class="o-grid-item">
+						<GetInTouch />
+						<div class="copyright">
+							<p>
+								Made with
+								<a href="https://astro.build/">Astro</a> and
+								<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
+									href="https://www.netlify.com/">Netlify</a
+								>.
+							</p>
+							<p>
+								Copyright &copy; 2019 – {new Date().getFullYear()} The Collab Lab.
+								All rights reserved.
+							</p>
+							<p>
+								All participants agree to adhere to our
+								<a href="/code-of-conduct/">Code of Conduct</a>.
+							</p>
+						</div>
+					</div>
 				</div>
 			</section>
 		</footer>
@@ -165,11 +169,19 @@ const jsonLDSchema = JSON.stringify(
 				--color-border: hsl(17, 24%, 90%);
 
 				--font-size-base: 1.4rem;
+				--font-size-h1: 3.2rem;
+				--font-size-h2: 2.4rem;
+				--font-size-h3: 2rem;
+				--font-size-h4: 1.6rem;
 			}
 
 			@media screen and (min-width: 768px) {
 				:root {
 					--font-size-base: 1.6rem;
+					--font-size-h1: 4.8rem;
+					--font-size-h2: 3.6rem;
+					--font-size-h3: 2.6rem;
+					--font-size-h4: 2rem;
 				}
 			}
 
@@ -196,8 +208,15 @@ const jsonLDSchema = JSON.stringify(
 				margin: 0;
 			}
 
-			h1 {
-				text-align: center;
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-family: var(--font-stack);
+				font-weight: 700;
+				line-height: 1.25;
 			}
 
 			h1,
@@ -205,10 +224,37 @@ const jsonLDSchema = JSON.stringify(
 				max-width: 68ch;
 			}
 
+			h1 {
+				font-size: var(--font-size-h1);
+				text-align: center;
+			}
+
+			h2 {
+				font-size: var(--font-size-h2);
+			}
+
+			h3 {
+				font-size: var(--font-size-h3);
+			}
+
+			h4 {
+				font-size: var(--font-size-h4);
+			}
+
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
 			blockquote,
 			p,
 			li {
 				max-width: 75ch;
+			}
+
+			p {
+				line-height: 1.2;
 			}
 
 			header > h2 {
@@ -235,7 +281,6 @@ const jsonLDSchema = JSON.stringify(
 					auto-fit,
 					minmax(var(--grid-col-min-width), 1fr)
 				);
-				padding: 0;
 			}
 
 			.c-donation-button {
