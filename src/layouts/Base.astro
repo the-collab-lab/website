@@ -141,20 +141,50 @@ const jsonLDSchema = JSON.stringify(
 			}
 
 			:root {
-				font-size: 62.5%;
+				--color-black-dark: hsla(0, 0%, 5%, 1);
+				--color-black-mid: hsla(0, 0%, 55%, 1);
+				--color-black-light: hsla(0, 0%, 98%, 1);
 
-				--font-size-base: clamp(1.6rem, 0.34vw + 1.456rem, 1.904rem);
+				--color-pink-dark: hsla(313, 26%, 57%, 1);
+				--color-pink-mid: hsla(313, 100%, 79%, 1);
+				--color-pink-light: hsla(313, 100%, 93%, 1);
+
+				--color-blue-dark: hsla(54, 35%, 55%, 1);
+				--color-yellow-mid: hsla(54, 100%, 50%, 1);
+				--color-yellow-light: hsla(54, 100%, 83%, 1);
+
+				--color-blue-dark: hsla(216, 24%, 44%, 1);
+				--color-blue-mid: hsla(216, 100%, 52%, 1);
+				--color-blue-light: hsla(216, 100%, 91%, 1);
+
+				--color-green-dark: hsla(137, 39%, 30%, 1);
+				--color-green-mid: hsla(145, 63%, 42%, 1);
+				--color-green-light: hsla(137, 100%, 90%, 1);
+
+				--color-text: var(--color-black-dark);
+				--color-bg: var(--color-black-light);
+				--color-border: hsl(17, 24%, 90%);
+
+				--font-size-base: 1.4rem;
 				--font-size-lg: clamp(1.92rem, 0.7vw + 1.92rem, 2.4rem);
 				--font-size-xl: clamp(3.904rem, 2.38vw + 2.96rem, 6rem);
+			}
 
-				--color-text: hsl(12, 5%, 4%);
-				--color-bg: hsl(10, 21%, 95%);
-				--color-border: hsl(17, 24%, 90%);
-				--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
+			@media screen and (min-width: 768px) {
+				:root {
+					--font-size-base: 1.6rem;
+				}
+			}
+
+			*,
+			*::after,
+			*::before {
+				box-sizing: border-box;
 			}
 
 			html {
 				font-family: 'Source Sans Pro', system-ui, sans-serif;
+				font-size: 62.5%;
 				color: var(--color-text);
 				background-color: var(--color-bg);
 			}
