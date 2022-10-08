@@ -91,19 +91,23 @@ const jsonLDSchema = JSON.stringify(
 						>
 							Sponsor on GitHub
 						</a>
-						<p>
-							We also accept direct donations. Please consider supporting The
-							Collab Lab with a one-time donation.
-						</p>
-						<div class="donation-options">
-							{
-								donationOptions.map((option) => (
-									<a href={option.url} class="c-donation-button">
-										{option.name}
-									</a>
-								))
-							}
-						</div>
+						{
+							donationOptions.length > 0 && (
+								<Fragment>
+									<p>
+										We also accdept direct donations. Please consider supporting
+										The Collab Lab with a one-time donation.
+									</p>
+									<div class="donation-options">
+										{donationOptions.map((option) => (
+											<a href={option.url} class="c-donation-button">
+												{option.name}
+											</a>
+										))}
+									</div>
+								</Fragment>
+							)
+						}
 					</div>
 					<div class="o-grid-item">
 						<GetInTouch />
