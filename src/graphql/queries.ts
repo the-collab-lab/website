@@ -96,3 +96,17 @@ export const TechTalksQuery = gql`
 		}
 	}
 `;
+
+export const TestimonialsQuery = gql`
+	query Testimonials {
+		testimonials {
+			collabie {
+				fullName
+				pathToPhoto
+			}
+			body {
+				html
+			}
+		}
+	}
+`;

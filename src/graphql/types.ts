@@ -89,3 +89,10 @@ export interface TechTalk {
 export interface TechTalkResponse {
 	techTalks: TechTalk[];
 }
+
+export interface TestimonialsResponse {
+	testimonials: {
+		collabie: Pick<CollabieData, 'fullName' | 'pathToPhoto'>;
+		body: { html: string };
+	}[];
+}

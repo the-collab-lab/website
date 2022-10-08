@@ -5,6 +5,7 @@ import {
 	CollabiesAndTeamsQuery,
 	PagesQuery,
 	TechTalksQuery,
+	TestimonialsQuery,
 } from './queries';
 import type {
 	ApplicationBlockResponse,
@@ -15,6 +16,7 @@ import type {
 	PagesResponse,
 	Role,
 	TechTalkResponse,
+	TestimonialsResponse,
 } from './types';
 
 const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
@@ -61,11 +63,13 @@ const [
 	collabiesResponse,
 	pagesResponse,
 	techTalkResponse,
+	testimonialsResponse,
 ] = await Promise.all([
 	client.request<ApplicationBlockResponse>(ApplicationBlockQuery),
 	client.request<CollabiesAndTeamsResponse>(CollabiesAndTeamsQuery),
 	client.request<PagesResponse>(PagesQuery),
 	client.request<TechTalkResponse>(TechTalksQuery),
+	client.request<TestimonialsResponse>(TestimonialsQuery),
 ]);
 
 const getApplicationBlockData = () =>
@@ -143,6 +147,22 @@ function getTechTalksData() {
 	});
 }
 
+export interface Testimonial {
+	fullName: string;
+	pathToPhoto: string;
+	testimony: string;
+}
+
+function getTestimonials(): Testimonial[] {
+	return testimonialsResponse.testimonials.map((t) => {
+		return {
+			fullName: t.collabie.fullName,
+			pathToPhoto: t.collabie.pathToPhoto,
+			testimony: t.body.html,
+		};
+	});
+}
+
 /**
  * Blocks allow us to build up arbitrary pages composed of other entities.
  * This function takes a `blocks` array from a `Pages` query and assembles
@@ -181,3 +201,4 @@ export const applicationBlock = getApplicationBlockData();
 export const { mentors, volunteers, teams } = getCollabiesData();
 export const pages = getPagesData();
 export const techTalks = getTechTalksData();
+export const testimonials = getTestimonials();
