@@ -4,7 +4,7 @@ import { applicationBlock } from '~data';
 ---
 
 <BaseLayout title="The Collab Lab">
-	<div class="u-border-left u-border-left__pink">
+	<div class="c-jumbo-heading">
 		<div class="l-container">
 			<h1>
 				Gain <strong>practical experience</strong> by working remotely on<strong
@@ -112,14 +112,25 @@ import { applicationBlock } from '~data';
 </BaseLayout>
 
 <style>
-	h1 {
-		font-size: 6.4rem;
+	.c-jumbo-heading h1 {
+		font-size: 3.2rem;
 		font-weight: 300;
 		letter-spacing: 0.05em;
 		line-height: 1.1;
 		text-align: left;
 	}
-	.u-border-left__pink {
-		border-left: 2rem solid var(--color-pink-mid);
+	.c-jumbo-heading {
+		--border-width: 0.6rem;
+		border-left: var(--border-width) solid var(--color-pink-mid);
+	}
+
+	@media (min-width: 768px) {
+		.c-jumbo-heading h1 {
+			font-size: 6.4rem;
+		}
+
+		.c-jumbo-heading {
+			--border-width: 2rem;
+		}
 	}
 </style>

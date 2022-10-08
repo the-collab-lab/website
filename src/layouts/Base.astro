@@ -54,8 +54,10 @@ const jsonLDSchema = JSON.stringify(
 	<body>
 		<header>
 			<div class="l-container">
-				<h1>{title}</h1>
-				<Navigation />
+				<div class="l-grid">
+					<h1>{title}</h1>
+					<Navigation />
+				</div>
 			</div>
 		</header>
 		<main>
@@ -257,8 +259,8 @@ const jsonLDSchema = JSON.stringify(
 				line-height: 1.2;
 			}
 
-			header > h2 {
-				font-weight: 400;
+			header h1 {
+				margin: 0;
 			}
 
 			img {
@@ -294,6 +296,11 @@ const jsonLDSchema = JSON.stringify(
 
 			.c-donation-button + .c-donation-button {
 				margin-left: 0.4rem;
+			}
+		</style>
+		<style>
+			.l-grid {
+				align-items: center;
 			}
 		</style>
 	</body>
