@@ -1,4 +1,4 @@
-import type { CollabieData, CollabieRoles } from '~data';
+import type { Collabie, CollabieRoles } from '~data';
 import {
 	AVATAR_PLACEHOLDER_PATH,
 	SOCIAL_SITE_NAMES,
@@ -6,7 +6,7 @@ import {
 } from '~utils';
 
 export interface VolunteerProps {
-	collabie: CollabieData;
+	collabie: Collabie;
 }
 
 export function Volunteer({ collabie }: VolunteerProps) {
@@ -42,7 +42,7 @@ function renderRolesList(roles: CollabieRoles[]) {
 	);
 }
 
-function renderSocialsList(collabie: CollabieData) {
+function renderSocialsList(collabie: Collabie) {
 	const socialItems = SOCIAL_SITE_NAMES.map((site) => {
 		const siteUrl = collabie[`${site}Url` as const];
 

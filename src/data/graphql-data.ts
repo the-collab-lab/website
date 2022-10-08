@@ -185,3 +185,10 @@ export const pages = getPagesData();
 export const teams = getTeams();
 export const techTalks = getTechTalksData();
 export const testimonials = getTestimonials();
+
+export type Collabie =
+	| typeof founders[0]
+	| typeof mentors[0]
+	| typeof volunteers[0];
+
+export type DeveloperTeam = typeof teams[0];

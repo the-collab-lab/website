@@ -1,4 +1,8 @@
-export type CollabieRoles = 'Founder' | 'Volunteer' | 'Mentor';
+export type CollabieRoles =
+	| 'Automation Hero'
+	| 'Founder'
+	| 'Volunteer'
+	| 'Mentor';
 
 interface Collabie {
 	bio?: {
@@ -11,11 +15,11 @@ interface Collabie {
 	fullName: string;
 	pathToPhoto: string;
 	roles: {
-		name: 'Automation Hero' | 'Founder' | 'Volunteer' | 'Mentor';
+		name: CollabieRoles;
 	}[];
 }
 
-export interface DeveloperTeam {
+interface DeveloperTeam {
 	anchor: string;
 	developers: Collabie[];
 	displayName: string;

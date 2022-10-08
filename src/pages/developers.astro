@@ -1,6 +1,6 @@
 ---
 import { BaseLayout } from '~layouts';
-import { teams, type DeveloperTeam as DeveloperTeamT } from '~data';
+import { teams } from '~data';
 import { DeveloperTeam } from '~components';
 ---
 
@@ -132,5 +132,5 @@ import { DeveloperTeam } from '~components';
 		them perform better in job interviews for technical roles.
 		<strong>Hire them!</strong>
 	</p>
-	{teams.map((team: DeveloperTeamT) => <DeveloperTeam team={team} />)}
+	{teams.map((team) => <DeveloperTeam team={team} />)}
 </BaseLayout>

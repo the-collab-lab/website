@@ -5,7 +5,7 @@ import {
 	SOCIAL_SITE_NAMES,
 } from '~utils';
 
-function renderSocials(developer: DeveloperTeamT['developers'][number]) {
+function renderSocials(developer: DeveloperTeamT['developers'][0]) {
 	return SOCIAL_SITE_NAMES.map((site) => {
 		const siteUrl = developer[`${site}Url` as const];
 
