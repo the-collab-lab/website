@@ -99,7 +99,7 @@ const jsonLDSchema = JSON.stringify(
 				<div class="donation-options">
 					{
 						donationOptions.map((option) => (
-							<a href={option.url} class="c-conation-button">
+							<a href={option.url} class="c-donation-button">
 								{option.name}
 							</a>
 						))
@@ -170,8 +170,6 @@ const jsonLDSchema = JSON.stringify(
 				--color-border: hsl(17, 24%, 90%);
 
 				--font-size-base: 1.4rem;
-				--font-size-lg: clamp(1.92rem, 0.7vw + 1.92rem, 2.4rem);
-				--font-size-xl: clamp(3.904rem, 2.38vw + 2.96rem, 6rem);
 			}
 
 			@media screen and (min-width: 768px) {
@@ -187,10 +185,10 @@ const jsonLDSchema = JSON.stringify(
 			}
 
 			html {
+				background-color: var(--color-bg);
+				color: var(--color-text);
 				font-family: 'Source Sans Pro', system-ui, sans-serif;
 				font-size: 62.5%;
-				color: var(--color-text);
-				background-color: var(--color-bg);
 			}
 
 			body {
@@ -199,12 +197,7 @@ const jsonLDSchema = JSON.stringify(
 			}
 
 			h1 {
-				font-size: var(--font-size-xl);
 				text-align: center;
-			}
-
-			h2 {
-				font-size: var(--font-size-lg);
 			}
 
 			header > h2 {
@@ -212,38 +205,38 @@ const jsonLDSchema = JSON.stringify(
 			}
 
 			img {
-				max-width: 100%;
 				height: auto;
+				max-width: 100%;
 			}
 
 			.l-container {
 				margin: 0 auto;
-				width: 124rem;
 				max-width: 95%;
+				width: 124rem;
 			}
 
 			.l-grid {
 				--grid-col-min-width: 32rem;
 
 				display: grid;
+				grid-gap: 2rem;
 				grid-template-columns: repeat(
 					auto-fit,
 					minmax(var(--grid-col-min-width), 1fr)
 				);
-				grid-gap: 2rem;
 				padding: 0;
 			}
 
-			.c-conation-button {
+			.c-donation-button {
 				appearance: button;
-				color: inherit;
 				border: 1px solid var(--color-text);
 				border-radius: 4px;
+				color: inherit;
 				padding: 0.5rem 1.6rem;
 				text-decoration: none;
 			}
 
-			.c-conation-button + .c-conation-button {
+			.c-donation-button + .c-donation-button {
 				margin-left: 0.4rem;
 			}
 		</style>
