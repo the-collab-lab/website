@@ -55,16 +55,18 @@ const jsonLDSchema = JSON.stringify(
 		></script>
 	</head>
 	<body>
-		<Navigation />
 		<header>
-			<h1 class={useTitleGradient ? 'text-gradient' : null}>{title}</h1>
-			{subtitle && <h2 set:html={subtitle} />}
+			<div class="container">
+				<h1>{title}</h1>
+				<Navigation />
+				{subtitle && <h2 set:html={subtitle} />}
+			</div>
 		</header>
 		<main>
 			<slot />
 		</main>
 		<footer>
-			<div class="sponsors-container">
+			<div class="container">
 				<h2 id="support">Support Collab Lab!</h2>
 				<p>
 					The Collab Lab is
@@ -90,38 +92,40 @@ const jsonLDSchema = JSON.stringify(
 					style="border: 0"
 					title="Sponsor the-collab-lab"
 					width="116"></iframe>
-			</div>
-			We also accept direct donations. Please consider supporting The Collab Lab
-			with a one-time donation.
-			<div class="donation-options">
-				{
-					donationOptions.map((option) => (
-						<a href={option.url} class="donation-button">
-							{option.name}
-						</a>
-					))
-				}
-			</div>
-			<GetInTouch />
-			<div class="copyright">
 				<p>
-					Made with
-					<a href="https://astro.build/">Astro</a> and
-					<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
-						href="https://www.netlify.com/">Netlify</a
-					>.
+					We also accept direct donations. Please consider supporting The Collab
+					Lab with a one-time donation.
 				</p>
-				<p>
-					Copyright &copy; 2019 – {new Date().getFullYear()} The Collab Lab. All
-					rights reserved.
-				</p>
-				<p>
-					All participants agree to adhere to our
-					<a href="/code-of-conduct/">Code of Conduct</a>.
-				</p>
+				<div class="donation-options">
+					{
+						donationOptions.map((option) => (
+							<a href={option.url} class="donation-button">
+								{option.name}
+							</a>
+						))
+					}
+				</div>
+				<GetInTouch />
+				<div class="copyright">
+					<p>
+						Made with
+						<a href="https://astro.build/">Astro</a> and
+						<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
+							href="https://www.netlify.com/">Netlify</a
+						>.
+					</p>
+					<p>
+						Copyright &copy; 2019 – {new Date().getFullYear()} The Collab Lab. All
+						rights reserved.
+					</p>
+					<p>
+						All participants agree to adhere to our
+						<a href="/code-of-conduct/">Code of Conduct</a>.
+					</p>
+				</div>
 			</div>
 		</footer>
-		<style>
+		<style is:global>
 			@font-face {
 				font-family: 'Source Sans Pro';
 				font-display: swap;
@@ -194,28 +198,28 @@ const jsonLDSchema = JSON.stringify(
 				margin: 0;
 			}
 
-			:global(:is(footer, header, main, nav, section)) {
-				margin: 0 auto;
-				max-width: 95%;
-				max-width: 120rem;
-			}
-
-			:global(h1) {
+			h1 {
 				font-size: var(--font-size-xl);
 				text-align: center;
 			}
 
-			:global(h2) {
+			h2 {
 				font-size: var(--font-size-lg);
 			}
 
-			:global(header > h2) {
+			header > h2 {
 				font-weight: 400;
 			}
 
-			:global(code) {
-				font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-					DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+			blockquote,
+			p,
+			li {
+				max-width: 75ch;
+			}
+
+			.container {
+				margin: 0 auto;
+				width: 124rem;
 			}
 
 			.donation-button {
