@@ -6,11 +6,11 @@ import {
 } from '~utils';
 
 export interface VolunteerProps {
-	collabie: Collabie;
+	volunteer: Collabie;
 }
 
-export function Volunteer({ collabie }: VolunteerProps) {
-	const { fullName, pathToPhoto, roles } = collabie;
+export function Volunteer({ volunteer }: VolunteerProps) {
+	const { fullName, pathToPhoto, roles } = volunteer;
 	return (
 		<div className="volunteer__grid-item">
 			<figure className="volunteer">
@@ -25,7 +25,7 @@ export function Volunteer({ collabie }: VolunteerProps) {
 				<figcaption>
 					<b>{fullName}</b>
 					{renderRolesList(roles)}
-					{renderSocialsList(collabie)}
+					{renderSocialsList(volunteer)}
 				</figcaption>
 			</figure>
 		</div>
@@ -42,16 +42,16 @@ function renderRolesList(roles: CollabieRoles[]) {
 	);
 }
 
-function renderSocialsList(collabie: Collabie) {
+function renderSocialsList(volunteer: Collabie) {
 	const socialItems = SOCIAL_SITE_NAMES.map((site) => {
-		const siteUrl = collabie[`${site}Url` as const];
+		const siteUrl = volunteer[`${site}Url` as const];
 
 		if (!siteUrl || siteUrl.length === 0) return null;
 		const formattedSiteName = site.charAt(0).toUpperCase() + site.slice(1);
 		return (
 			<li className="volunteer__social-item">
 				<a href={siteUrl}>
-					Connect with {collabie.firstName} on {formattedSiteName}!
+					Connect with {volunteer.firstName} on {formattedSiteName}!
 				</a>
 			</li>
 		);
