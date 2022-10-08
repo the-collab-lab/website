@@ -1,0 +1,5 @@
+# Use this file to redirect browser requests for invalid or outdated routes.
+# @see: https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file
+
+/who-we-are  /developers
+/apply       /participate
