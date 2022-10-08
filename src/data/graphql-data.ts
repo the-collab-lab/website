@@ -55,40 +55,32 @@ const getCollabiesData = () => {
 		};
 	});
 
-	const founders = collabies.filter((c) => {
-		return c.roles.includes('Founder');
-	});
+	const founders = [];
+	const mentors = [];
+	const volunteers = [];
 
-	const mentors = collabies.filter((collabie) => {
-		let keep = false;
+	for (const collabie of collabies) {
+		if (collabie.roles.includes('Founder')) {
+			founders.push(collabie);
+		} else {
+			volunteers.push(collabie);
+		}
+
+		let isMentor = false;
 		for (const role of collabie.roles) {
-			if (role === 'Founder') return false;
+			if (role === 'Founder') break;
 			if (role === 'Mentor') {
-				keep = true;
+				isMentor = true;
 			}
 		}
-		return keep;
-	});
-
-	const volunteers = collabies.filter((c) => {
-		return !c.roles.includes('Founder');
-	});
-
-	const teams = hygraphResponse.teams.map((team) => {
-		return {
-			...team,
-			calculatedDate: calculatedDate({
-				startDate: team.startDate,
-				endDate: team.endDate,
-			}),
-			teamNumber: calculateTeamNumber(team.anchor),
-		};
-	});
+		if (isMentor) {
+			mentors.push(collabie);
+		}
+	}
 
 	return {
 		founders,
 		mentors,
-		teams,
 		volunteers,
 	};
 };
@@ -101,6 +93,19 @@ const getPagesData = () => {
 		};
 	});
 };
+
+function getTeams() {
+	return hygraphResponse.teams.map((team) => {
+		return {
+			...team,
+			calculatedDate: calculatedDate({
+				startDate: team.startDate,
+				endDate: team.endDate,
+			}),
+			teamNumber: calculateTeamNumber(team.anchor),
+		};
+	});
+}
 
 function getTechTalksData() {
 	return hygraphResponse.techTalks.map((talk) => {
@@ -175,7 +180,8 @@ const getPageHTML = (blocks: Block[]) => {
 };
 
 export const applicationBlock = getApplicationBlockData();
-export const { founders, mentors, volunteers, teams } = getCollabiesData();
+export const { founders, mentors, volunteers } = getCollabiesData();
 export const pages = getPagesData();
+export const teams = getTeams();
 export const techTalks = getTechTalksData();
 export const testimonials = getTestimonials();
