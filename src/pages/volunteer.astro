@@ -5,5 +5,102 @@ import { BaseLayout } from '~layouts';
 ---
 
 <BaseLayout title="Volunteers">
+	<h2>Volunteer at The Collab Lab!</h2>
+	<p>
+		The Collab Lab is run by an amazing bunch of volunteers that do different
+		things to keep the lights on.
+	</p>
+	<div class="roles">
+		<details class="roles__details" open>
+			<summary>Project Team Mentors</summary>
+			<p>
+				These folks are professional engineers who spend 8 weeks leading teams
+				of early-career engineers through building an app on a software
+				development team, hosting 1-hour weekly synchronous meetings each
+				weekend, holding office hours to assist developers, participating in
+				code reviews, and presenting learning modules.
+			</p>
+			<p>
+				<b>Commitment</b>: ~5 hours/week for 10 weeks
+			</p>
+			<p>
+				Ready to do this? Tell us about you through our <a
+					href="https://airtable.com/shrkLMh9ueC5ivdL4"
+					>mentor application form!</a
+				>
+			</p>
+		</details>
+
+		<details class="roles__details">
+			<summary>Career Lab Volunteers</summary>
+			<p>
+				Each quarter, we run Career Lab, a 2-week extension on the core Collab
+				Lab project where our Collabies get the opportunity to optimize their
+				Linkedin and practice mock job fit and technical with folks who are
+				interviewing engineers every day in their respective roles. These folks
+				take time to coach our Collabies through the job hunt and interview
+				process.
+			</p>
+			<p>
+				<b>Commitment</b>: ~5 hours per week for 2 weeks
+			</p>
+		</details>
+
+		<details class="roles__details">
+			<summary>Automation Heroes</summary>
+			<p>
+				Behind the scenes of The Collab Lab, our Automation Heroes build
+				automations to help us be more efficient in doing the work to keep the
+				lights on for our programs. They write scripts to automate team setup,
+				ensure all the teams' projects are up to date, and maintain our website
+				with GraphCMS, 11ty, and Netlify.
+			</p>
+		</details>
+
+		<details class="roles__details">
+			<summary>Community Managers</summary>
+			<p>
+				These folks keep our community engaged and growing! They organize and
+				host our Tech Talk series, manage our social media, and keep our
+				internal channels poppin' with fun and helpful events and conversations.
+			</p>
+		</details>
+
+		<details class="roles__details">
+			<summary>Code of Conduct Team</summary>
+			<p>
+				At the Collab Lab, we;re dedicated to creating and maintaining an
+				inclusive and psychologically safe space for everyone in our community
+				to learn and grow in. Our Code of Conduct responders are professionally
+				trained and ensure everyone in our community is upholding the commitment
+				to our Code of Conduct.
+			</p>
+		</details>
+	</div>
+	<p>
+		Still not sure whether volunteering for The Collab Lab is a good fit for
+		you? Please don't hesitate to email Andrew at <a
+			href="mailto:andrew@the-collab-lab.codes">andrew@the-collab-lab.codes</a
+		> to get your questions answered.
+	</p>
+
+	<h2 id="volunteers">Our volunteers</h2>
+
+	<blockquote>
+		<q
+			>As a mentor, I work to give Collab Lab cohorts the experience of building
+			and deploying a production app on a high-performing, psychologically safe
+			team using the same principles and practices that have helped me be
+			successful as a professional engineering manager. Our participants learn
+			firsthand how powerful and effective a healthy, functional team is. With
+			this experience as a reference point, they leave empowered to advocate for
+			themselves, their colleagues, and ready to transform organizations for the
+			better.
+		</q><span class="q__attribute"
+			>~ <a href="https://leadingwithspoons.com/"
+				>Adrienne Lowe, Collab Lab Mentor</a
+			>
+		</span>
+	</blockquote>
 	{volunteers.map((volunteer) => <Volunteer collabie={volunteer} />)}
 </BaseLayout>
