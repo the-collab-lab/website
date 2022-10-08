@@ -7,10 +7,9 @@ const { options: donationOptions } = await getDonationOptions();
 export interface Props {
 	subtitle?: string;
 	title: string;
-	useTitleGradient?: boolean;
 }
 
-const { subtitle, title, useTitleGradient } = Astro.props as Props;
+const { subtitle, title } = Astro.props as Props;
 
 const jsonLDSchema = JSON.stringify(
 	{
@@ -127,6 +126,7 @@ const jsonLDSchema = JSON.stringify(
 		</footer>
 		<style is:global>
 			@font-face {
+				font-display: swap;
 				font-family: 'Outfit';
 				font-style: normal;
 				font-weight: 400;
@@ -134,6 +134,7 @@ const jsonLDSchema = JSON.stringify(
 			}
 			/* outfit-700 - latin */
 			@font-face {
+				font-display: swap;
 				font-family: 'Outfit';
 				font-style: normal;
 				font-weight: 700;
@@ -199,6 +200,17 @@ const jsonLDSchema = JSON.stringify(
 
 			h1 {
 				text-align: center;
+			}
+
+			h1,
+			h2 {
+				max-width: 68ch;
+			}
+
+			blockquote,
+			p,
+			li {
+				max-width: 75ch;
 			}
 
 			header > h2 {
