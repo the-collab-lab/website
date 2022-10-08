@@ -174,11 +174,10 @@ function getTestimonials(): Testimonial[] {
  */
 const getPageHTML = (blocks: Block[]) => {
 	let html = '';
-	if (Array.isArray(blocks)) {
-		blocks.forEach((block) => {
-			switch (block.__typename) {
-				case 'ImageFloatedRight':
-					html += `
+	blocks.forEach((block) => {
+		switch (block.__typename) {
+			case 'ImageFloatedRight':
+				html += /* html */ `
 						<figure class="float-right image-floated-right">
 							<img
 								src="${block.path}"
@@ -187,13 +186,13 @@ const getPageHTML = (blocks: Block[]) => {
 							<figcaption>${block.caption}</figcaption>
 						</figure>
 						`;
-					break;
-				default:
-					html += block.visible ? block.textContent?.html : '';
-					break;
-			}
-		});
-	}
+				break;
+			default:
+				html += block.visible ? block.textContent?.html : '';
+				break;
+		}
+	});
+
 	return html;
 };
 
