@@ -56,7 +56,7 @@ const jsonLDSchema = JSON.stringify(
 	</head>
 	<body>
 		<header>
-			<div class="container">
+			<div class="l-container">
 				<h1>{title}</h1>
 				<Navigation />
 				{subtitle && <h2 set:html={subtitle} />}
@@ -66,7 +66,7 @@ const jsonLDSchema = JSON.stringify(
 			<slot />
 		</main>
 		<footer>
-			<div class="container">
+			<section class="l-container">
 				<h2 id="support">Support Collab Lab!</h2>
 				<p>
 					The Collab Lab is
@@ -99,7 +99,7 @@ const jsonLDSchema = JSON.stringify(
 				<div class="donation-options">
 					{
 						donationOptions.map((option) => (
-							<a href={option.url} class="donation-button">
+							<a href={option.url} class="c-conation-button">
 								{option.name}
 							</a>
 						))
@@ -123,7 +123,7 @@ const jsonLDSchema = JSON.stringify(
 						<a href="/code-of-conduct/">Code of Conduct</a>.
 					</p>
 				</div>
-			</div>
+			</section>
 		</footer>
 		<style is:global>
 			@font-face {
@@ -211,18 +211,30 @@ const jsonLDSchema = JSON.stringify(
 				font-weight: 400;
 			}
 
-			blockquote,
-			p,
-			li {
-				max-width: 75ch;
+			img {
+				max-width: 100%;
+				height: auto;
 			}
 
-			.container {
+			.l-container {
 				margin: 0 auto;
 				width: 124rem;
+				max-width: 95%;
 			}
 
-			.donation-button {
+			.l-grid {
+				--grid-col-min-width: 32rem;
+
+				display: grid;
+				grid-template-columns: repeat(
+					auto-fit,
+					minmax(var(--grid-col-min-width), 1fr)
+				);
+				grid-gap: 2rem;
+				padding: 0;
+			}
+
+			.c-conation-button {
 				appearance: button;
 				color: inherit;
 				border: 1px solid var(--color-text);
@@ -231,7 +243,7 @@ const jsonLDSchema = JSON.stringify(
 				text-decoration: none;
 			}
 
-			.donation-button + .donation-button {
+			.c-conation-button + .c-conation-button {
 				margin-left: 0.4rem;
 			}
 		</style>
