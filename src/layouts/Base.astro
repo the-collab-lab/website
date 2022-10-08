@@ -14,8 +14,8 @@ const { subtitle, title, useTitleGradient } = Astro.props as Props;
 
 const jsonLDSchema = JSON.stringify(
 	{
-		'~context': 'http://www.schema.org',
-		'~type': 'EducationalOrganization',
+		'@context': 'http://www.schema.org',
+		'@type': 'EducationalOrganization',
 		name: 'The Collab Lab',
 		logo: 'https://the-collab-lab.codes/img/sig-logo.png',
 		image: 'https://the-collab-lab.codes/img/sig-logo.png',
@@ -195,12 +195,9 @@ const jsonLDSchema = JSON.stringify(
 			}
 
 			:global(:is(footer, header, main, nav, section)) {
-				margin: auto;
+				margin: 0 auto;
 				max-width: 95%;
-			}
-
-			:global(main) {
-				padding: 1em;
+				max-width: 120rem;
 			}
 
 			:global(h1) {
