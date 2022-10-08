@@ -14,7 +14,10 @@ export interface DonationOption {
  * else (if there's a problem in production, or we're a dev who's not
  * using the Netlify CLI), we return some mock data.
  */
-export const getDonationOptions = async () => {
+async function getDonationOptions(): Promise<{
+	enabled: boolean;
+	options: DonationOption[];
+}> {
 	try {
 		const stripe = new Stripe(STRIPE_SK, {
 			apiVersion: '2022-08-01',
@@ -82,4 +85,7 @@ export const getDonationOptions = async () => {
 			enabled: false,
 		};
 	}
-};
+}
+
+export const { enabled: donationsEnabled, options: donationOptions } =
+	await getDonationOptions();

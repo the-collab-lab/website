@@ -1,8 +1,6 @@
 ---
 import { GetInTouch, Navigation } from '~components';
-import { getDonationOptions } from '~data';
-
-const { options: donationOptions } = await getDonationOptions();
+import { donationOptions } from '~data';
 
 export interface Props {
 	subtitle?: string;
