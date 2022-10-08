@@ -1,23 +1,7 @@
-import { GraphQLClient } from 'graphql-request';
+import { request } from 'graphql-request';
 
-import {
-	ApplicationBlockQuery,
-	CollabiesAndTeamsQuery,
-	PagesQuery,
-	TechTalksQuery,
-	TestimonialsQuery,
-} from './graphql-queries';
-import type {
-	ApplicationBlockResponse,
-	Bio,
-	Block,
-	CollabieData,
-	CollabiesAndTeamsResponse,
-	PagesResponse,
-	Role,
-	TechTalkResponse,
-	TestimonialsResponse,
-} from './graphql-types';
+import { ComposedQuery } from './graphql-queries';
+import type { Block, ComposedQueryResponse } from './graphql-types';
 
 const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
 	month: 'long',
@@ -54,34 +38,25 @@ const calculateTeamNumber = (anchor: string) =>
 		? 8.5
 		: parseInt(anchor.split('-').pop() as string, 10);
 
-const client = new GraphQLClient(
+const hygraphResponse = await request<ComposedQueryResponse>(
 	'https://api-us-east-1.hygraph.com/v2/ckfwosu634r7l01xpco7z3hvq/master',
+	ComposedQuery,
 );
 
-const [
-	applicationBlockResponse,
-	collabiesResponse,
-	pagesResponse,
-	techTalkResponse,
-	testimonialsResponse,
-] = await Promise.all([
-	client.request<ApplicationBlockResponse>(ApplicationBlockQuery),
-	client.request<CollabiesAndTeamsResponse>(CollabiesAndTeamsQuery),
-	client.request<PagesResponse>(PagesQuery),
-	client.request<TechTalkResponse>(TechTalksQuery),
-	client.request<TestimonialsResponse>(TestimonialsQuery),
-]);
-
 const getApplicationBlockData = () =>
-	applicationBlockResponse.textBlocks[0].textContent.html;
+	hygraphResponse.applicationBlock.textContent?.html;
 
 const getCollabiesData = () => {
-	const collabies = collabiesResponse.collabies.map((c) => {
-		// Flatten the bio prop to just the `html` string
-		c.bio = (c.bio as Bio)?.html;
-		// Flatten the role objects to just their `name` string
-		c.roles = c.roles.map((r) => (r as Role).name);
-		return c as CollabieData;
+	const collabies = hygraphResponse.collabies.map((c) => {
+		return {
+			...c,
+			bio: c.bio?.html,
+			roles: c.roles.map((r) => r.name),
+		};
+	});
+
+	const founders = collabies.filter((c) => {
+		return c.roles.includes('Founder');
 	});
 
 	const mentors = collabies.filter((collabie) => {
@@ -99,24 +74,27 @@ const getCollabiesData = () => {
 		return !c.roles.includes('Founder');
 	});
 
-	const teams = collabiesResponse.teams.map((team) => {
-		team.calculatedDate = calculatedDate({
-			startDate: team.startDate,
-			endDate: team.endDate,
-		});
-		team.teamNumber = calculateTeamNumber(team.anchor);
-		return team;
+	const teams = hygraphResponse.teams.map((team) => {
+		return {
+			...team,
+			calculatedDate: calculatedDate({
+				startDate: team.startDate,
+				endDate: team.endDate,
+			}),
+			teamNumber: calculateTeamNumber(team.anchor),
+		};
 	});
 
 	return {
+		founders,
 		mentors,
-		volunteers,
 		teams,
+		volunteers,
 	};
 };
 
 const getPagesData = () => {
-	return pagesResponse.pages.map((page) => {
+	return hygraphResponse.pages.map((page) => {
 		return {
 			html: getPageHTML(page.blocks),
 			slug: page.slug,
@@ -125,7 +103,7 @@ const getPagesData = () => {
 };
 
 function getTechTalksData() {
-	return techTalkResponse.techTalks.map((talk) => {
+	return hygraphResponse.techTalks.map((talk) => {
 		const rgx = /(v=([\w-]+))|(be\/([\w-]+))/; // there's probably room for improvement here
 		talk.formattedDate = fullDateShortMonthFormat.format(
 			new Date(talk.dateAndTime),
@@ -147,18 +125,18 @@ function getTechTalksData() {
 	});
 }
 
-export interface Testimonial {
+export interface TestimonialFlat {
 	fullName: string;
 	pathToPhoto: string;
 	testimony: string;
 }
 
-function getTestimonials(): Testimonial[] {
-	return testimonialsResponse.testimonials.map((t) => {
+function getTestimonials(): TestimonialFlat[] {
+	return hygraphResponse.testimonials.map((testimonial) => {
 		return {
-			fullName: t.collabie.fullName,
-			pathToPhoto: t.collabie.pathToPhoto,
-			testimony: t.body.html,
+			fullName: testimonial.collabie.fullName,
+			pathToPhoto: testimonial.collabie.pathToPhoto,
+			testimony: testimonial.body.html,
 		};
 	});
 }
@@ -197,7 +175,7 @@ const getPageHTML = (blocks: Block[]) => {
 };
 
 export const applicationBlock = getApplicationBlockData();
-export const { mentors, volunteers, teams } = getCollabiesData();
+export const { founders, mentors, volunteers, teams } = getCollabiesData();
 export const pages = getPagesData();
 export const techTalks = getTechTalksData();
 export const testimonials = getTestimonials();

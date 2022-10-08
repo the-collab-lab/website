@@ -1,13 +1,8 @@
 import { gql } from 'graphql-request';
 
-export const ApplicationBlockQuery = gql`
-	query ApplicationBlock {
-		textBlocks(
-			where: {
-				internalName_contains: "Front Page – Applications"
-				visible: true
-			}
-		) {
+const ApplicationBlock = gql`
+	fragment ApplicationBlock on Query {
+		applicationBlock: textBlock(where: { id: "ckjwc7a3cak3v0d34n057w44k" }) {
 			textContent {
 				html
 			}
@@ -29,8 +24,8 @@ const COLLABIE_DATA_FRAGMENT = gql`
 	}
 `;
 
-export const CollabiesAndTeamsQuery = gql`
-	query CollabiesAndTeams {
+const CollabiesAndTeams = gql`
+	fragment CollabiesAndTeams on Query {
 		collabies(
 			where: { NOT: { roles_every: { name: "Participant" } }, visible: true }
 			orderBy: firstName_ASC
@@ -53,8 +48,8 @@ export const CollabiesAndTeamsQuery = gql`
 	${COLLABIE_DATA_FRAGMENT}
 `;
 
-export const PagesQuery = gql`
-	query Pages {
+const Pages = gql`
+	fragment Pages on Query {
 		pages {
 			slug
 			blocks {
@@ -74,8 +69,8 @@ export const PagesQuery = gql`
 	}
 `;
 
-export const TechTalksQuery = gql`
-	query TechTalks {
+const TechTalks = gql`
+	fragment TechTalks on Query {
 		techTalks(orderBy: dateAndTime_DESC) {
 			title
 			presenters {
@@ -97,8 +92,8 @@ export const TechTalksQuery = gql`
 	}
 `;
 
-export const TestimonialsQuery = gql`
-	query Testimonials {
+const Testimonials = gql`
+	fragment Testimonials on Query {
 		testimonials {
 			collabie {
 				fullName
@@ -109,4 +104,19 @@ export const TestimonialsQuery = gql`
 			}
 		}
 	}
+`;
+
+export const ComposedQuery = gql`
+	{
+		...ApplicationBlock
+		...CollabiesAndTeams
+		...Pages
+		...TechTalks
+		...Testimonials
+	}
+	${ApplicationBlock}
+	${CollabiesAndTeams}
+	${Pages}
+	${TechTalks}
+	${Testimonials}
 `;

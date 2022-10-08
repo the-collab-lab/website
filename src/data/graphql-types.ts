@@ -1,47 +1,26 @@
 export type CollabieRoles = 'Founder' | 'Volunteer' | 'Mentor';
 
-export interface Bio {
-	html: string;
-}
-
-export interface Role {
-	name: CollabieRoles;
-}
-
-export interface Collabie<BioT, RoleT> {
-	bio?: BioT;
+interface Collabie {
+	bio?: {
+		html: string;
+	};
 	gitHubUrl?: string;
 	linkedInUrl?: string;
 	twitterUrl?: string;
 	firstName: string;
 	fullName: string;
 	pathToPhoto: string;
-	roles: RoleT[];
+	roles: {
+		name: 'Automation Hero' | 'Founder' | 'Volunteer' | 'Mentor';
+	}[];
 }
-
-export type CollabieData = Collabie<string, CollabieRoles>;
 
 export interface DeveloperTeam {
 	anchor: string;
-	calculatedDate: string;
-	developers: CollabieData[];
+	developers: Collabie[];
 	displayName: string;
 	endDate: string;
 	startDate: string;
-	teamNumber: number;
-}
-
-export interface CollabiesAndTeamsResponse {
-	collabies: Collabie<Bio | string, Role | CollabieRoles>[];
-	teams: DeveloperTeam[];
-}
-
-export interface ApplicationBlockResponse {
-	textBlocks: {
-		textContent: {
-			html: string;
-		};
-	}[];
 }
 
 export interface TextBlock {
@@ -65,13 +44,9 @@ export interface Page {
 	blocks: Array<Block>;
 }
 
-export interface PagesResponse {
-	pages: Page[];
-}
-
 export interface TechTalk {
 	title: string;
-	presenters: Pick<CollabieData, 'fullName'>;
+	presenters: Pick<Collabie, 'fullName'>;
 	dateAndTime: string;
 	description: { html: string };
 	formattedDate?: string;
@@ -86,13 +61,16 @@ export interface TechTalk {
 	youTubeEmbedUrl?: string | null;
 }
 
-export interface TechTalkResponse {
-	techTalks: TechTalk[];
+export interface Testimonial {
+	collabie: Pick<Collabie, 'fullName' | 'pathToPhoto'>;
+	body: { html: string };
 }
 
-export interface TestimonialsResponse {
-	testimonials: {
-		collabie: Pick<CollabieData, 'fullName' | 'pathToPhoto'>;
-		body: { html: string };
-	}[];
+export interface ComposedQueryResponse {
+	applicationBlock: TextBlock;
+	collabies: Collabie[];
+	teams: DeveloperTeam[];
+	pages: Page[];
+	techTalks: TechTalk[];
+	testimonials: Testimonial[];
 }
