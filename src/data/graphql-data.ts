@@ -6,7 +6,7 @@ import {
 	PagesQuery,
 	TechTalksQuery,
 	TestimonialsQuery,
-} from './queries';
+} from './graphql-queries';
 import type {
 	ApplicationBlockResponse,
 	Bio,
@@ -17,7 +17,7 @@ import type {
 	Role,
 	TechTalkResponse,
 	TestimonialsResponse,
-} from './types';
+} from './graphql-types';
 
 const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
 	month: 'long',

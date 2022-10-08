@@ -11,7 +11,7 @@
 			// Enable importing from the root of the project.
 			"~components": ["src/components"],
 			"~components/*": ["src/components/*"],
-			"~graphql": ["src/graphql"],
+			"~data": ["src/data"],
 			"~layouts": ["src/layouts"],
 			"~layouts/*": ["src/layouts/*"],
 			"~utils": ["src/utils"],

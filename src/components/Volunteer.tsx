@@ -1,4 +1,4 @@
-import type { CollabieData, CollabieRoles } from '~graphql';
+import type { CollabieData, CollabieRoles } from '~data';
 import {
 	AVATAR_PLACEHOLDER_PATH,
 	SOCIAL_SITE_NAMES,

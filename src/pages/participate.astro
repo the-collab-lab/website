@@ -1,6 +1,6 @@
 ---
 import { BaseLayout } from '~layouts';
-import { pages } from '~graphql';
+import { pages } from '~data';
 
 const filtered = pages.filter((page) => '/apply/' === page.slug);
 const applicationHTML = filtered.length > 0 ? filtered[0].html : '';

@@ -1,4 +1,4 @@
-import type { DeveloperTeam as DeveloperTeamT } from '~graphql';
+import type { DeveloperTeam as DeveloperTeamT } from '~data';
 import {
 	fixAssetPath,
 	AVATAR_PLACEHOLDER_PATH,
