@@ -301,6 +301,16 @@ const jsonLDSchema = JSON.stringify(
 			.c-donation-button + .c-donation-button {
 				margin-left: 0.4rem;
 			}
+
+			.u-desktop-only {
+				display: none;
+			}
+
+			@media screen and (min-width: 768px) {
+				.u-desktop-only {
+					display: initial;
+				}
+			}
 		</style>
 		<style>
 			.l-grid {
