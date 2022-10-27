@@ -1,8 +1,5 @@
 ---
 import { BaseLayout } from '~layouts';
-import { pages } from '~data';
-
-const applicationHTML = pages['/participate/'];
 ---
 
 <BaseLayout title="Participate">
@@ -33,6 +30,4 @@ const applicationHTML = pages['/participate/'];
 		<a href="https://reactjs.org/">React</a>.
 	</p>
 	<a href="#">Join us!</a>
-
-	<Fragment set:html={applicationHTML} />
 </BaseLayout>
