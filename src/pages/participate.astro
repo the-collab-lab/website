@@ -2,8 +2,8 @@
 import { BaseLayout } from '~layouts';
 import { pages } from '~data';
 
-const filtered = pages.filter((page) => '/apply/' === page.slug);
-const applicationHTML = filtered.length > 0 ? filtered[0].html : '';
+const pageBlocks = pages.filter((page) => '/participate/' === page.slug);
+const applicationHTML = pageBlocks.length > 0 ? pageBlocks[0].html : '';
 ---
 
 <BaseLayout title="Participate">
