@@ -86,53 +86,13 @@ const getCollabiesData = () => {
 };
 
 const getPageDataBySlug = () => {
-	// return hygraphResponse.pages.map((page) => {
-	// 	return {
-	// 		html: getPageHTML(page.blocks),
-	// 		slug: page.slug,
-	// 	};
-	// });
-
-	const map: Record<string, string> = {};
+	const map: Record<string, Block[]> = {};
 
 	for (const page of hygraphResponse.pages) {
-		map[page.slug] = renderPageBlockToHTML(page.blocks);
+		map[page.slug] = page.blocks;
 	}
 
-	return map as Record<Page['slug'], string>;
-};
-
-/**
- * Blocks allow us to build up arbitrary pages composed of other entities.
- * This function takes a `blocks` array from a `Pages` query and assembles
- * the HTML to be rendered.
- *
- * The default type is `TextBlock`. Adding new types would entail creatiing
- * a content model in GraphCMS then adding a `case` statement to this
- * function to handle rendering of that type.
- */
-const renderPageBlockToHTML = (blocks: Block[]) => {
-	let html = '';
-	blocks.forEach((block) => {
-		switch (block.__typename) {
-			case 'ImageFloatedRight':
-				html += /* html */ `
-						<figure class="float-right image-floated-right">
-							<img
-								src="${block.path}"
-								alt="${block.caption}"
-							/>
-							<figcaption>${block.caption}</figcaption>
-						</figure>
-						`;
-				break;
-			default:
-				html += block.visible ? block.textContent?.html : '';
-				break;
-		}
-	});
-
-	return html;
+	return map as Record<Page['slug'], Block[]>;
 };
 
 function getTeams() {
