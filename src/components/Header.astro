@@ -1,0 +1,45 @@
+---
+import { Navigation } from '~components';
+---
+
+<header class="l-center--wide">
+	<div class="l-cluster" style="flex-wrap: nowrap; align-items: center;">
+		<a href="/" class="c-brand-link"
+			><picture>
+				<source srcset="/img/logo.svg" media="(min-width: 768px)" />
+				<source srcset="/img/logo-stacked.svg" />
+				<img
+					src="/img/logo-stacked.svg"
+					alt="The Collab Lab"
+					class="c-brand-logo"
+				/>
+			</picture>
+		</a>
+		<Navigation />
+	</div>
+</header>
+<style>
+	header {
+		padding-block-end: var(--s1);
+		padding-block-start: var(--s1);
+	}
+
+	header h1 {
+		margin-block: 0;
+	}
+
+	.c-brand-link {
+		align-items: center;
+		color: inherit;
+		display: flex;
+		line-height: 1;
+		flex: 2 0 64px;
+		max-width: 275px;
+		text-decoration: none;
+	}
+
+	.c-brand-logo {
+		width: 100%;
+		max-height: 6rem;
+	}
+</style>

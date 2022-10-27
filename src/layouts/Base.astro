@@ -1,5 +1,5 @@
 ---
-import { GetInTouch, Navigation } from '~components';
+import { GetInTouch, Header } from '~components';
 import { donationOptions } from '~data';
 
 export interface Props {
@@ -52,22 +52,7 @@ const jsonLDSchema = JSON.stringify(
 		></script>
 	</head>
 	<body>
-		<header class="l-center--wide">
-			<div class="l-cluster" style="flex-wrap: nowrap; align-items: center;">
-				<a href="/" class="c-brand-link"
-					><picture>
-						<source srcset="/img/logo.svg" media="(min-width: 768px)" />
-						<source srcset="/img/logo-stacked.svg" />
-						<img
-							src="/img/logo-stacked.svg"
-							alt="The Collab Lab"
-							class="c-brand-logo"
-						/>
-					</picture>
-				</a>
-				<Navigation />
-			</div>
-		</header>
+		<Header />
 		<main>
 			<slot />
 		</main>
@@ -302,15 +287,6 @@ const jsonLDSchema = JSON.stringify(
 				max-width: 100%;
 			}
 
-			header {
-				padding-block-end: var(--s1);
-				padding-block-start: var(--s1);
-			}
-
-			header h1 {
-				margin-block: 0;
-			}
-
 			footer > section {
 				padding-block-end: var(--s4);
 				padding-inline-end: var(--s3);
@@ -382,21 +358,6 @@ const jsonLDSchema = JSON.stringify(
 			.l-switcher > :nth-last-child(n + 4),
 			.l-switcher > :nth-last-child(n + 4) ~ * {
 				flex-basis: 100%;
-			}
-
-			.c-brand-link {
-				align-items: center;
-				color: inherit;
-				display: flex;
-				line-height: 1;
-				flex: 2 0 64px;
-				max-width: 275px;
-				text-decoration: none;
-			}
-
-			.c-brand-logo {
-				width: 100%;
-				max-height: 6rem;
 			}
 
 			.c-donation-button {
