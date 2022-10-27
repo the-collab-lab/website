@@ -3,44 +3,166 @@ import { BaseLayout } from '~layouts';
 ---
 
 <BaseLayout title="Participate">
-	<div class="l-container">
-		<div class="l-grid">
-			<section class="o-grid-item">
-				<h2>About The Collab Lab Program</h2>
-
-				<dl>
-					<dt>Project type:</dt>
-					<dd>Client-side JavaScript application</dd>
-					<dt>Tech stack:</dt>
-					<dd>
-						<a href="https://reactjs.org/">React</a> for UI development,
-						<a href="https://firebase.google.com/">Firebase</a> for both database
-						and hosting,
-					</dd>
-					<dt>Team size:</dt>
-					<dd>4 developers</dd>
-					<dt>Project duration:</dt>
-					<dd>40 hours per developer (5 hours/week over 8 weeks)</dd>
-				</dl>
-				<p>
-					Successful Collab Lab developers come in having already learned basic
-					web development and programming concepts. We don’t teach coding; we
-					teach collaboration! You don’t need a ton of experience, but
-					<strong
-						>you should have completed the equivalent of a coding bootcamp</strong
+	<section>
+		<div class="l-container">
+			<div class="l-grid">
+				<div class="o-grid-item">
+					<h2>About The Collab Lab Program</h2>
+					<ul>
+						<li>
+							<span class="u-text-bold">Project type:</span> Client-side JavaScript
+							application
+						</li>
+						<li>
+							<span class="u-text-bold">Tech stack:</span>
+							<a href="https://reactjs.org/">React</a> for UI development,
+							<a href="https://firebase.google.com/">Firebase</a> for both database
+							and hosting,
+						</li>
+						<li><span class="u-text-bold">Team size:</span> 4 developers</li>
+						<li>
+							<span class="u-text-bold">Project duration:</span> 40 hours per developer
+							(5 hours/week over 8 weeks)
+						</li>
+					</ul>
+					<p>
+						Successful Collab Lab developers come in having already learned
+						basic web development and programming concepts. We don’t teach
+						coding; we teach collaboration! You don’t need a ton of experience,
+						but
+						<strong
+							>you should have completed the equivalent of a coding bootcamp</strong
+						>
+						where you’ve learned (at a minimum) basic HTML, CSS, and JavaScript and
+						have completed a project or two in
+						<a href="https://reactjs.org/">React</a>.
+					</p>
+					<a
+						href="#how-to-apply"
+						class="u-text-bold u-text-large"
+						style="color:var(--color-blue-mid);">Join us!</a
 					>
-					where you’ve learned (at a minimum) basic HTML, CSS, and JavaScript and
-					have completed a project or two in
-					<a href="https://reactjs.org/">React</a>.
-				</p>
-				<a href="#">Join us!</a>
-			</section>
-			<div class="o-grid-item c-image-placeholder"></div>
+				</div>
+				<img src="/img/participate-hero.svg" alt="" class="u-desktop-only" />
+			</div>
 		</div>
-	</div>
+	</section>
+	<section class="u-bg-black">
+		<div class="l-grid">
+			<div class="o-grid-item c-image-placeholder u-desktop-only"></div>
+			<div class="o-grid-item c-visit-cta">
+				<p class="h2">
+					Visit our <a href="/developers">developers page</a> to learn more about
+					each of the early career engineers who have contributed to The Collab Lab!
+				</p>
+			</div>
+		</div>
+	</section>
+	<section
+		style="background-color: var(--color-blue-mid); color: var(--color-white);"
+	>
+		<div class="l-container u-center-text">
+			<h2 id="how-to-apply">How to apply</h2>
+			<p class="u-text-large">
+				Our next cohort will kick off on January 8, 2023 We will run teams this
+				time in North America and Europe/Africa time zones. The application
+				window will be open from December 24 to December 31. We will notify you
+				of your status the following week.
+			</p>
+			<p class="u-text-bold u-text-large">
+				Return to this page between December 24 and December 31 to submit your
+				application
+			</p>
+			<p class="u-text-small">
+				💡 Want a reminder of our next application window?
+				<a href="/ics/Q1-2023-Application-Window.ics" download
+					>Download this iCal file!</a
+				>
+			</p>
+		</div>
+	</section>
+	<section class="u-bg-black">
+		<div class="l-container">
+			<div class="l-grid">
+				<div class="o-grid-item" style="display:flex;flex-direction: column;">
+					<h2 style="max-width: 12ch;">What happens after I apply?</h2>
+					<img
+						src="/img/participate-apply.svg"
+						alt=""
+						class="u-desktop-only"
+						style="margin-top:3em;max-width:65%;"
+					/>
+				</div>
+				<div class="o-grid-item">
+					<p>There are two possible outcomes:</p>
+					<p>🤗 You get accepted. Yay! We’ll be in touch with next steps.</p>
+					<p>😥 You get rejected. For now…try again!</p>
+					<p>
+						<span class="u-text-bold"
+							>We anticipate more applicants than we will have slots.</span
+						> If you’re qualified, but the numbers just didn’t work out, we’ll let
+						you know that and you can totally apply the next time using the same
+						info. If, on the other hand, we evaluated your experience and determined
+						you didn’t meet the minimum requirements in some way, we’ll let you know
+						that, too. That way you can put in the work to increase your chances
+						of being accepted before the next application window opens.
+					</p>
+					<p>
+						All of this means <span class="u-text-bold"
+							>you may have to apply multiple times</span
+						> in order to be selected. The good news is, you’ll know where you stand!
+					</p>
+					<h3>Have questions?</h3>
+					<p>
+						If you have any questions about the application process or what it’s
+						like to participate in a Collab Lab cohort, please don’t hesitate to
+						email Andrew at andrew@the-collab-lab.codes.
+					</p>
+					<p>
+						Thank you so much for your interest in The Collab Lab! We look
+						forward to working with you at some point in the future!
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
 </BaseLayout>
 <style>
+	ul {
+		margin-top: 2.4em;
+	}
+
+	li + li {
+		margin-top: 1.4em;
+	}
+
+	section:first-of-type li,
+	section:first-of-type p {
+		max-width: 52ch;
+		margin-left: 0;
+		margin-right: 0;
+	}
+
 	.c-image-placeholder {
 		background-color: var(--color-blue-light);
+		height: 575px;
+		width: 1728px;
+		max-width: 100%;
+	}
+
+	.c-visit-cta {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		margin: 0 auto;
+		max-width: 95%;
+		padding-bottom: 4.8em;
+		padding-top: 4.8em;
+		width: 124rem;
+	}
+
+	.c-visit-cta a {
+		color: var(--color-yellow-mid);
 	}
 </style>

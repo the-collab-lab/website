@@ -149,6 +149,13 @@ const jsonLDSchema = JSON.stringify(
 				src: url('/fonts/outfit-v6-latin-700.woff2') format('woff2');
 			}
 
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				letter-spacing: 0.09em;
+			}
+
 			:root {
 				--color-black-dark: hsla(0, 0%, 5%, 1);
 				--color-black-mid: hsla(0, 0%, 55%, 1);
@@ -170,8 +177,10 @@ const jsonLDSchema = JSON.stringify(
 				--color-green-mid: hsla(145, 63%, 42%, 1);
 				--color-green-light: hsla(137, 100%, 90%, 1);
 
+				--color-white: var(--color-black-light);
+
 				--color-text: var(--color-black-dark);
-				--color-bg: var(--color-black-light);
+				--color-bg: var(--color-white);
 				--color-border: hsl(17, 24%, 90%);
 
 				--font-size-base: 1.4rem;
@@ -219,31 +228,44 @@ const jsonLDSchema = JSON.stringify(
 			h3,
 			h4,
 			h5,
-			h6 {
+			h6,
+			.h1,
+			.h2,
+			.h3,
+			.h4,
+			.h5,
+			.h6 {
 				font-family: var(--font-stack);
 				font-weight: 700;
 				line-height: 1.25;
+				margin: 0;
 			}
 
 			h1,
-			h2 {
+			h2,
+			.h1,
+			.h2 {
 				max-width: 68ch;
 			}
 
-			h1 {
+			h1,
+			.h1 {
 				font-size: var(--font-size-h1);
 				text-align: center;
 			}
 
-			h2 {
+			h2,
+			.h2 {
 				font-size: var(--font-size-h2);
 			}
 
-			h3 {
+			h3,
+			.h3 {
 				font-size: var(--font-size-h3);
 			}
 
-			h4 {
+			h4,
+			.h4 {
 				font-size: var(--font-size-h4);
 			}
 
@@ -259,8 +281,14 @@ const jsonLDSchema = JSON.stringify(
 				max-width: 75ch;
 			}
 
+			a {
+				color: inherit;
+			}
+
 			p {
 				line-height: 1.2;
+				margin-left: auto;
+				margin-right: auto;
 			}
 
 			header h1 {
@@ -275,7 +303,14 @@ const jsonLDSchema = JSON.stringify(
 			.l-container {
 				margin: 0 auto;
 				max-width: 95%;
+				padding-bottom: 4.2em;
+				padding-top: 4.2em;
 				width: 124rem;
+			}
+
+			header .l-container {
+				padding-bottom: 0;
+				padding-top: 0;
 			}
 
 			.l-grid {
@@ -287,6 +322,10 @@ const jsonLDSchema = JSON.stringify(
 					auto-fit,
 					minmax(var(--grid-col-min-width), 1fr)
 				);
+			}
+
+			footer .l-grid {
+				align-items: start;
 			}
 
 			.c-donation-button {
@@ -302,8 +341,29 @@ const jsonLDSchema = JSON.stringify(
 				margin-left: 0.4rem;
 			}
 
+			.u-center-text {
+				text-align: center;
+			}
+
+			.u-text-bold {
+				font-weight: 700;
+			}
+
+			.u-text-large {
+				font-size: 1.25em;
+				line-height: 1.2;
+			}
+
 			.u-desktop-only {
 				display: none;
+			}
+
+			.u-bg-black {
+				--color-bg: var(--color-black-dark);
+				--color-text: var(--color-white);
+
+				background-color: var(--color-bg);
+				color: var(--color-text);
 			}
 
 			@media screen and (min-width: 768px) {
