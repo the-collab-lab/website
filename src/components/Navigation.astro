@@ -1,10 +1,6 @@
 ---
 const routes = [
 	{
-		path: '/',
-		name: 'Home',
-	},
-	{
 		path: '/participate/',
 		name: 'Participate',
 	},
@@ -25,7 +21,7 @@ const routes = [
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="nav">
+<nav class="nav l-cluster-nowrap">
 	{
 		routes.map(({ path, name }) => (
 			<a
@@ -40,14 +36,6 @@ const currentPath = Astro.url.pathname;
 </nav>
 
 <style>
-	.nav {
-		align-items: flex-start;
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: flex-start;
-	}
-
 	.nav > .nav-link {
 		padding: 0.5rem 1rem;
 	}

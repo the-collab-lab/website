@@ -1,6 +1,5 @@
 ---
 import { BaseLayout } from '~layouts';
-import { applicationBlock } from '~data';
 ---
 
 <BaseLayout title="The Collab Lab">
@@ -14,47 +13,41 @@ import { applicationBlock } from '~data';
 			</h1>
 		</div>
 	</div>
-	<div class="l-container">
-		<div class="l-grid">
-			<img
-				alt="Collab Lab mentors and developers taking part in one of our weekly check-in calls"
-				class="u-desktop-only"
-				height="500"
-				width="800"
-				src="/img/index-hero.svg"
-			/>
-			<div>
-				<h2 id="mission">Our Mission</h2>
-				<p>
-					The Collab Lab increases access to web development jobs for
-					early-career developers and, in particular, people in
-					under-represented groups in tech by providing experiential skills
-					training in software team collaboration and career management.
-				</p>
-			</div>
+	<div class="l-switcher">
+		<img
+			alt="Collab Lab mentors and developers taking part in one of our weekly check-in calls"
+			class="u-desktop-only"
+			height="500"
+			width="800"
+			src="/img/index-hero.svg"
+		/>
+		<div>
+			<h2 id="mission">Our Mission</h2>
+			<p>
+				The Collab Lab increases access to web development jobs for early-career
+				developers and, in particular, people in under-represented groups in
+				tech by providing experiential skills training in software team
+				collaboration and career management.
+			</p>
 		</div>
 	</div>
-	<div class="l-container">
-		<div class="l-grid">
-			<h3>The Collab Lab is…</h3>
-			<ul>
-				<li><strong>Collaborative</strong> group project practice</li>
-				<li>
-					A place to work alongside your <strong>peers</strong> in a fully remote
-					setting
-				</li>
-				<li>
-					An opportunity to <strong>learn</strong> from experienced developers
-				</li>
-				<li>Volunteer run and <strong>free</strong> for developers</li>
-			</ul>
-		</div>
+	<div class="l-switcher">
+		<h3>The Collab Lab is…</h3>
+		<ul>
+			<li><strong>Collaborative</strong> group project practice</li>
+			<li>
+				A place to work alongside your <strong>peers</strong> in a fully remote setting
+			</li>
+			<li>
+				An opportunity to <strong>learn</strong> from experienced developers
+			</li>
+			<li>Volunteer run and <strong>free</strong> for developers</li>
+		</ul>
 	</div>
 
 	<div class="l-container">
 		<h2>So you want to…</h2>
-
-		<ul class="l-grid">
+		<ul class="l-switcher">
 			<li>
 				<h3>Learn how software teams collaborate?</h3>
 				<p>
@@ -114,15 +107,5 @@ import { applicationBlock } from '~data';
 	.c-jumbo-heading {
 		--border-width: 0.6rem;
 		border-left: var(--border-width) solid var(--color-pink-mid);
-	}
-
-	@media (min-width: 768px) {
-		.c-jumbo-heading h1 {
-			font-size: 6.4rem;
-		}
-
-		.c-jumbo-heading {
-			--border-width: 2rem;
-		}
 	}
 </style>

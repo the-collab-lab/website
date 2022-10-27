@@ -52,95 +52,87 @@ const jsonLDSchema = JSON.stringify(
 		></script>
 	</head>
 	<body>
-		<header>
-			<div class="l-container">
-				<div class="l-grid">
-					<h1>{title}</h1>
-					<Navigation />
-				</div>
+		<header class="l-center--wide">
+			<div class="l-cluster" style="flex-wrap: nowrap; align-items: center;">
+				<a href="/" class="c-brand-link"
+					><picture>
+						<source srcset="/img/logo.svg" media="(min-width: 768px)" />
+						<source srcset="/img/logo-stacked.svg" />
+						<img
+							src="/img/logo-stacked.svg"
+							alt="The Collab Lab"
+							class="c-brand-logo"
+						/>
+					</picture>
+				</a>
+				<Navigation />
 			</div>
 		</header>
 		<main>
 			<slot />
 		</main>
-		<footer>
+		<footer class="l-switcher">
 			<section>
-				<div class="l-grid u-gap-0">
-					<div
-						class="o-grid-item"
-						style="background-color:var(--color-black-light)"
-					>
-						<div class="l-container u-hug-right">
-							<h2 id="support">Support Collab Lab!</h2>
+				<h2 id="support">Support Collab Lab!</h2>
+				<p>
+					The Collab Lab is
+					<strong>volunteer-driven and free for developers.</strong>
+					We intentionally and actively work to overcome barriers to opportunities
+					for women and under-represented minorities in tech.
+				</p>
+				<p>
+					We make use of free/
+					<a href="https://www.dictionary.com/browse/freemium">freemium</a>
+					tools (i.e. Airtable, Firebase, GitHub, Google Docs, Netlify, Slack, Notion,
+					and Zoom) as much as possible. We would love to have the ability to use
+					upgraded versions of some of these tools to provide a better experience
+					for our volunteers and developers. To this end, we accept
+					<a href="https://github.com/sponsors/the-collab-lab">
+						sponsorships through GitHub
+					</a>. ❤️
+				</p>
+				<a
+					href="https://github.com/sponsors/the-collab-lab"
+					class="c-donation-button"
+				>
+					Sponsor on GitHub
+				</a>
+				{
+					donationOptions.length > 0 && (
+						<Fragment>
 							<p>
-								The Collab Lab is
-								<strong>volunteer-driven and free for developers.</strong>
-								We intentionally and actively work to overcome barriers to opportunities
-								for women and under-represented minorities in tech.
+								We also accdept direct donations. Please consider supporting The
+								Collab Lab with a one-time donation.
 							</p>
-							<p>
-								We make use of free/
-								<a href="https://www.dictionary.com/browse/freemium">freemium</a
-								>
-								tools (i.e. Airtable, Firebase, GitHub, Google Docs, Netlify, Slack,
-								Notion, and Zoom) as much as possible. We would love to have the
-								ability to use upgraded versions of some of these tools to provide
-								a better experience for our volunteers and developers. To this end,
-								we accept
-								<a href="https://github.com/sponsors/the-collab-lab">
-									sponsorships through GitHub
-								</a>. ❤️
-							</p>
-							<a
-								href="https://github.com/sponsors/the-collab-lab"
-								class="c-donation-button"
-							>
-								Sponsor on GitHub
-							</a>
-							{
-								donationOptions.length > 0 && (
-									<Fragment>
-										<p>
-											We also accdept direct donations. Please consider
-											supporting The Collab Lab with a one-time donation.
-										</p>
-										<div class="donation-options">
-											{donationOptions.map((option) => (
-												<a href={option.url} class="c-donation-button">
-													{option.name}
-												</a>
-											))}
-										</div>
-									</Fragment>
-								)
-							}
-						</div>
-					</div>
-					<div
-						class="o-grid-item"
-						style="background-color: var(--color-yellow-mid)"
-					>
-						<div class="l-container u-hug-left">
-							<GetInTouch />
-							<div class="copyright">
-								<p>
-									Made with
-									<a href="https://astro.build/">Astro</a> and
-									<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
-										href="https://www.netlify.com/">Netlify</a
-									>.
-								</p>
-								<p>
-									Copyright &copy; 2019 – {new Date().getFullYear()} The Collab Lab.
-									All rights reserved.
-								</p>
-								<p>
-									All participants agree to adhere to our
-									<a href="/code-of-conduct/">Code of Conduct</a>.
-								</p>
+							<div class="donation-options">
+								{donationOptions.map((option) => (
+									<a href={option.url} class="c-donation-button">
+										{option.name}
+									</a>
+								))}
 							</div>
-						</div>
-					</div>
+						</Fragment>
+					)
+				}
+			</section>
+			<section style="background-color: var(--color-yellow-mid);">
+				<GetInTouch />
+				<div class="l-stack">
+					<p>
+						Made with
+						<a href="https://astro.build/">Astro</a> and
+						<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
+							href="https://www.netlify.com/">Netlify</a
+						>.
+					</p>
+					<p>
+						Copyright &copy; 2019 – {new Date().getFullYear()} The Collab Lab. All
+						rights reserved.
+					</p>
+					<p>
+						All participants agree to adhere to our
+						<a href="/code-of-conduct/">Code of Conduct</a>.
+					</p>
 				</div>
 			</section>
 		</footer>
@@ -159,13 +151,6 @@ const jsonLDSchema = JSON.stringify(
 				font-style: normal;
 				font-weight: 700;
 				src: url('/fonts/outfit-v6-latin-700.woff2') format('woff2');
-			}
-
-			*,
-			*::before,
-			*::after {
-				box-sizing: border-box;
-				letter-spacing: 0.09em;
 			}
 
 			:root {
@@ -195,27 +180,51 @@ const jsonLDSchema = JSON.stringify(
 				--color-bg: var(--color-white);
 				--color-border: hsl(17, 24%, 90%);
 
+				--ratio: 1.5;
+				--space: 1.5rem;
+				--measure: 72ch;
+
+				--s-5: calc(var(--s-4) / var(--ratio));
+				--s-4: calc(var(--s-3) / var(--ratio));
+				--s-3: calc(var(--s-2) / var(--ratio));
+				--s-2: calc(var(--s-1) / var(--ratio));
+				--s-1: calc(var(--s0) / var(--ratio));
+				--s0: 1rem;
+				--s1: calc(var(--s0) * var(--ratio));
+				--s2: calc(var(--s1) * var(--ratio));
+				--s3: calc(var(--s2) * var(--ratio));
+				--s4: calc(var(--s3) * var(--ratio));
+				--s5: calc(var(--s4) * var(--ratio));
+
 				--font-size-base: 1.4rem;
 				--font-size-h1: 3.2rem;
 				--font-size-h2: 2.4rem;
 				--font-size-h3: 2rem;
 				--font-size-h4: 1.6rem;
-			}
 
-			@media screen and (min-width: 820px) {
-				:root {
-					--font-size-base: 1.6rem;
-					--font-size-h1: 4.8rem;
-					--font-size-h2: 3.6rem;
-					--font-size-h3: 2.6rem;
-					--font-size-h4: 2rem;
-				}
+				font-size: calc(0.333vw + 0.625em);
 			}
 
 			*,
-			*::after,
-			*::before {
+			*::before,
+			*::after {
 				box-sizing: border-box;
+				color: inherit;
+				letter-spacing: 0.09em;
+				margin-block-start: 0;
+				margin-block-start: 0;
+				max-inline-size: var(--measure);
+			}
+
+			html,
+			body,
+			div,
+			header,
+			nav,
+			main,
+			footer,
+			section {
+				max-inline-size: none;
 			}
 
 			html {
@@ -227,7 +236,7 @@ const jsonLDSchema = JSON.stringify(
 				background-color: var(--color-bg);
 				color: var(--color-text);
 				font-family: var(--font-stack);
-				font-size: 62.5%;
+				/* font-size: 62.5%;```` */
 			}
 
 			body {
@@ -251,7 +260,7 @@ const jsonLDSchema = JSON.stringify(
 				font-family: var(--font-stack);
 				font-weight: 700;
 				line-height: 1.25;
-				margin: 0;
+				margin-block-start: 1em;
 			}
 
 			h1,
@@ -263,23 +272,23 @@ const jsonLDSchema = JSON.stringify(
 
 			h1,
 			.h1 {
-				font-size: var(--font-size-h1);
+				font-size: var(--s4);
 				text-align: center;
 			}
 
 			h2,
 			.h2 {
-				font-size: var(--font-size-h2);
+				font-size: var(--s3);
 			}
 
 			h3,
 			.h3 {
-				font-size: var(--font-size-h3);
+				font-size: var(--s2);
 			}
 
 			h4,
 			.h4 {
-				font-size: var(--font-size-h4);
+				font-size: var(--s1);
 			}
 
 			ul {
@@ -288,67 +297,106 @@ const jsonLDSchema = JSON.stringify(
 				padding: 0;
 			}
 
-			blockquote,
-			p,
-			li {
-				max-width: 75ch;
-			}
-
-			a {
-				color: inherit;
-			}
-
-			p {
-				margin-left: auto;
-				margin-right: auto;
-			}
-
-			header h1 {
-				margin: 0;
-			}
-
 			img {
 				height: auto;
 				max-width: 100%;
 			}
 
-			.l-container {
-				margin: 0 auto;
-				max-width: 95%;
-				padding-bottom: 4.2em;
-				padding-top: 4.2em;
-				width: 124rem;
+			header {
+				padding-block-end: var(--s1);
+				padding-block-start: var(--s1);
 			}
 
-			header .l-container {
-				padding-bottom: 0;
-				padding-top: 0;
+			header h1 {
+				margin-block: 0;
 			}
 
-			.l-grid {
-				--grid-col-min-width: 39 rem;
-
-				display: grid;
-				grid-gap: 2rem;
-				grid-template-columns: repeat(
-					auto-fit,
-					minmax(var(--grid-col-min-width), 1fr)
-				);
+			footer > section {
+				padding-block-end: var(--s4);
+				padding-inline-end: var(--s3);
+				padding-inline-start: var(--s3);
 			}
 
-			.l-grid > p,
-			.l-grid h2,
-			.l-grid h3 {
-				max-width: 53ch;
+			.l-center {
+				box-sizing: content-box;
+				margin-inline: auto;
+				max-inline-size: var(--measure);
+				padding-inline-start: 1rem;
+				padding-inline-end: 1rem;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
 			}
 
-			footer .l-grid {
-				align-items: stretch;
-				gap: 0;
+			.l-center--wide {
+				box-sizing: content-box;
+				margin-inline: auto;
+				max-inline-size: 85ch;
+				padding-inline-start: 1rem;
+				padding-inline-end: 1rem;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			.l-stack {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
 			}
 
-			footer .l-container {
-				max-width: min(95%, 57ch);
+			.l-stack > * {
+				margin-block: 0;
+			}
+
+			.l-stack > * + * {
+				margin-block-start: var(--space, 1.5rem);
+			}
+
+			.l-cluster {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--space, 1rem);
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.l-cluster-nowrap {
+				align-items: flex-start;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: flex-start;
+			}
+
+			.l-switcher {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--s1);
+			}
+
+			.l-switcher > * {
+				flex-grow: 1;
+				flex-basis: calc((98rem - 100%) * 999);
+			}
+
+			.l-switcher > :nth-last-child(n + 4),
+			.l-switcher > :nth-last-child(n + 4) ~ * {
+				flex-basis: 100%;
+			}
+
+			.c-brand-link {
+				align-items: center;
+				color: inherit;
+				display: flex;
+				line-height: 1;
+				flex: 2 0 64px;
+				max-width: 275px;
+				text-decoration: none;
+			}
+
+			.c-brand-logo {
+				width: 100%;
+				max-height: 6rem;
 			}
 
 			.c-donation-button {
@@ -391,25 +439,6 @@ const jsonLDSchema = JSON.stringify(
 
 				background-color: var(--color-bg);
 				color: var(--color-text);
-			}
-
-			@media screen and (min-width: 820px) {
-				.u-desktop-only {
-					display: initial;
-				}
-
-				.u-hug-right {
-					margin-right: 2.5em;
-				}
-
-				.u-hug-left {
-					margin-left: 2.5em;
-				}
-			}
-		</style>
-		<style>
-			.l-grid {
-				align-items: center;
 			}
 		</style>
 	</body>
