@@ -4,8 +4,8 @@
 	"private": true,
 	"type": "module",
 	"engines": {
-		"node": ">=16.17.1",
-		"npm": ">=8.15.0"
+		"node": ">=18.12.0",
+		"npm": ">=8.19.2"
 	},
 	"scripts": {
 		"dev": "astro dev",
@@ -17,10 +17,10 @@
 	},
 	"devDependencies": {
 		"@types/stripe-v3": "^3.1.27",
-		"@typescript-eslint/eslint-plugin": "^5.40.1",
-		"@typescript-eslint/parser": "^5.40.1",
-		"astro": "^1.5.2",
-		"eslint": "^8.25.0",
+		"@typescript-eslint/eslint-plugin": "^5.41.0",
+		"@typescript-eslint/parser": "^5.41.0",
+		"astro": "^1.5.3",
+		"eslint": "^8.26.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-import-resolver-typescript": "^3.5.2",
 		"eslint-plugin-astro": "^0.20.0",
