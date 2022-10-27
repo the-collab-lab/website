@@ -3,31 +3,44 @@ import { BaseLayout } from '~layouts';
 ---
 
 <BaseLayout title="Participate">
-	<h2>About The Collab Lab Program</h2>
+	<div class="l-container">
+		<div class="l-grid">
+			<section class="o-grid-item">
+				<h2>About The Collab Lab Program</h2>
 
-	<dl>
-		<dt>Project type:</dt>
-		<dd>Client-side JavaScript application</dd>
-		<dt>Tech stack:</dt>
-		<dd>
-			<a href="https://reactjs.org/">React</a> for UI development,
-			<a href="https://firebase.google.com/">Firebase</a> for both database and hosting,
-		</dd>
-		<dt>Team size:</dt>
-		<dd>4 developers</dd>
-		<dt>Project duration:</dt>
-		<dd>40 hours per developer (5 hours/week over 8 weeks)</dd>
-	</dl>
-	<p>
-		Successful Collab Lab developers come in having already learned basic web
-		development and programming concepts. We don’t teach coding; we teach
-		collaboration! You don’t need a ton of experience, but
-		<strong
-			>you should have completed the equivalent of a coding bootcamp</strong
-		>
-		where you’ve learned (at a minimum) basic HTML, CSS, and JavaScript and have
-		completed a project or two in
-		<a href="https://reactjs.org/">React</a>.
-	</p>
-	<a href="#">Join us!</a>
+				<dl>
+					<dt>Project type:</dt>
+					<dd>Client-side JavaScript application</dd>
+					<dt>Tech stack:</dt>
+					<dd>
+						<a href="https://reactjs.org/">React</a> for UI development,
+						<a href="https://firebase.google.com/">Firebase</a> for both database
+						and hosting,
+					</dd>
+					<dt>Team size:</dt>
+					<dd>4 developers</dd>
+					<dt>Project duration:</dt>
+					<dd>40 hours per developer (5 hours/week over 8 weeks)</dd>
+				</dl>
+				<p>
+					Successful Collab Lab developers come in having already learned basic
+					web development and programming concepts. We don’t teach coding; we
+					teach collaboration! You don’t need a ton of experience, but
+					<strong
+						>you should have completed the equivalent of a coding bootcamp</strong
+					>
+					where you’ve learned (at a minimum) basic HTML, CSS, and JavaScript and
+					have completed a project or two in
+					<a href="https://reactjs.org/">React</a>.
+				</p>
+				<a href="#">Join us!</a>
+			</section>
+			<div class="o-grid-item c-image-placeholder"></div>
+		</div>
+	</div>
 </BaseLayout>
+<style>
+	.c-image-placeholder {
+		background-color: var(--color-blue-light);
+	}
+</style>
