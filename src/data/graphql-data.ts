@@ -1,7 +1,7 @@
 import { request } from 'graphql-request';
 
 import { ComposedQuery } from './graphql-queries';
-import type { Block, ComposedQueryResponse } from './graphql-types';
+import type { Block, ComposedQueryResponse, Page } from './graphql-types';
 
 const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
 	month: 'long',
@@ -85,13 +85,54 @@ const getCollabiesData = () => {
 	};
 };
 
-const getPagesData = () => {
-	return hygraphResponse.pages.map((page) => {
-		return {
-			html: getPageHTML(page.blocks),
-			slug: page.slug,
-		};
+const getPageDataBySlug = () => {
+	// return hygraphResponse.pages.map((page) => {
+	// 	return {
+	// 		html: getPageHTML(page.blocks),
+	// 		slug: page.slug,
+	// 	};
+	// });
+
+	const map: Record<string, string> = {};
+
+	for (const page of hygraphResponse.pages) {
+		map[page.slug] = renderPageBlockToHTML(page.blocks);
+	}
+
+	return map as Record<Page['slug'], string>;
+};
+
+/**
+ * Blocks allow us to build up arbitrary pages composed of other entities.
+ * This function takes a `blocks` array from a `Pages` query and assembles
+ * the HTML to be rendered.
+ *
+ * The default type is `TextBlock`. Adding new types would entail creatiing
+ * a content model in GraphCMS then adding a `case` statement to this
+ * function to handle rendering of that type.
+ */
+const renderPageBlockToHTML = (blocks: Block[]) => {
+	let html = '';
+	blocks.forEach((block) => {
+		switch (block.__typename) {
+			case 'ImageFloatedRight':
+				html += /* html */ `
+						<figure class="float-right image-floated-right">
+							<img
+								src="${block.path}"
+								alt="${block.caption}"
+							/>
+							<figcaption>${block.caption}</figcaption>
+						</figure>
+						`;
+				break;
+			default:
+				html += block.visible ? block.textContent?.html : '';
+				break;
+		}
 	});
+
+	return html;
 };
 
 function getTeams() {
@@ -146,42 +187,9 @@ function getTestimonials(): TestimonialFlat[] {
 	});
 }
 
-/**
- * Blocks allow us to build up arbitrary pages composed of other entities.
- * This function takes a `blocks` array from a `Pages` query and assembles
- * the HTML to be rendered.
- *
- * The default type is `TextBlock`. Adding new types would entail creatiing
- * a content model in GraphCMS then adding a `case` statement to this
- * function to handle rendering of that type.
- */
-const getPageHTML = (blocks: Block[]) => {
-	let html = '';
-	blocks.forEach((block) => {
-		switch (block.__typename) {
-			case 'ImageFloatedRight':
-				html += /* html */ `
-						<figure class="float-right image-floated-right">
-							<img
-								src="${block.path}"
-								alt="${block.caption}"
-							/>
-							<figcaption>${block.caption}</figcaption>
-						</figure>
-						`;
-				break;
-			default:
-				html += block.visible ? block.textContent?.html : '';
-				break;
-		}
-	});
-
-	return html;
-};
-
 export const applicationBlock = getApplicationBlockData();
 export const { founders, mentors, volunteers } = getCollabiesData();
-export const pages = getPagesData();
+export const pages = getPageDataBySlug();
 export const teams = getTeams();
 export const techTalks = getTechTalksData();
 export const testimonials = getTestimonials();

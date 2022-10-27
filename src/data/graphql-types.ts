@@ -44,7 +44,7 @@ export interface ImageFloatedRight {
 export type Block = TextBlock | ImageFloatedRight;
 
 export interface Page {
-	slug: string;
+	slug: '/participate/' | '/apply/' | '/mentor/';
 	blocks: Array<Block>;
 }
 
