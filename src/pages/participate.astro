@@ -7,11 +7,6 @@ const applicationHTML = filtered.length > 0 ? filtered[0].html : '';
 ---
 
 <BaseLayout title="Participate">
-	<hr />
-	Visit our <a href="/developers/">Developers Page</a> to learn more about each of
-	the early career engineers who have contributed to The Collab Lab!
-	<hr />
-
 	<h2>About The Collab Lab Program</h2>
 
 	<dl>
@@ -27,7 +22,6 @@ const applicationHTML = filtered.length > 0 ? filtered[0].html : '';
 		<dt>Project duration:</dt>
 		<dd>40 hours per developer (5 hours/week over 8 weeks)</dd>
 	</dl>
-	<h3>Join us!</h3>
 	<p>
 		Successful Collab Lab developers come in having already learned basic web
 		development and programming concepts. We don’t teach coding; we teach
@@ -39,6 +33,7 @@ const applicationHTML = filtered.length > 0 ? filtered[0].html : '';
 		completed a project or two in
 		<a href="https://reactjs.org/">React</a>.
 	</p>
+	<a href="#">Join us!</a>
 
 	<Fragment set:html={applicationHTML} />
 </BaseLayout>
