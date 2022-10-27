@@ -1,6 +1,5 @@
 ---
-import { GetInTouch, Header } from '~components';
-import { donationOptions } from '~data';
+import { Footer, Header } from '~components';
 
 export interface Props {
 	subtitle?: string;
@@ -56,71 +55,7 @@ const jsonLDSchema = JSON.stringify(
 		<main>
 			<slot />
 		</main>
-		<footer class="l-switcher">
-			<section>
-				<h2 id="support">Support Collab Lab!</h2>
-				<p>
-					The Collab Lab is
-					<strong>volunteer-driven and free for developers.</strong>
-					We intentionally and actively work to overcome barriers to opportunities
-					for women and under-represented minorities in tech.
-				</p>
-				<p>
-					We make use of free/
-					<a href="https://www.dictionary.com/browse/freemium">freemium</a>
-					tools (i.e. Airtable, Firebase, GitHub, Google Docs, Netlify, Slack, Notion,
-					and Zoom) as much as possible. We would love to have the ability to use
-					upgraded versions of some of these tools to provide a better experience
-					for our volunteers and developers. To this end, we accept
-					<a href="https://github.com/sponsors/the-collab-lab">
-						sponsorships through GitHub
-					</a>. ❤️
-				</p>
-				<a
-					href="https://github.com/sponsors/the-collab-lab"
-					class="c-donation-button"
-				>
-					Sponsor on GitHub
-				</a>
-				{
-					donationOptions.length > 0 && (
-						<Fragment>
-							<p>
-								We also accdept direct donations. Please consider supporting The
-								Collab Lab with a one-time donation.
-							</p>
-							<div class="donation-options">
-								{donationOptions.map((option) => (
-									<a href={option.url} class="c-donation-button">
-										{option.name}
-									</a>
-								))}
-							</div>
-						</Fragment>
-					)
-				}
-			</section>
-			<section style="background-color: var(--color-yellow-mid);">
-				<GetInTouch />
-				<div class="l-stack">
-					<p>
-						Made with
-						<a href="https://astro.build/">Astro</a> and
-						<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
-							href="https://www.netlify.com/">Netlify</a
-						>.
-					</p>
-					<p>
-						Copyright &copy; 2019 – {new Date().getFullYear()} The Collab Lab. All
-						rights reserved.
-					</p>
-					<p>
-						All participants agree to adhere to our
-						<a href="/code-of-conduct/">Code of Conduct</a>.
-					</p>
-				</div>
-			</section>
-		</footer>
+		<Footer />
 		<style is:global>
 			@font-face {
 				font-display: swap;
@@ -285,12 +220,6 @@ const jsonLDSchema = JSON.stringify(
 			img {
 				height: auto;
 				max-width: 100%;
-			}
-
-			footer > section {
-				padding-block-end: var(--s4);
-				padding-inline-end: var(--s3);
-				padding-inline-start: var(--s3);
 			}
 
 			.l-center {
