@@ -43,12 +43,17 @@ import { BaseLayout } from '~layouts';
 						style="color:var(--color-blue-mid);">Join us!</a
 					>
 				</div>
-				<img src="/img/participate-hero.svg" alt="" class="u-desktop-only" />
+				<img
+					alt=""
+					class="u-desktop-only"
+					loading="lazy"
+					src="/img/participate-hero.svg"
+				/>
 			</div>
 		</div>
 	</section>
 	<section class="u-bg-black">
-		<div class="l-grid">
+		<div class="l-grid u-gap-0">
 			<div class="o-grid-item c-image-placeholder u-desktop-only"></div>
 			<div class="o-grid-item c-visit-cta">
 				<p class="h2">
@@ -87,9 +92,10 @@ import { BaseLayout } from '~layouts';
 				<div class="o-grid-item" style="display:flex;flex-direction: column;">
 					<h2 style="max-width: 12ch;">What happens after I apply?</h2>
 					<img
-						src="/img/participate-apply.svg"
 						alt=""
 						class="u-desktop-only"
+						loading="lazy"
+						src="/img/participate-apply.svg"
 						style="margin-top:3em;max-width:65%;"
 					/>
 				</div>
@@ -164,5 +170,9 @@ import { BaseLayout } from '~layouts';
 
 	.c-visit-cta a {
 		color: var(--color-yellow-mid);
+	}
+
+	.l-grid {
+		gap: 0;
 	}
 </style>

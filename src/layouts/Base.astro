@@ -65,12 +65,12 @@ const jsonLDSchema = JSON.stringify(
 		</main>
 		<footer>
 			<section>
-				<div class="l-grid">
+				<div class="l-grid u-gap-0">
 					<div
 						class="o-grid-item"
 						style="background-color:var(--color-black-light)"
 					>
-						<div class="l-container">
+						<div class="l-container u-hug-right">
 							<h2 id="support">Support Collab Lab!</h2>
 							<p>
 								The Collab Lab is
@@ -120,7 +120,7 @@ const jsonLDSchema = JSON.stringify(
 						class="o-grid-item"
 						style="background-color: var(--color-yellow-mid)"
 					>
-						<div class="l-container">
+						<div class="l-container u-hug-left">
 							<GetInTouch />
 							<div class="copyright">
 								<p>
@@ -202,7 +202,7 @@ const jsonLDSchema = JSON.stringify(
 				--font-size-h4: 1.6rem;
 			}
 
-			@media screen and (min-width: 768px) {
+			@media screen and (min-width: 820px) {
 				:root {
 					--font-size-base: 1.6rem;
 					--font-size-h1: 4.8rem;
@@ -326,7 +326,7 @@ const jsonLDSchema = JSON.stringify(
 			}
 
 			.l-grid {
-				--grid-col-min-width: 32rem;
+				--grid-col-min-width: 39 rem;
 
 				display: grid;
 				grid-gap: 2rem;
@@ -336,14 +336,19 @@ const jsonLDSchema = JSON.stringify(
 				);
 			}
 
+			.l-grid > p,
+			.l-grid h2,
+			.l-grid h3 {
+				max-width: 53ch;
+			}
+
 			footer .l-grid {
 				align-items: stretch;
 				gap: 0;
 			}
 
-			footer p {
-				margin-left: initial;
-				margin-right: initial;
+			footer .l-container {
+				max-width: min(95%, 57ch);
 			}
 
 			.c-donation-button {
@@ -361,6 +366,10 @@ const jsonLDSchema = JSON.stringify(
 
 			.u-center-text {
 				text-align: center;
+			}
+
+			.u-gap-0 {
+				gap: 0;
 			}
 
 			.u-text-bold {
@@ -384,9 +393,17 @@ const jsonLDSchema = JSON.stringify(
 				color: var(--color-text);
 			}
 
-			@media screen and (min-width: 768px) {
+			@media screen and (min-width: 820px) {
 				.u-desktop-only {
 					display: initial;
+				}
+
+				.u-hug-right {
+					margin-right: 2.5em;
+				}
+
+				.u-hug-left {
+					margin-left: 2.5em;
 				}
 			}
 		</style>
