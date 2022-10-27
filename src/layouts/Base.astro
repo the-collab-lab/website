@@ -64,69 +64,81 @@ const jsonLDSchema = JSON.stringify(
 			<slot />
 		</main>
 		<footer>
-			<section class="l-container">
+			<section>
 				<div class="l-grid">
-					<div class="o-grid-item">
-						<h2 id="support">Support Collab Lab!</h2>
-						<p>
-							The Collab Lab is
-							<strong>volunteer-driven and free for developers.</strong>
-							We intentionally and actively work to overcome barriers to opportunities
-							for women and under-represented minorities in tech.
-						</p>
-						<p>
-							We make use of free/
-							<a href="https://www.dictionary.com/browse/freemium">freemium</a>
-							tools (i.e. Airtable, Firebase, GitHub, Google Docs, Netlify, Slack,
-							Notion, and Zoom) as much as possible. We would love to have the ability
-							to use upgraded versions of some of these tools to provide a better
-							experience for our volunteers and developers. To this end, we accept
-							<a href="https://github.com/sponsors/the-collab-lab">
-								sponsorships through GitHub
-							</a>. ❤️
-						</p>
-						<a
-							href="https://github.com/sponsors/the-collab-lab"
-							class="c-donation-button"
-						>
-							Sponsor on GitHub
-						</a>
-						{
-							donationOptions.length > 0 && (
-								<Fragment>
-									<p>
-										We also accdept direct donations. Please consider supporting
-										The Collab Lab with a one-time donation.
-									</p>
-									<div class="donation-options">
-										{donationOptions.map((option) => (
-											<a href={option.url} class="c-donation-button">
-												{option.name}
-											</a>
-										))}
-									</div>
-								</Fragment>
-							)
-						}
+					<div
+						class="o-grid-item"
+						style="background-color:var(--color-black-light)"
+					>
+						<div class="l-container">
+							<h2 id="support">Support Collab Lab!</h2>
+							<p>
+								The Collab Lab is
+								<strong>volunteer-driven and free for developers.</strong>
+								We intentionally and actively work to overcome barriers to opportunities
+								for women and under-represented minorities in tech.
+							</p>
+							<p>
+								We make use of free/
+								<a href="https://www.dictionary.com/browse/freemium">freemium</a
+								>
+								tools (i.e. Airtable, Firebase, GitHub, Google Docs, Netlify, Slack,
+								Notion, and Zoom) as much as possible. We would love to have the
+								ability to use upgraded versions of some of these tools to provide
+								a better experience for our volunteers and developers. To this end,
+								we accept
+								<a href="https://github.com/sponsors/the-collab-lab">
+									sponsorships through GitHub
+								</a>. ❤️
+							</p>
+							<a
+								href="https://github.com/sponsors/the-collab-lab"
+								class="c-donation-button"
+							>
+								Sponsor on GitHub
+							</a>
+							{
+								donationOptions.length > 0 && (
+									<Fragment>
+										<p>
+											We also accdept direct donations. Please consider
+											supporting The Collab Lab with a one-time donation.
+										</p>
+										<div class="donation-options">
+											{donationOptions.map((option) => (
+												<a href={option.url} class="c-donation-button">
+													{option.name}
+												</a>
+											))}
+										</div>
+									</Fragment>
+								)
+							}
+						</div>
 					</div>
-					<div class="o-grid-item">
-						<GetInTouch />
-						<div class="copyright">
-							<p>
-								Made with
-								<a href="https://astro.build/">Astro</a> and
-								<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
-									href="https://www.netlify.com/">Netlify</a
-								>.
-							</p>
-							<p>
-								Copyright &copy; 2019 – {new Date().getFullYear()} The Collab Lab.
-								All rights reserved.
-							</p>
-							<p>
-								All participants agree to adhere to our
-								<a href="/code-of-conduct/">Code of Conduct</a>.
-							</p>
+					<div
+						class="o-grid-item"
+						style="background-color: var(--color-yellow-mid)"
+					>
+						<div class="l-container">
+							<GetInTouch />
+							<div class="copyright">
+								<p>
+									Made with
+									<a href="https://astro.build/">Astro</a> and
+									<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
+										href="https://www.netlify.com/">Netlify</a
+									>.
+								</p>
+								<p>
+									Copyright &copy; 2019 – {new Date().getFullYear()} The Collab Lab.
+									All rights reserved.
+								</p>
+								<p>
+									All participants agree to adhere to our
+									<a href="/code-of-conduct/">Code of Conduct</a>.
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -177,7 +189,7 @@ const jsonLDSchema = JSON.stringify(
 				--color-green-mid: hsla(145, 63%, 42%, 1);
 				--color-green-light: hsla(137, 100%, 90%, 1);
 
-				--color-white: var(--color-black-light);
+				--color-white: #fff;
 
 				--color-text: var(--color-black-dark);
 				--color-bg: var(--color-white);
@@ -220,6 +232,7 @@ const jsonLDSchema = JSON.stringify(
 
 			body {
 				font-size: var(--font-size-base);
+				line-height: 1.445;
 				margin: 0;
 			}
 
@@ -286,7 +299,6 @@ const jsonLDSchema = JSON.stringify(
 			}
 
 			p {
-				line-height: 1.2;
 				margin-left: auto;
 				margin-right: auto;
 			}
@@ -325,7 +337,13 @@ const jsonLDSchema = JSON.stringify(
 			}
 
 			footer .l-grid {
-				align-items: start;
+				align-items: stretch;
+				gap: 0;
+			}
+
+			footer p {
+				margin-left: initial;
+				margin-right: initial;
 			}
 
 			.c-donation-button {
