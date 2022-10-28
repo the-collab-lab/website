@@ -6,7 +6,7 @@ import { Navigation } from '~components';
 	<div class="l-cluster" style="flex-wrap: nowrap; align-items: center;">
 		<a href="/" class="c-brand-link"
 			><picture>
-				<source srcset="/img/logo.svg" media="(min-width: 768px)" />
+				<source srcset="/img/logo.svg" media="(min-width: 570px)" />
 				<source srcset="/img/logo-stacked.svg" />
 				<img
 					src="/img/logo-stacked.svg"
@@ -37,6 +37,12 @@ import { Navigation } from '~components';
 		margin-right: auto;
 		max-width: 275px;
 		text-decoration: none;
+	}
+
+	@media (min-width: 570px) {
+		.c-brand-link {
+			flex: 1 0 143px;
+		}
 	}
 
 	.c-brand-logo {
