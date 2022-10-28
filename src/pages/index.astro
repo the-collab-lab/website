@@ -4,7 +4,7 @@ import { BaseLayout } from '~layouts';
 
 <BaseLayout title="The Collab Lab">
 	<section>
-		<div class="c-jumbo-heading">
+		<div class="c-jumbo-heading u-border-left pink">
 			<div class="l-center--wide">
 				<h1>
 					Gain <strong>practical experience</strong> by working remotely on<strong
@@ -55,7 +55,9 @@ import { BaseLayout } from '~layouts';
 			<h2>So you want to…</h2>
 			<ul class="l-grid">
 				<li>
-					<h3>Learn how software teams collaborate?</h3>
+					<h3 class="u-border-left pink">
+						Learn how software teams collaborate?
+					</h3>
 					<p>
 						There’s no better way to gain real-world experience in a supportive,
 						inclusive environment than being a developer on a Collab Lab
@@ -69,7 +71,7 @@ import { BaseLayout } from '~layouts';
 					</p>
 				</li>
 				<li>
-					<h3>Help fix tech?</h3>
+					<h3 class="u-border-left yellow">Help fix tech?</h3>
 					<p>
 						The Collab Lab is on a mission to fix tech, an industry rife with
 						gatekeeping and inequity. Our developers reflect the diversity we
@@ -85,7 +87,7 @@ import { BaseLayout } from '~layouts';
 					</p>
 				</li>
 				<li>
-					<h3>Hire amazing early-career devs?</h3>
+					<h3 class="u-border-left green">Hire amazing early-career devs?</h3>
 					<p>
 						Collab Lab developers are more ready than the average bootcamp grad
 						to step in and start contributing to your company’s success. Our
@@ -105,9 +107,17 @@ import { BaseLayout } from '~layouts';
 </BaseLayout>
 
 <style>
+	:root {
+		--border-width: 4px;
+	}
+
 	section {
 		padding-block-end: 4.5rem;
 		padding-block-start: 4.5rem;
+	}
+
+	.c-jumbo-heading {
+		--border-width: calc(0.8em + 0.2vw);
 	}
 	.c-jumbo-heading h1 {
 		font-size: clamp(2.2em, calc(2.6vw + 2rem), 5.3rem);
@@ -116,10 +126,6 @@ import { BaseLayout } from '~layouts';
 		line-height: 1.1;
 		max-inline-size: 32ch;
 		text-align: left;
-	}
-	.c-jumbo-heading {
-		--border-width: calc(0.8em + 0.2vw);
-		border-left: var(--border-width) solid var(--color-pink-mid);
 	}
 
 	.c-hero {
@@ -135,5 +141,21 @@ import { BaseLayout } from '~layouts';
 		border: 24px solid var(--color-blue-mid);
 		padding-block: 2rem;
 		padding-inline: 2rem;
+	}
+
+	.u-border-left {
+		border-left: var(--border-width) solid transparent;
+		padding-inline-start: 0.5em;
+	}
+
+	.u-border-left.green {
+		border-left-color: var(--color-green-mid);
+	}
+	.u-border-left.pink {
+		border-left-color: var(--color-pink-mid);
+	}
+
+	.u-border-left.yellow {
+		border-left-color: var(--color-yellow-mid);
 	}
 </style>
