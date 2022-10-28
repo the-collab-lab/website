@@ -35,9 +35,9 @@ import { BaseLayout } from '~layouts';
 	</section>
 	<section class="u-bg-black">
 		<div class="l-center">
-			<div class="l-grid">
-				<h3>The Collab Lab is…</h3>
-				<ul>
+			<div class="l-cluster">
+				<h3 class="h2">The Collab Lab is</h3>
+				<ul class="c-tcl-trait-list">
 					<li><strong>Collaborative</strong> group project practice</li>
 					<li>
 						A place to work alongside your <strong>peers</strong> in a fully remote
@@ -116,6 +116,45 @@ import { BaseLayout } from '~layouts';
 		padding-block-start: 4.5rem;
 	}
 
+	a {
+		color: var(--color-yellow-mid);
+	}
+
+	p + p {
+		margin-block-start: 2.4em;
+	}
+
+	.c-tcl-trait-list {
+		padding-block-end: 2em;
+		padding-block-start: 2em;
+		padding-inline-start: 3.6em;
+	}
+
+	.c-tcl-trait-list > li {
+		margin-block-end: 1.5em;
+		position: relative;
+		vertical-align: middle;
+	}
+
+	.c-tcl-trait-list > li::before {
+		background-image: url('/img/icon-check.svg');
+		content: '';
+		display: block;
+		position: absolute;
+		height: 36px;
+		width: 36px;
+		top: -51%;
+		left: -4em;
+		vertical-align: middle;
+	}
+
+	.h2 {
+		align-self: flex-start;
+		max-inline-size: 5ch;
+		margin-block-end: 0;
+		margin-block-start: 0;
+	}
+
 	.c-jumbo-heading {
 		--border-width: calc(0.8em + 0.2vw);
 	}
@@ -124,6 +163,7 @@ import { BaseLayout } from '~layouts';
 		font-weight: 300;
 		letter-spacing: 0.05em;
 		line-height: 1.1;
+		margin-block-end: 2em;
 		max-inline-size: 32ch;
 		text-align: left;
 	}
@@ -146,6 +186,7 @@ import { BaseLayout } from '~layouts';
 	.u-border-left {
 		border-left: var(--border-width) solid transparent;
 		padding-inline-start: 0.5em;
+		min-height: 5rem;
 	}
 
 	.u-border-left.green {
