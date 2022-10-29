@@ -154,8 +154,9 @@ import { donationOptions } from '~data';
 
 				// calculate the height as a percentage of the footer height
 				// with the gap subtracted
-				const _height = (section as HTMLElement).offsetHeight;
-				const height = Math.round(_height / footerHeight) * 100 - gap;
+				const height =
+					(((section as HTMLElement).offsetHeight + gap / 2) * 100) /
+					(footerHeight - gap * 2);
 
 				footerSectionHeights[idx] = height - gap;
 			});
