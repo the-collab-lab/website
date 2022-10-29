@@ -166,6 +166,11 @@ const jsonLDSchema = JSON.stringify(
 				margin: 0;
 			}
 
+			main section {
+				padding-block-end: 4.5rem;
+				padding-block-start: 4.5rem;
+			}
+
 			h1,
 			h2,
 			h3,
@@ -234,9 +239,7 @@ const jsonLDSchema = JSON.stringify(
 			.l-center--wide {
 				box-sizing: content-box;
 				margin-inline: auto;
-				max-inline-size: 102rem;
-				padding-inline-start: 1rem;
-				padding-inline-end: 1rem;
+				max-inline-size: min(95vw, 102rem);
 			}
 			.l-stack {
 				display: flex;

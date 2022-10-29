@@ -4,7 +4,7 @@ import { BaseLayout } from '~layouts';
 
 <BaseLayout title="Participate">
 	<section>
-		<div class="l-container">
+		<div class="l-center--wide">
 			<div class="l-switcher">
 				<div class="o-grid-item">
 					<h2>About The Collab Lab Program</h2>
@@ -52,10 +52,10 @@ import { BaseLayout } from '~layouts';
 			</div>
 		</div>
 	</section>
-	<section class="u-bg-black">
-		<div class="l-switcher u-gap-0">
-			<div class="o-grid-item c-image-placeholder u-desktop-only"></div>
-			<div class="o-grid-item c-visit-cta">
+	<section class="u-bg-black" style="padding-block: 0;">
+		<div class="l-switcher">
+			<div class="c-image-placeholder u-desktop-only"></div>
+			<div class="l-center c-visit-cta">
 				<p class="h2">
 					Visit our <a href="/developers">developers page</a> to learn more about
 					each of the early career engineers who have contributed to The Collab Lab!
@@ -66,7 +66,7 @@ import { BaseLayout } from '~layouts';
 	<section
 		style="background-color: var(--color-blue-mid); color: var(--color-white);"
 	>
-		<div class="l-container u-center-text">
+		<div class="l-center--wide u-center-text">
 			<h2 id="how-to-apply">How to apply</h2>
 			<p class="u-text-large">
 				Our next cohort will kick off on January 8, 2023 We will run teams this
@@ -87,7 +87,7 @@ import { BaseLayout } from '~layouts';
 		</div>
 	</section>
 	<section class="u-bg-black">
-		<div class="l-container">
+		<div class="l-center--wide">
 			<div class="l-switcher">
 				<div class="o-grid-item" style="display:flex;flex-direction: column;">
 					<h2 style="max-width: 12ch;">What happens after I apply?</h2>
@@ -151,9 +151,6 @@ import { BaseLayout } from '~layouts';
 
 	.c-image-placeholder {
 		background-color: var(--color-blue-light);
-		height: 575px;
-		width: 1728px;
-		max-width: 100%;
 	}
 
 	.c-visit-cta {
