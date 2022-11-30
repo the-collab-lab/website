@@ -78,11 +78,11 @@ import { donationOptions } from '~data';
 	 * off-white, then yellow.
 	 */
 	.u-bg-split {
-		--bg-angle: 0deg;
+		--divider-angle: 180deg;
 		background: linear-gradient(
-			var(--bg-angle),
-			var(--color-yellow-mid) var(--section-1-height),
-			var(--color-black-light) var(--section-2-height)
+			var(--divider-angle),
+			var(--color-black-light) var(--section-1-height),
+			var(--color-yellow-mid) var(--section-2-height)
 		);
 	}
 
@@ -91,13 +91,21 @@ import { donationOptions } from '~data';
 	 */
 	@media (min-width: 990px) {
 		.u-bg-split {
-			--bg-angle: 90deg;
+			--divider-angle: 90deg;
 		}
 	}
 	footer {
 		--section-1-height: 50%;
 		--section-2-height: 50%;
 		background-color: var(--color-black-light);
+	}
+
+	footer section {
+		padding-block-end: var(--s2);
+	}
+
+	footer section:last-of-type {
+		padding-block-end: var(--s4);
 	}
 
 	footer .l-grid {
@@ -137,7 +145,11 @@ import { donationOptions } from '~data';
 		footer.classList.add('u-bg-split');
 
 		function calculateHeights() {
-			if (!mq.matches) return;
+			if (!mq.matches) {
+				footer.style.setProperty('--section-1-height', '50%');
+				footer.style.setProperty('--section-2-height', '50%');
+				return;
+			}
 
 			const footerHeight = footer.offsetHeight;
 
@@ -156,9 +168,9 @@ import { donationOptions } from '~data';
 				// with the gap subtracted
 				const height =
 					(((section as HTMLElement).offsetHeight + gap / 2) * 100) /
-					(footerHeight - gap * 2);
+					footerHeight;
 
-				footerSectionHeights[idx] = height - gap;
+				footerSectionHeights[idx] = height;
 			});
 
 			footer.style.setProperty(
