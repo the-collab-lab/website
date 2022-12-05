@@ -1,0 +1,190 @@
+---
+import { GetInTouch } from '~components';
+import { donationOptions } from '~data';
+---
+
+<footer>
+	<div class="l-center--wide l-grid">
+		<section>
+			<h2 id="support">Support Collab Lab!</h2>
+			<p>
+				The Collab Lab is
+				<strong>volunteer-driven and free for developers.</strong>
+				We intentionally and actively work to overcome barriers to opportunities
+				for women and under-represented minorities in tech.
+			</p>
+			<p>
+				We make use of free and <a
+					href="https://www.dictionary.com/browse/freemium">freemium</a
+				>
+				tools (i.e. Airtable, Firebase, GitHub, Google Docs, Netlify, Slack, Notion,
+				and Zoom) as much as possible. We would love to have the ability to use upgraded
+				versions of some of these tools to provide a better experience for our volunteers
+				and developers. To this end, we accept
+				<a href="https://github.com/sponsors/the-collab-lab">
+					sponsorships through GitHub
+				</a>. ❤️
+			</p>
+			<a
+				href="https://github.com/sponsors/the-collab-lab"
+				class="c-donation-button"
+			>
+				Sponsor on GitHub
+			</a>
+			{
+				donationOptions.length > 0 && (
+					<Fragment>
+						<p>
+							We also accdept direct donations. Please consider supporting The
+							Collab Lab with a one-time donation.
+						</p>
+						<div class="donation-options">
+							{donationOptions.map((option) => (
+								<a href={option.url} class="c-donation-button">
+									{option.name}
+								</a>
+							))}
+						</div>
+					</Fragment>
+				)
+			}
+		</section>
+		<section>
+			<GetInTouch />
+			<div class="l-stack">
+				<p>
+					Made with
+					<a href="https://astro.build/">Astro</a> and
+					<a href="https://hygraph.com/">Hygraph</a>. Deployed on <a
+						href="https://www.netlify.com/">Netlify</a
+					>.
+				</p>
+				<p>
+					Copyright &copy; 2019 &ndash;1 {new Date().getFullYear()} The Collab Lab.
+					All rights reserved.
+				</p>
+				<p>
+					All participants agree to adhere to our
+					<a href="/code-of-conduct/">Code of Conduct</a>.
+				</p>
+			</div>
+		</section>
+	</div>
+</footer>
+<style>
+	:root {
+	}
+	/* Render two colors behind the footer, split horizontally:
+	 * off-white, then yellow.
+	 */
+	.u-bg-split {
+		--divider-angle: 180deg;
+		background: linear-gradient(
+			var(--divider-angle),
+			var(--color-black-light) var(--section-1-height),
+			var(--color-yellow-mid) var(--section-2-height)
+		);
+	}
+
+	/* When the footer converts to two columns,
+	 * split the background vertcally.
+	 */
+	@media (min-width: 990px) {
+		.u-bg-split {
+			--divider-angle: 90deg;
+		}
+	}
+	footer {
+		--section-1-height: 50%;
+		--section-2-height: 50%;
+		background-color: var(--color-black-light);
+	}
+
+	footer section {
+		padding-block-end: var(--s2);
+	}
+
+	footer section:last-of-type {
+		padding-block-end: var(--s4);
+	}
+
+	footer .l-grid {
+		grid-gap: 1.75rem;
+	}
+
+	@supports (width: min(460px, 100%)) {
+		footer .l-grid {
+			grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr));
+		}
+	}
+
+	.c-donation-button {
+		appearance: button;
+		border: 1px solid var(--color-text);
+		border-radius: 4px;
+		color: inherit;
+		padding: 0.5rem 1.6rem;
+		text-decoration: none;
+	}
+
+	.c-donation-button + .c-donation-button {
+		margin-left: 0.4rem;
+	}
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		// create a media query for max-width: 990px;
+		const mq = window.matchMedia('(max-width: 990px)');
+
+		const footer = document.querySelector('footer') as HTMLElement;
+
+		const sections = document.querySelectorAll('footer section');
+		const grid = footer.querySelector('.l-grid') as HTMLElement;
+
+		footer.classList.add('u-bg-split');
+
+		function calculateHeights() {
+			if (!mq.matches) {
+				footer.style.setProperty('--section-1-height', '50%');
+				footer.style.setProperty('--section-2-height', '50%');
+				return;
+			}
+
+			const footerHeight = footer.offsetHeight;
+
+			// Get the computed gap between the sections
+			const gap = parseFloat(
+				window.getComputedStyle(grid).getPropertyValue('gap'),
+			);
+
+			const footerSectionHeights = new Array(2);
+
+			sections.forEach((section, idx) => {
+				// get the height of the section
+				// to the whole pixel
+
+				// calculate the height as a percentage of the footer height
+				// with the gap subtracted
+				const height =
+					(((section as HTMLElement).offsetHeight + gap / 2) * 100) /
+					footerHeight;
+
+				footerSectionHeights[idx] = height;
+			});
+
+			footer.style.setProperty(
+				'--section-1-height',
+				footerSectionHeights[0] + '%',
+			);
+
+			footer.style.setProperty(
+				'--section-2-height',
+				footerSectionHeights[1] + '%',
+			);
+		}
+
+		calculateHeights();
+		mq.addEventListener('change', calculateHeights);
+	});
+</script>
