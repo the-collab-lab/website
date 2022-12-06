@@ -4,31 +4,25 @@ import { techTalks } from '~data';
 ---
 
 <BaseLayout title="Tech talks">
-	<h2>Tech Talks by The Collab Lab</h2>
-	<blockquote>
-		<p>
+	<h2 class="l-center--wide">Tech Talks</h2>
+	<div class="l-center--wide l-grid">
+		<p class="c-box pink">
 			Join us for a new Tech Talk on the 2nd Wednesday of every month.
 			<a href="https://www.meetup.com/tech-talks-by-the-collab-lab"
 				>RSVP on Meetup</a
 			>.
 		</p>
-	</blockquote>
 
-	<blockquote>
-		<p>
+		<p class="c-box yellow">
 			Interested in giving a Tech Talk?
 			<a href="https://airtable.com/shrmy5hJ8tEiQsxI6">Submit your idea here</a
 			>.
 		</p>
-	</blockquote>
-
-	<ul>
+	</div>
+	<ul class="l-center--wide l-grid">
 		{
 			techTalks.map((talk) => (
-				<li>
-					<h3>
-						{talk.title} <em>{talk.formattedDate}</em>
-					</h3>
+				<li class="c-talk">
 					{talk.youTubeEmbedUrl && (
 						<iframe
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -40,15 +34,55 @@ import { techTalks } from '~data';
 							width="560"
 						/>
 					)}
+					<h3 class="c-talk--title">{talk.title}</h3>
+					<div class="c-talk--date">{talk.formattedDate}</div>
 					<Fragment set:html={talk.description.html} />
 				</li>
 			))
 		}
 	</ul>
 
-	<h2>Have a talk idea? Get in touch!</h2>
-	<p>
-		Interested in speaking at our Meetup?
-		<a href="https://airtable.com/shrmy5hJ8tEiQsxI6">Submit your idea here</a>.
-	</p>
+	<div class="l-center--wide">
+		<h2>Have a talk idea? Get in touch!</h2>
+		<p>
+			Interested in speaking at our Meetup?
+			<a href="https://airtable.com/shrmy5hJ8tEiQsxI6">Submit your idea here</a
+			>.
+		</p>
+	</div>
 </BaseLayout>
+<style>
+	iframe {
+		max-width: 100%;
+	}
+
+	.c-box {
+		font-size: 1.35em;
+		padding: 1em;
+	}
+
+	.c-box.pink {
+		background-color: var(--color-pink-mid);
+	}
+
+	.c-box.yellow {
+		background-color: var(--color-yellow-mid);
+	}
+	.c-talk {
+		font-size: 0.8em;
+		line-height: 1.4;
+	}
+
+	.c-talk > * + * {
+		margin-block-start: 1em;
+	}
+
+	.c-talk--title {
+		font-size: 1.25em;
+	}
+
+	.c-talk--date {
+		font-style: italic;
+		margin-block-end: 1em;
+	}
+</style>

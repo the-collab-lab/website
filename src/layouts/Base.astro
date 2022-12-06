@@ -124,6 +124,9 @@ const jsonLDSchema = JSON.stringify(
 				--font-size-h4: 1.6rem;
 
 				font-size: calc(0.111vw + 0.625em);
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				text-rendering: optimizeLegibility;
 			}
 
 			*,
@@ -244,7 +247,7 @@ const jsonLDSchema = JSON.stringify(
 			.l-center--wide {
 				box-sizing: content-box;
 				margin-inline: auto;
-				max-inline-size: min(95vw, 102rem);
+				max-inline-size: min(95vw, 104rem);
 			}
 			.l-stack {
 				display: flex;
@@ -278,7 +281,7 @@ const jsonLDSchema = JSON.stringify(
 
 			.l-grid {
 				display: grid;
-				grid-gap: 2.4rem;
+				gap: 4rem;
 			}
 
 			@supports (width: min(320px, 100%)) {
