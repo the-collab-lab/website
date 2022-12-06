@@ -170,11 +170,8 @@ const jsonLDSchema = JSON.stringify(
 				margin: 0;
 			}
 
-			main {
-				padding-block-end: 4rem;
-			}
-
-			main section {
+			main > *,
+			footer > * {
 				padding-block-end: 4.5rem;
 				padding-block-start: 4.5rem;
 			}
@@ -194,7 +191,6 @@ const jsonLDSchema = JSON.stringify(
 				font-family: var(--font-stack);
 				font-weight: 700;
 				line-height: 1.25;
-				margin-block-start: 1em;
 			}
 
 			h1,
