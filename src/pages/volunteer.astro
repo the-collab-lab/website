@@ -100,7 +100,7 @@ import { BaseLayout } from '~layouts';
 		<div class="l-center--wide">
 			<h2 id="volunteers" style="text-align: center;">Our volunteers</h2>
 
-			<div class="l-grid">
+			<div class="l-grid c-volunteers-grid">
 				{volunteers.map((volunteer) => <Volunteer volunteer={volunteer} />)}
 			</div>
 		</div>
@@ -138,7 +138,7 @@ import { BaseLayout } from '~layouts';
 		margin-inline-start: 0.5em;
 	}
 
-	.l-grid {
+	.l-grid.c-volunteers-grid {
 		column-gap: 7.7rem;
 	}
 
