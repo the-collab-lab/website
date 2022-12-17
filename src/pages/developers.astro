@@ -7,7 +7,10 @@ const mentorsCount = volunteers.filter((volunteer) =>
 	volunteer.roles.includes('Mentor'),
 ).length;
 
-const developersCount = teams.length * 4;
+// we've done 3 "advanced" project composed of returning collabies
+// if/when we do more in the future this magic `3` will need to be
+// updated
+const developersCount = (teams.length - 3) * 4;
 ---
 
 <BaseLayout title="Developers">
