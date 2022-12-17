@@ -5,6 +5,8 @@ import {
 	fixAssetPath,
 } from '~utils';
 
+const englishCollator = new Intl.Collator('en', { sensitivity: 'base' });
+
 export interface VolunteerProps {
 	volunteer: Collabie;
 }
@@ -13,18 +15,26 @@ export function Volunteer({ volunteer }: VolunteerProps) {
 	const { fullName, pathToPhoto, roles } = volunteer;
 	return (
 		<div className="volunteer__grid-item">
-			<figure className="volunteer">
+			<figure
+				className="volunteer"
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+				}}
+			>
 				<img
 					alt=""
 					className="volunteer__photo"
 					loading="lazy"
 					height="300"
 					src={fixAssetPath(pathToPhoto) || AVATAR_PLACEHOLDER_PATH}
-					width="300"
 				/>
-				<figcaption>
-					<b>{fullName}</b>
+				<figcaption className="l-stack" style={{ marginBlock: '1.6em' }}>
+					<span style={{ fontSize: '1.6em', fontWeight: '600' }}>
+						{fullName}
+					</span>
 					{renderRolesList(roles)}
+					<hr style={{ width: '100%' }} />
 					{renderSocialsList(volunteer)}
 				</figcaption>
 			</figure>
@@ -34,12 +44,64 @@ export function Volunteer({ volunteer }: VolunteerProps) {
 
 function renderRolesList(roles: CollabieRoles[]) {
 	return (
-		<ul className="volunteer__roles">
-			{roles.map((role) => (
-				<li className="volunteer__roles-item">{role}</li>
+		<ul
+			className="volunteer__roles"
+			style={{
+				alignItems: 'flex-start',
+				display: 'flex',
+				flexWrap: 'wrap',
+				gap: '20px',
+			}}
+		>
+			{roles.sort(englishCollator.compare).map((role) => (
+				<li
+					className="volunteer__roles-item"
+					style={{
+						padding: '0.4em',
+						whiteSpace: 'nowrap',
+						...getBadgeColors(role),
+					}}
+				>
+					{role}
+				</li>
 			))}
 		</ul>
 	);
+}
+
+function getBadgeColors(role: CollabieRoles) {
+	switch (role) {
+		case 'Advisor':
+			return {
+				backgroundColor: '#563d7c',
+				color: '#fff',
+			};
+		case 'Automation Hero':
+			return {
+				backgroundColor: '#f1e05a',
+				color: '#000',
+			};
+		case 'Board Member':
+			return {
+				backgroundColor: '#0e8a16',
+				color: '#fff',
+			};
+		case 'Code of Conduct Responder':
+			return {
+				backgroundColor: '#0e8a16',
+				color: '#fff',
+			};
+		case 'Mentor':
+			return {
+				backgroundColor: '#fbca04',
+				color: '#000',
+			};
+		case 'Volunteer':
+			return {
+				backgroundColor: '#e34c26',
+				color: '#fff',
+			};
+	}
 }
 
 function renderSocialsList(volunteer: Collabie) {
@@ -51,10 +113,19 @@ function renderSocialsList(volunteer: Collabie) {
 		return (
 			<li className="volunteer__social-item">
 				<a href={siteUrl}>
-					Connect with {volunteer.firstName} on {formattedSiteName}!
+					<img
+						src={`/img/icons/${site.toLowerCase()}.svg`}
+						alt={`${volunteer.firstName}'s ${formattedSiteName}`}
+						height="24"
+						width="24"
+					/>
 				</a>
 			</li>
 		);
 	});
-	return <ul className="volunteer__socials">{socialItems}</ul>;
+	return (
+		<ul className="volunteer__socials" style={{ display: 'flex', gap: '10px' }}>
+			{socialItems}
+		</ul>
+	);
 }

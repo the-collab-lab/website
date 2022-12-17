@@ -1,5 +1,10 @@
 export type CollabieRoles =
+	| 'Advisor'
 	| 'Automation Hero'
+	| 'Board Member'
+	| 'Career Coach'
+	| 'Code of Conduct Responder'
+	| 'Community Manager'
 	| 'Founder'
 	| 'Volunteer'
 	| 'Mentor';
