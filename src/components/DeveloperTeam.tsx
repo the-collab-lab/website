@@ -5,52 +5,76 @@ import {
 	SOCIAL_SITE_NAMES,
 } from '~utils';
 
-function renderSocials(developer: DeveloperTeamT['developers'][0]) {
-	return SOCIAL_SITE_NAMES.map((site) => {
-		const siteUrl = developer[`${site}Url` as const];
+function renderSocialsList(volunteer: DeveloperTeamT['developers'][number]) {
+	const socialItems = SOCIAL_SITE_NAMES.map((site) => {
+		const siteUrl = volunteer[`${site}Url` as const];
 
-		if (!siteUrl) return null;
-
+		if (!siteUrl || siteUrl.length === 0) return null;
+		const formattedSiteName = site.charAt(0).toUpperCase() + site.slice(1);
 		return (
-			<a href={siteUrl} className="social-media-logo">
-				<img
-					alt={site}
-					height="20"
-					loading="lazy"
-					src={`/img/icons/${site.toLowerCase()}.png`}
-					width="20"
-				/>
-			</a>
+			<li className="volunteer__social-item">
+				<a href={siteUrl}>
+					<img
+						src={`/img/icons/${site.toLowerCase()}.svg`}
+						alt={`${volunteer.firstName}'s ${formattedSiteName}`}
+						height="24"
+						width="24"
+					/>
+				</a>
+			</li>
 		);
 	});
+
+	return (
+		<ul className="volunteer__socials" style={{ display: 'flex', gap: '10px' }}>
+			{socialItems}
+		</ul>
+	);
 }
 
 export function DeveloperTeam({ team }: { team: DeveloperTeamT }) {
 	return (
-		<>
+		<div
+			class="c-developer-team"
+			style={{
+				color: 'var(--color-black-light)',
+				display: 'flex',
+				flexDirection: 'column',
+			}}
+		>
 			<h3 id={team.anchor}>
 				{team.displayName} | {team.calculatedDate}
 			</h3>
-			<ul class="member-gallery">
+			<ul
+				class="member-gallery"
+				style={{
+					display: 'grid',
+					gap: '1em',
+					gridTemplateColumns: `repeat(
+						auto-fit,
+						minmax(min(200px, 100%), 1fr)
+					)`,
+				}}
+			>
 				{team.developers.map((developer) => (
 					<li class="member-container">
 						<img
 							alt={developer.fullName}
 							className="team-member-photo"
 							loading="lazy"
-							height="200"
+							height="240"
 							src={
 								fixAssetPath(developer.pathToPhoto) || AVATAR_PLACEHOLDER_PATH
 							}
-							width="200"
+							width="240"
 						/>
 						<div class="member-caption">
 							<p>{developer.firstName}</p>
-							{renderSocials(developer)}
+							{renderSocialsList(developer)}
 						</div>
 					</li>
 				))}
 			</ul>
-		</>
+		</div>
 	);
 }

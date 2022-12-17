@@ -1,12 +1,19 @@
 ---
 import { BaseLayout } from '~layouts';
-import { teams } from '~data';
+import { teams, volunteers } from '~data';
 import { DeveloperTeam } from '~components';
+
+const mentorsCount = volunteers.filter((volunteer) =>
+	volunteer.roles.includes('Mentor'),
+).length;
+
+const developersCount = teams.length * 4;
 ---
 
 <BaseLayout title="Developers">
-	<h2>Collab Lab Developers are...</h2>
-	<div>
+	<div class="l-center--wide">
+		<h2>Collab Lab developers</h2>
+		<!-- <div>
 		<figure>
 			<img src="/img/stats/Women.svg" alt="Women 78%" />
 			<figcaption>
@@ -49,14 +56,6 @@ import { DeveloperTeam } from '~components';
 			</figcaption>
 		</figure>
 	</div>
-
-	<p class="stats-p">
-		Nearly all of the developers in The Collab Lab come from
-		<strong>underrepresented groups</strong> in tech. Start here to
-		<strong>diversify your pipeline!</strong>The Collab Lab is a community of
-		<strong>164 developers</strong> and <strong>over 40 mentors</strong> from
-		<strong>18 countries</strong> on <strong>4 continents.</strong>
-	</p>
 
 	<div class="display-stats">
 		<div class="stats-list">
@@ -104,33 +103,66 @@ import { DeveloperTeam } from '~components';
 				</li>
 			</ul>
 		</div>
-	</div>
+	</div> -->
 
-	<h2 id="developers">Developers</h2>
-	<p>
-		Our developers enter The Collab Lab with a strong baseline of coding skills
-		including HTML, CSS, JavaScript, and React. They leave with experience in
-		how software teams work.
-	</p>
-	<p>
-		To participate in a Collab Lab cohort means buying into a
-		<a
-			href="https://hbr.org/2016/01/what-having-a-growth-mindset-actually-means"
-			>growth mindset</a
-		>, opening yourself to learning, and taking risks in a relatively low-stakes
-		setting. Seasoned technologists guide these early-career developers as they
-		pair program, review each others’ code, and submit & merge pull requests.
-		They are also coached on how to be effective on a fully-distributed (i.e.
-		remote) team by
-		<a href="https://zapier.com/learn/remote-work/">
-			people who do it every day for a living
-		</a>.
-	</p>
-	<p>
-		Alums of The Collab Lab report being better equipped to talk about how they
-		work on a team as well as the thought processes behind their work, helping
-		them perform better in job interviews for technical roles.
-		<strong>Hire them!</strong>
-	</p>
-	{teams.map((team) => <DeveloperTeam team={team} />)}
+		<p>
+			Nearly all of the developers in The Collab Lab come from
+			<strong>underrepresented groups</strong> in tech. Start here to
+			<strong>diversify your pipeline!</strong> The Collab Lab is a community of
+			<strong>{developersCount} developers</strong> and <strong
+				>{mentorsCount} mentors</strong
+			> from
+			<strong>18 countries</strong> on <strong>4 continents.</strong>
+		</p>
+		<p>
+			Our developers enter The Collab Lab with a strong baseline of coding
+			skills including HTML, CSS, JavaScript, and React. They leave with
+			experience in how software teams work.
+		</p>
+		<p>
+			To participate in a Collab Lab cohort means buying into a
+			<a
+				href="https://hbr.org/2016/01/what-having-a-growth-mindset-actually-means"
+				>growth mindset</a
+			>, opening yourself to learning, and taking risks in a relatively
+			low-stakes setting. Seasoned technologists guide these early-career
+			developers as they pair program, review each others’ code, and submit &
+			merge pull requests. They are also coached on how to be effective on a
+			fully-distributed (i.e. remote) team by
+			<a href="https://zapier.com/learn/remote-work/">
+				people who do it every day for a living
+			</a>.
+		</p>
+		<p>
+			Alums of The Collab Lab report being better equipped to talk about how
+			they work on a team as well as the thought processes behind their work,
+			helping them perform better in job interviews for technical roles.
+			<strong>Hire them!</strong>
+		</p>
+	</div>
+	<div class="c-developers-container">
+		<div class="l-center--wide c-developers">
+			<h2>Meet our developers</h2>
+			{teams.map((team) => <DeveloperTeam team={team} />)}
+		</div>
+	</div>
 </BaseLayout>
+
+<style>
+	.c-developers-container {
+		background-color: var(--color-black-dark);
+	}
+
+	.c-developers {
+		color: var(--color-black-light);
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 3em;
+	}
+
+	.c-developers > h2 {
+		text-align: center;
+		margin-block-end: 0;
+	}
+</style>
