@@ -23,10 +23,10 @@ const calculatedDate = ({ startDate, endDate }: Record<string, string>) => {
 	const formattedStartDate = monthAndYearFormat.format(new Date(startDate));
 	const formattedEndDate = monthAndYearFormat.format(new Date(endDate));
 
-	// if the months are the same, don’t show the month twice
+	// if the years are the same, don’t show the year twice
 	// e.g. "October 2020 – November 2020" -> "October – November 2020"
 	if (formattedStartDate.slice(-4) === formattedEndDate.slice(-4)) {
-		return `${formattedStartDate.slice(-4)} – ${formattedEndDate}`;
+		return `${formattedStartDate.split(' ').shift()} – ${formattedEndDate}`;
 	}
 
 	return `${formattedStartDate} – ${formattedEndDate}`;
