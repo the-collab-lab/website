@@ -98,7 +98,7 @@ import { donationOptions } from '~data';
 	footer {
 		--section-1-height: 50%;
 		--section-2-height: 50%;
-		background-color: var(--color-black-light);
+		background-color: var(--color-yellow-mid);
 	}
 
 	footer section {
@@ -107,6 +107,10 @@ import { donationOptions } from '~data';
 
 	footer section:last-of-type {
 		padding-block-end: var(--s4);
+	}
+
+	footer a {
+		color: var(--color-black-dark);
 	}
 
 	@supports (width: min(460px, 100%)) {
@@ -128,8 +132,9 @@ import { donationOptions } from '~data';
 		margin-left: 0.4rem;
 	}
 </style>
-
-<script>
+<!-- TODO: Split-color background relies on some JavaScript math.
+EJ to fix. -->
+<!-- <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		// create a media query for max-width: 990px;
 		const mq = window.matchMedia('(max-width: 990px)');
@@ -181,7 +186,8 @@ import { donationOptions } from '~data';
 			);
 		}
 
-		calculateHeights();
-		mq.addEventListener('change', calculateHeights);
+
+		// calculateHeights();
+		// mq.addEventListener('change', calculateHeights);
 	});
-</script>
+</script> -->
