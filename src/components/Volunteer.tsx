@@ -1,7 +1,7 @@
 import type { Collabie, CollabieRoles } from '~data';
 import {
-	AVATAR_PLACEHOLDER_PATH,
 	SOCIAL_SITE_NAMES,
+	getRandomGenericAvatarPath,
 	fixAssetPath,
 } from '~utils';
 
@@ -27,7 +27,7 @@ export function Volunteer({ volunteer }: VolunteerProps) {
 					className="volunteer__photo"
 					loading="lazy"
 					height="300"
-					src={fixAssetPath(pathToPhoto) || AVATAR_PLACEHOLDER_PATH}
+					src={fixAssetPath(pathToPhoto) || getRandomGenericAvatarPath()}
 				/>
 				<figcaption className="l-stack" style={{ marginBlock: '1.6em' }}>
 					<span style={{ fontSize: '1.6em', fontWeight: '600' }}>

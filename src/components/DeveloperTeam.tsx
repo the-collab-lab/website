@@ -1,8 +1,8 @@
 import type { DeveloperTeam as DeveloperTeamT } from '~data';
 import {
-	fixAssetPath,
-	AVATAR_PLACEHOLDER_PATH,
 	SOCIAL_SITE_NAMES,
+	fixAssetPath,
+	getRandomGenericAvatarPath,
 } from '~utils';
 
 function renderSocialsList(volunteer: DeveloperTeamT['developers'][number]) {
@@ -64,7 +64,8 @@ export function DeveloperTeam({ team }: { team: DeveloperTeamT }) {
 							loading="lazy"
 							height="240"
 							src={
-								fixAssetPath(developer.pathToPhoto) || AVATAR_PLACEHOLDER_PATH
+								fixAssetPath(developer.pathToPhoto) ||
+								getRandomGenericAvatarPath()
 							}
 							width="240"
 						/>
