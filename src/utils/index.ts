@@ -1,7 +1,7 @@
 export const SOCIAL_SITE_NAMES = ['gitHub', 'linkedIn', 'twitter'] as const;
 
 export const DateFormatters = {
-	formatdayMonth: new Intl.DateTimeFormat('en-US', {
+	dayMonth: new Intl.DateTimeFormat('en-US', {
 		day: 'numeric',
 		month: 'long',
 		timeZone: 'UTC',
