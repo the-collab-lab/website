@@ -1,12 +1,14 @@
 ---
 import { BaseLayout } from '~layouts';
+
+const firstHeadingId = 'gain-practical-experience';
 ---
 
-<BaseLayout title="The Collab Lab">
+<BaseLayout title="The Collab Lab" skipTargetId={firstHeadingId}>
 	<section>
 		<div class="c-jumbo-heading u-border-left pink">
 			<div class="l-center--wide">
-				<h1>
+				<h1 id={firstHeadingId}>
 					Gain <strong>practical experience</strong> by working remotely on<strong
 					>
 						real world projects</strong
