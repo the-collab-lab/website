@@ -1,8 +1,10 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b103b214-f2fe-4adc-845d-f22f68d65397/deploy-status)](https://app.netlify.com/sites/tcl-site-next/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d419806f-0315-41c6-917a-52167ab9902c/deploy-status)](https://app.netlify.com/sites/the-collab-lab/deploys)
 
 # 🖥 The Collab Lab Website
 
 The source repository for [The Collab Lab website](https://the-collab-lab.codes/).
+
+Want to contribute? Check [the issues tab](https://github.com/the-collab-lab/website/issues) for what needs to be done!
 
 <details>
   <summary>Table of Contents</summary>
