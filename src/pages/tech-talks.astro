@@ -1,11 +1,13 @@
 ---
 import { BaseLayout } from '~layouts';
 import { techTalks } from '~data';
+
+const firstHeadingId = 'tech-talks';
 ---
 
-<BaseLayout title="Tech talks">
+<BaseLayout title="Tech talks" skipTargetId={firstHeadingId}>
 	<div class="l-center--wide">
-		<h2>Tech talks</h2>
+		<h2 id={firstHeadingId}>Tech talks</h2>
 		<div class="l-grid">
 			<p class="c-box pink">
 				Join us for a new Tech Talk on the 2nd Wednesday of every month.

@@ -11,11 +11,13 @@ const mentorsCount = volunteers.filter((volunteer) =>
 // if/when we do more in the future this magic `3` will need to be
 // updated
 const developersCount = (teams.length - 3) * 4;
+
+const firstHeadingId = 'collab-lab-developers';
 ---
 
-<BaseLayout title="Developers">
+<BaseLayout title="Developers" skipTargetId={firstHeadingId}>
 	<div class="l-center--wide">
-		<h2>Collab Lab developers</h2>
+		<h2 id={firstHeadingId}>Collab Lab developers</h2>
 		<!-- <div>
 		<figure>
 			<img src="/img/stats/Women.svg" alt="Women 78%" />

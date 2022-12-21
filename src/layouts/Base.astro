@@ -3,10 +3,11 @@ import { Footer, Header } from '~components';
 
 export interface Props {
 	subtitle?: string;
+	skipTargetId?: string;
 	title: string;
 }
 
-const { title } = Astro.props as Props;
+const { title, skipTargetId } = Astro.props as Props;
 
 const jsonLDSchema = JSON.stringify(
 	{
