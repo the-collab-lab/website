@@ -1,5 +1,5 @@
 ---
-import { addDays, dateFormatters } from '~utils';
+import { addDays, DateFormatters } from '~utils';
 export interface Props {
 	cohortKickoffDate: Date;
 }
@@ -16,12 +16,10 @@ const [windowStart, windowEnd] = [
 
 const applicationsOpen = windowStart <= new Date();
 
-const { dayMonth, fullDateLongMonth } = dateFormatters;
-
-const formattedKickoff = fullDateLongMonth.format(cohortKickoffDate);
+const formattedKickoff = DateFormatters.fullDateLongMonth(cohortKickoffDate);
 const [formattedWindowStart, formattedWindowEnd] = [
-	dayMonth.format(windowStart),
-	dayMonth.format(windowEnd),
+	DateFormatters.dayMonth(windowStart),
+	DateFormatters.dayMonth(windowEnd),
 ];
 ---
 

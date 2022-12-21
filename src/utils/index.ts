@@ -1,23 +1,23 @@
 export const SOCIAL_SITE_NAMES = ['gitHub', 'linkedIn', 'twitter'] as const;
 
-export const dateFormatters = {
-	dayMonth: new Intl.DateTimeFormat('en-US', {
+export const DateFormatters = {
+	formatdayMonth: new Intl.DateTimeFormat('en-US', {
 		day: 'numeric',
 		month: 'long',
 		timeZone: 'UTC',
-	}),
+	}).format,
 	fullDateShortMonth: new Intl.DateTimeFormat('en-US', {
 		day: 'numeric',
 		month: 'short',
 		timeZone: 'UTC',
 		year: 'numeric',
-	}),
+	}).format,
 	fullDateLongMonth: new Intl.DateTimeFormat('en-US', {
 		day: 'numeric',
 		month: 'long',
 		timeZone: 'UTC',
 		year: 'numeric',
-	}),
+	}).format,
 };
 
 export function addDays(date: Date, days: number) {
