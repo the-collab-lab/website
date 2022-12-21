@@ -48,6 +48,7 @@
 			viewBox="0 0 18 18"
 			fill="currentColor"
 			aria-hidden="true"
+			style="width: 18px; height: 18px;"
 		>
 			<path
 				fill-rule="evenodd"
@@ -67,11 +68,19 @@
 		color: var(--color-black-dark) !important;
 	}
 	svg {
-		height: 20px;
-		width: 20px;
+		height: 12px;
+		width: 12px;
 	}
 
 	h2 + ul {
 		margin-top: 1em;
+	}
+
+	li {
+		align-items: baseline;
+		display: flex;
+		flex-direction: row;
+		gap: 0.5em;
+		line-height: 1.15;
 	}
 </style>
