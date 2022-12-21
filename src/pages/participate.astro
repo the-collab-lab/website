@@ -2,11 +2,7 @@
 import { BaseLayout } from '~layouts';
 import { ApplyPrompt } from '~components';
 
-const applicationWindow: [Date, Date] = [
-	new Date('2022-12-24'),
-	new Date('2022-12-31'),
-];
-const cohortKickoffDate = new Date('2023-01-08');
+const cohortKickoffDate = new Date('2023-01-08 UTC');
 ---
 
 <BaseLayout title="Participate" skipTargetId="about-the-collab-lab-program">
@@ -76,11 +72,8 @@ const cohortKickoffDate = new Date('2023-01-08');
 		style="background-color: var(--color-blue-mid); color: var(--color-white);"
 	>
 		<div class="l-center--wide u-center-text">
-			<h2 id="how-to-apply">How to apply</h2>
-			<ApplyPrompt
-				applicationWindow={applicationWindow}
-				cohortKickoffDate={cohortKickoffDate}
-			/>
+			<h2 id="how-to-apply" class="u-center-text">How to apply</h2>
+			<ApplyPrompt cohortKickoffDate={cohortKickoffDate} />
 		</div>
 	</section>
 	<section class="u-bg-black">

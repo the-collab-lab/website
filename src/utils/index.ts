@@ -20,6 +20,12 @@ export const dateFormatters = {
 	}),
 };
 
+export function addDays(date: Date, days: number) {
+	const nextDate = new Date(date);
+	nextDate.setUTCDate(nextDate.getUTCDate() + days);
+	return nextDate;
+}
+
 /**
  * Fix the path to a static asset.
  */
