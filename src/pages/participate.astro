@@ -54,7 +54,7 @@ import { BaseLayout } from '~layouts';
 	</section>
 	<section class="u-bg-black" style="padding-block: 0;">
 		<div class="l-switcher">
-			<div class="c-image-placeholder u-desktop-only"></div>
+			<div class="c-developers-collage u-desktop-only"></div>
 			<div class="l-center c-visit-cta">
 				<p class="h2">
 					Visit our <a href="/developers">developers page</a> to learn more about
@@ -91,7 +91,10 @@ import { BaseLayout } from '~layouts';
 	<section class="u-bg-black">
 		<div class="l-center--wide">
 			<div class="l-switcher">
-				<div class="o-grid-item" style="display:flex;flex-direction: column;place-items: center;">
+				<div
+					class="o-grid-item"
+					style="display:flex;flex-direction: column;place-items: center;"
+				>
 					<h2 style="max-width: 12ch;">What happens after I apply?</h2>
 					<img
 						alt=""
@@ -125,7 +128,8 @@ import { BaseLayout } from '~layouts';
 						If you have any questions about the application process or what it’s
 						like to participate in a Collab Lab cohort, please don’t hesitate to
 						email Andrew at <a href="mailto:andrew@the-collab-lab.codes">
-						andrew@the-collab-lab.codes</a>.
+							andrew@the-collab-lab.codes</a
+						>.
 					</p>
 					<p>
 						Thank you so much for your interest in The Collab Lab! We look
@@ -170,5 +174,19 @@ import { BaseLayout } from '~layouts';
 
 	.c-visit-cta a {
 		color: var(--color-yellow-mid);
+	}
+
+	.c-developers-collage {
+		background-image: url('/img/participate-developers-collage.webp');
+		background-image: -webkit-image-set(
+			url('/img/participate-developers-collage.webp') type('image/webp'),
+			url('/img/participate-developers-collage.png') type('image/png')
+		);
+		background-image: image-set(
+			url('/img/participate-developers-collage.webp') type('image/webp'),
+			url('/img/participate-developers-collage.png') type('image/png')
+		);
+		flex-basis: 50%;
+		flex-grow: 0;
 	}
 </style>
