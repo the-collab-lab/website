@@ -3,7 +3,7 @@ import { request } from 'graphql-request';
 import { ComposedQuery } from './graphql-queries';
 import type { Block, ComposedQueryResponse, Page } from './graphql-types';
 
-const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
+const fullMonthNumericYear = new Intl.DateTimeFormat('en-US', {
 	month: 'long',
 	year: 'numeric',
 });
@@ -20,8 +20,8 @@ const fullDateShortMonthFormat = new Intl.DateTimeFormat('en-US', {
  * Used in the Teams section.
  */
 const calculatedDate = ({ startDate, endDate }: Record<string, string>) => {
-	const formattedStartDate = monthAndYearFormat.format(new Date(startDate));
-	const formattedEndDate = monthAndYearFormat.format(new Date(endDate));
+	const formattedStartDate = fullMonthNumericYear.format(new Date(startDate));
+	const formattedEndDate = fullMonthNumericYear.format(new Date(endDate));
 
 	// if the years are the same, don’t show the year twice
 	// e.g. "October 2020 – November 2020" -> "October – November 2020"
