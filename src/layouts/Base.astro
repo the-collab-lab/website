@@ -54,6 +54,8 @@ const jsonLDSchema = JSON.stringify(
 		></script>
 	</head>
 	<body>
+		<a href={`#${skipTargetId}`} class="c-skip-link">Skip to content</a>
+		<a href="#support-collab-lab" class="c-skip-link">Skip to footer</a>
 		<Header />
 		<main>
 			<slot />
@@ -318,6 +320,23 @@ const jsonLDSchema = JSON.stringify(
 			.l-switcher > :nth-last-child(n + 5),
 			.l-switcher > :nth-last-child(n + 5) ~ * {
 				flex-basis: 100%;
+			}
+
+			.c-skip-link {
+				appearance: button;
+				background-color: var(--color-pink-mid);
+				border-radius: 4px;
+				color: inherit;
+				min-width: 16ch;
+				padding: 0.5rem 1.6rem;
+				position: absolute;
+				text-align: center;
+				text-decoration: none;
+				transform: translate(-100%, -100%);
+			}
+
+			.c-skip-link:focus-visible {
+				transform: translate(0, 0);
 			}
 
 			.c-donation-button {
