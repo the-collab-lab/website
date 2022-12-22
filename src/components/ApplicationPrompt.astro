@@ -15,7 +15,7 @@ const [windowStart, windowEnd] = [
 	addDays(cohortKickoffDate, -7),
 ];
 
-const applicationsOpen = windowStart <= new Date();
+const applicationsOpen = windowStart >= new Date();
 
 const formattedKickoff = DateFormatters.fullDateLongMonth(cohortKickoffDate);
 const [formattedWindowStart, formattedWindowEnd] = [
