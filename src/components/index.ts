@@ -1,4 +1,6 @@
 // @ts-expect-error TypeScript doesn't like the .astro file extension
+export { default as ApplicationPrompt } from './ApplicationPrompt.astro';
+// @ts-expect-error TypeScript doesn't like the .astro file extension
 export { default as GetInTouch } from './GetInTouch.astro';
 // @ts-expect-error TypeScript doesn't like the .astro file extension
 export { default as Footer } from './Footer.astro';

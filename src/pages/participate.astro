@@ -1,5 +1,14 @@
 ---
 import { BaseLayout } from '~layouts';
+import { ApplicationPrompt } from '~components';
+
+// These date strings must be in UTC time,
+// and must be in the format YYYY-MM-DD
+const applicationWindow: [Date, Date] = [
+	new Date('2022-12-24 UTC'),
+	new Date('2022-12-31 UTC'),
+];
+const cohortKickoffDate = new Date('2023-01-08 UTC');
 ---
 
 <BaseLayout title="Participate" skipTargetId="about-the-collab-lab-program">
@@ -69,25 +78,11 @@ import { BaseLayout } from '~layouts';
 		style="background-color: var(--color-blue-mid); color: var(--color-white);"
 	>
 		<div class="l-center--wide u-center-text">
-			<h2 id="how-to-apply">How to apply</h2>
-			<p class="u-text-large">
-				Our next cohort will kick off on January 8, 2023 We will run teams this
-				time in North America and Europe/Africa time zones. The application
-				window will be open from December 24 to December 31. We will notify you
-				of your status the following week.
-			</p>
-			<p class="u-text-bold u-text-large">
-				Return to this page between December 24 and December 31 to submit your
-				application
-			</p>
-			<p class="u-text-small">
-				💡 Want a reminder of our next application window?
-				<a
-					href="/ics/Q1-2023-Application-Window.ics"
-					download
-					style="color: var(--color-black-light);">Download this iCal file!</a
-				>
-			</p>
+			<h2 id="how-to-apply" class="u-center-text">How to apply</h2>
+			<ApplicationPrompt
+				applicationWindow={applicationWindow}
+				cohortKickoffDate={cohortKickoffDate}
+			/>
 		</div>
 	</section>
 	<section class="u-bg-black">
