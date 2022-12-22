@@ -6,6 +6,10 @@ export const DateFormatters = {
 		month: 'long',
 		timeZone: 'UTC',
 	}).format,
+	monthYear: new Intl.DateTimeFormat('en-US', {
+		month: 'long',
+		year: 'numeric',
+	}).format,
 	fullDateShortMonth: new Intl.DateTimeFormat('en-US', {
 		day: 'numeric',
 		month: 'short',

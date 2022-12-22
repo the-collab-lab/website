@@ -32,27 +32,6 @@ interface DeveloperTeam {
 	startDate: string;
 }
 
-export interface TextBlock {
-	__typename: 'TextBlock';
-	textContent?: {
-		html: string;
-	};
-	visible: boolean;
-}
-
-export interface ImageFloatedRight {
-	__typename: 'ImageFloatedRight';
-	caption?: string;
-	path: string;
-}
-
-export type Block = TextBlock | ImageFloatedRight;
-
-export interface Page {
-	slug: '/participate/' | '/apply/' | '/mentor/';
-	blocks: Array<Block>;
-}
-
 export interface TechTalk {
 	title: string;
 	presenters: Pick<Collabie, 'fullName'>;
@@ -76,10 +55,8 @@ export interface Testimonial {
 }
 
 export interface ComposedQueryResponse {
-	applicationBlock: TextBlock;
 	collabies: Collabie[];
 	teams: DeveloperTeam[];
-	pages: Page[];
 	techTalks: TechTalk[];
 	testimonials: Testimonial[];
 }

@@ -1,15 +1,5 @@
 import { gql } from 'graphql-request';
 
-const ApplicationBlock = gql`
-	fragment ApplicationBlock on Query {
-		applicationBlock: textBlock(where: { id: "ckjwc7a3cak3v0d34n057w44k" }) {
-			textContent {
-				html
-			}
-		}
-	}
-`;
-
 const COLLABIE_DATA_FRAGMENT = gql`
 	fragment collabieData on Collabie {
 		bio {
@@ -46,27 +36,6 @@ const CollabiesAndTeams = gql`
 		}
 	}
 	${COLLABIE_DATA_FRAGMENT}
-`;
-
-const Pages = gql`
-	fragment Pages on Query {
-		pages {
-			slug
-			blocks {
-				__typename
-				... on TextBlock {
-					textContent {
-						html
-					}
-					visible
-				}
-				... on ImageFloatedRight {
-					path
-					caption
-				}
-			}
-		}
-	}
 `;
 
 const TechTalks = gql`
@@ -108,15 +77,11 @@ const Testimonials = gql`
 
 export const ComposedQuery = gql`
 	{
-		...ApplicationBlock
 		...CollabiesAndTeams
-		...Pages
 		...TechTalks
 		...Testimonials
 	}
-	${ApplicationBlock}
 	${CollabiesAndTeams}
-	${Pages}
 	${TechTalks}
 	${Testimonials}
 `;

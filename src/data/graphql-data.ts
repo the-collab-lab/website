@@ -1,17 +1,9 @@
 import { request } from 'graphql-request';
 
 import { ComposedQuery } from './graphql-queries';
-import type { Block, ComposedQueryResponse, Page } from './graphql-types';
+import type { ComposedQueryResponse } from './graphql-types';
 
-const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
-	month: 'long',
-	year: 'numeric',
-});
-const fullDateShortMonthFormat = new Intl.DateTimeFormat('en-US', {
-	month: 'short',
-	day: 'numeric',
-	year: 'numeric',
-});
+import { DateFormatters } from '~utils';
 
 /**
  * Transforms two dates of type 2020-10-10 and 2020-11-11 to
@@ -20,8 +12,8 @@ const fullDateShortMonthFormat = new Intl.DateTimeFormat('en-US', {
  * Used in the Teams section.
  */
 const calculatedDate = ({ startDate, endDate }: Record<string, string>) => {
-	const formattedStartDate = monthAndYearFormat.format(new Date(startDate));
-	const formattedEndDate = monthAndYearFormat.format(new Date(endDate));
+	const formattedStartDate = DateFormatters.monthYear(new Date(startDate));
+	const formattedEndDate = DateFormatters.monthYear(new Date(endDate));
 
 	// if the years are the same, don’t show the year twice
 	// e.g. "October 2020 – November 2020" -> "October – November 2020"
@@ -42,9 +34,6 @@ const hygraphResponse = await request<ComposedQueryResponse>(
 	'https://api-us-east-1.hygraph.com/v2/ckfwosu634r7l01xpco7z3hvq/master',
 	ComposedQuery,
 );
-
-const getApplicationBlockData = () =>
-	hygraphResponse.applicationBlock.textContent?.html;
 
 const getCollabiesData = () => {
 	const collabies = hygraphResponse.collabies.map((c) => {
@@ -85,16 +74,6 @@ const getCollabiesData = () => {
 	};
 };
 
-const getPageDataBySlug = () => {
-	const map: Record<string, Block[]> = {};
-
-	for (const page of hygraphResponse.pages) {
-		map[page.slug] = page.blocks;
-	}
-
-	return map as Record<Page['slug'], Block[]>;
-};
-
 function getTeams() {
 	return hygraphResponse.teams.map((team) => {
 		return {
@@ -111,7 +90,7 @@ function getTeams() {
 function getTechTalksData() {
 	return hygraphResponse.techTalks.map((talk) => {
 		const rgx = /(v=([\w-]+))|(be\/([\w-]+))/; // there's probably room for improvement here
-		talk.formattedDate = fullDateShortMonthFormat.format(
+		talk.formattedDate = DateFormatters.fullDateShortMonth(
 			new Date(talk.dateAndTime),
 		);
 		talk.youTubeEmbedUrl = null;
@@ -147,9 +126,7 @@ function getTestimonials(): TestimonialFlat[] {
 	});
 }
 
-export const applicationBlock = getApplicationBlockData();
 export const { founders, mentors, volunteers } = getCollabiesData();
-export const pages = getPageDataBySlug();
 export const teams = getTeams();
 export const techTalks = getTechTalksData();
 export const testimonials = getTestimonials();
