@@ -3,15 +3,7 @@ import { request } from 'graphql-request';
 import { ComposedQuery } from './graphql-queries';
 import type { ComposedQueryResponse } from './graphql-types';
 
-const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
-	month: 'long',
-	year: 'numeric',
-});
-const fullDateShortMonthFormat = new Intl.DateTimeFormat('en-US', {
-	month: 'short',
-	day: 'numeric',
-	year: 'numeric',
-});
+import { DateFormatters } from '~utils';
 
 /**
  * Transforms two dates of type 2020-10-10 and 2020-11-11 to
@@ -20,8 +12,8 @@ const fullDateShortMonthFormat = new Intl.DateTimeFormat('en-US', {
  * Used in the Teams section.
  */
 const calculatedDate = ({ startDate, endDate }: Record<string, string>) => {
-	const formattedStartDate = monthAndYearFormat.format(new Date(startDate));
-	const formattedEndDate = monthAndYearFormat.format(new Date(endDate));
+	const formattedStartDate = DateFormatters.monthYear(new Date(startDate));
+	const formattedEndDate = DateFormatters.monthYear(new Date(endDate));
 
 	// if the years are the same, don’t show the year twice
 	// e.g. "October 2020 – November 2020" -> "October – November 2020"
@@ -98,7 +90,7 @@ function getTeams() {
 function getTechTalksData() {
 	return hygraphResponse.techTalks.map((talk) => {
 		const rgx = /(v=([\w-]+))|(be\/([\w-]+))/; // there's probably room for improvement here
-		talk.formattedDate = fullDateShortMonthFormat.format(
+		talk.formattedDate = DateFormatters.fullDateShortMonth(
 			new Date(talk.dateAndTime),
 		);
 		talk.youTubeEmbedUrl = null;
