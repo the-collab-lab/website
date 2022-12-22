@@ -1,7 +1,7 @@
 import { request } from 'graphql-request';
 
 import { ComposedQuery } from './graphql-queries';
-import type { Block, ComposedQueryResponse, Page } from './graphql-types';
+import type { ComposedQueryResponse } from './graphql-types';
 
 const monthAndYearFormat = new Intl.DateTimeFormat('en-US', {
 	month: 'long',
@@ -43,9 +43,6 @@ const hygraphResponse = await request<ComposedQueryResponse>(
 	ComposedQuery,
 );
 
-const getApplicationBlockData = () =>
-	hygraphResponse.applicationBlock.textContent?.html;
-
 const getCollabiesData = () => {
 	const collabies = hygraphResponse.collabies.map((c) => {
 		return {
@@ -83,16 +80,6 @@ const getCollabiesData = () => {
 		mentors,
 		volunteers,
 	};
-};
-
-const getPageDataBySlug = () => {
-	const map: Record<string, Block[]> = {};
-
-	for (const page of hygraphResponse.pages) {
-		map[page.slug] = page.blocks;
-	}
-
-	return map as Record<Page['slug'], Block[]>;
 };
 
 function getTeams() {
@@ -147,9 +134,7 @@ function getTestimonials(): TestimonialFlat[] {
 	});
 }
 
-export const applicationBlock = getApplicationBlockData();
 export const { founders, mentors, volunteers } = getCollabiesData();
-export const pages = getPageDataBySlug();
 export const teams = getTeams();
 export const techTalks = getTechTalksData();
 export const testimonials = getTestimonials();
