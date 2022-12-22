@@ -1,19 +1,14 @@
 ---
-import { addDays, DateFormatters } from '~utils';
+import { DateFormatters } from '~utils';
 export interface Props {
+	applicationWindow: [Date, Date];
 	cohortKickoffDate: Date;
 }
 
-const { cohortKickoffDate } = Astro.props as Props;
-
-// The application window is open for 1 week,
-// starting 2 weeks before the cohort kickoff
-// and ending 1 week before the cohort kickoff
-// (we're using 15 days to accout for Christmas this quarter)
-const [windowStart, windowEnd] = [
-	addDays(cohortKickoffDate, -15),
-	addDays(cohortKickoffDate, -7),
-];
+const {
+	applicationWindow: [windowStart, windowEnd],
+	cohortKickoffDate,
+} = Astro.props as Props;
 
 const applicationsOpen = windowStart >= new Date();
 

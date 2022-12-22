@@ -2,8 +2,12 @@
 import { BaseLayout } from '~layouts';
 import { ApplicationPrompt } from '~components';
 
-// This date string must be in UTC time,
+// These date strings must be in UTC time,
 // and must be in the format YYYY-MM-DD
+const applicationWindow: [Date, Date] = [
+	new Date('2022-12-24 UTC'),
+	new Date('2022-12-31 UTC'),
+];
 const cohortKickoffDate = new Date('2023-01-08 UTC');
 ---
 
@@ -75,7 +79,10 @@ const cohortKickoffDate = new Date('2023-01-08 UTC');
 	>
 		<div class="l-center--wide u-center-text">
 			<h2 id="how-to-apply" class="u-center-text">How to apply</h2>
-			<ApplicationPrompt cohortKickoffDate={cohortKickoffDate} />
+			<ApplicationPrompt
+				applicationWindow={applicationWindow}
+				cohortKickoffDate={cohortKickoffDate}
+			/>
 		</div>
 	</section>
 	<section class="u-bg-black">
