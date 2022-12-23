@@ -4,11 +4,12 @@ import { ApplicationPrompt } from '~components';
 
 // These date strings must be in UTC time,
 // and must be in the format YYYY-MM-DD
-const applicationWindow: [Date, Date] = [
+const cohortApplicationWindow: [Date, Date] = [
 	new Date('2022-12-24 UTC'),
 	new Date('2022-12-31 UTC'),
 ];
 const cohortKickoffDate = new Date('2023-01-08 UTC');
+const cohortRegions = ['North America'];
 ---
 
 <BaseLayout title="Participate" skipTargetId="about-the-collab-lab-program">
@@ -80,8 +81,9 @@ const cohortKickoffDate = new Date('2023-01-08 UTC');
 		<div class="l-center--wide u-center-text">
 			<h2 id="how-to-apply" class="u-center-text">How to apply</h2>
 			<ApplicationPrompt
-				applicationWindow={applicationWindow}
+				cohortApplicationWindow={cohortApplicationWindow}
 				cohortKickoffDate={cohortKickoffDate}
+				cohortRegions={cohortRegions}
 			/>
 		</div>
 	</section>
