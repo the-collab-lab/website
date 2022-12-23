@@ -9,5 +9,5 @@ export default defineConfig({
 			open: true,
 		},
 	},
-	site: 'https://the-collab-lab.codes',
+	site: 'https://the-collab-lab.codes/',
 });
