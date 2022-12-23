@@ -9,6 +9,11 @@ export interface Props {
 
 const { title, skipTargetId } = Astro.props as Props;
 
+const canonicalURL = new URL(
+	Astro.url.pathname.replace(/([^/])$/, '$1/'),
+	Astro.site,
+);
+
 const jsonLDSchema = JSON.stringify(
 	{
 		'@context': 'http://www.schema.org',
@@ -29,11 +34,26 @@ const jsonLDSchema = JSON.stringify(
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/ico" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<meta
+			name="description"
+			content="Gain practical experience by working remotely on real world projects with other early-career developers."
+		/>
+		<meta property="og:title" content="The Collab Lab" />
+		<meta
+			property="og:description"
+			content="Gain practical experience by working remotely on real world projects with other early-career developers."
+		/>
+		<meta
+			property="og:image"
+			content={`${canonicalURL.href}img/participate-developers-collage.webp`}
+		/>
+		<meta property="og:url" content={canonicalURL.href} />
 		<title>
 			{title === 'The Collab Lab' ? title : `${title} | The Collab Lab`}
 		</title>
+		<link rel="canonical" href={canonicalURL.href} />
+		<link rel="icon" type="image/ico" href="/favicon.ico" />
 		<link
 			rel="preload"
 			as="font"
