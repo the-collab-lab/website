@@ -1,9 +1,12 @@
 ---
 import { DateFormatters } from '~utils';
+
+export type CohortRegions = 'North America' | 'Europe/Africa' | 'Latin America';
+
 export interface Props {
 	cohortApplicationWindow: [Date, Date];
 	cohortKickoffDate: Date;
-	cohortRegions: string[];
+	cohortRegions: readonly CohortRegions[];
 }
 
 const {

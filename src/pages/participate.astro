@@ -1,6 +1,7 @@
 ---
 import { BaseLayout } from '~layouts';
 import { ApplicationPrompt } from '~components';
+import type { CohortRegions } from '~components';
 
 // These date strings must be in UTC time,
 // and must be in the format YYYY-MM-DD
@@ -9,7 +10,8 @@ const cohortApplicationWindow: [Date, Date] = [
 	new Date('2022-12-31 UTC'),
 ];
 const cohortKickoffDate = new Date('2023-01-08 UTC');
-const cohortRegions = ['North America'];
+
+const cohortRegions: CohortRegions[] = ['North America'];
 
 const firstHeadingId = 'about-the-collab-lab-program';
 ---
