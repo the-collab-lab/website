@@ -10,16 +10,16 @@ const cohortApplicationWindow: [Date, Date] = [
 ];
 const cohortKickoffDate = new Date('2023-01-08 UTC');
 const cohortRegions = ['North America'];
+
+const firstHeadingId = 'about-the-collab-lab-program';
 ---
 
-<BaseLayout title="Participate" skipTargetId="about-the-collab-lab-program">
+<BaseLayout title="Participate" skipTargetId={firstHeadingId}>
 	<section>
 		<div class="l-center--wide">
 			<div class="l-switcher">
 				<div class="o-grid-item">
-					<h1 id="about-the-collab-lab-program" class="h2">
-						About The Collab Lab Program
-					</h1>
+					<h1 id={firstHeadingId} class="h2">About The Collab Lab Program</h1>
 					<ul>
 						<li>
 							<span class="u-text-bold">Project type:</span> Client-side JavaScript
