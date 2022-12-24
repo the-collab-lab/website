@@ -1,13 +1,18 @@
 ---
 import { DateFormatters } from '~utils';
+
+export type CohortRegions = 'North America' | 'Europe/Africa' | 'Latin America';
+
 export interface Props {
-	applicationWindow: [Date, Date];
+	cohortApplicationWindow: [Date, Date];
 	cohortKickoffDate: Date;
+	cohortRegions: readonly CohortRegions[];
 }
 
 const {
-	applicationWindow: [windowStart, windowEnd],
+	cohortApplicationWindow: [windowStart, windowEnd],
 	cohortKickoffDate,
+	cohortRegions,
 } = Astro.props as Props;
 
 const applicationsOpen = windowStart >= new Date();
@@ -17,11 +22,18 @@ const [formattedWindowStart, formattedWindowEnd] = [
 	DateFormatters.dayMonth(windowStart),
 	DateFormatters.dayMonth(windowEnd),
 ];
+
+const listFormatter = new Intl.ListFormat('en-US', {
+	style: 'long',
+	type: 'conjunction',
+});
+
+const regionList = listFormatter.format(cohortRegions);
 ---
 
 <p class="u-text-large">
 	Our next cohort will kick off on {formattedKickoff}. We will run teams in
-	North America time zones. The application window will be open from {
+	{regionList} time zones. The application window will be open from {
 		formattedWindowStart
 	} to
 	{formattedWindowEnd}. We will notify you of your status the following week.
