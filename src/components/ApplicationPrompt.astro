@@ -15,7 +15,7 @@ const {
 	cohortRegions,
 } = Astro.props as Props;
 
-const applicationsOpen = windowStart >= new Date();
+const applicationsOpen = Date.now() > windowStart.getTime();
 
 const formattedKickoff = DateFormatters.fullDateLongMonth(cohortKickoffDate);
 const [formattedWindowStart, formattedWindowEnd] = [
@@ -40,7 +40,7 @@ const regionList = listFormatter.format(cohortRegions);
 </p>
 <>
 	{
-		!applicationsOpen ? (
+		applicationsOpen ? (
 			<p class="u-text-large">
 				<a href="https://airtable.com/shrv9cqaTVHNhCvT1" class="c-button">
 					Apply now!
