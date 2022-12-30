@@ -15,7 +15,11 @@ const {
 	cohortRegions,
 } = Astro.props as Props;
 
-const applicationsOpen = Date.now() > windowStart.getTime();
+const now = Date.now();
+// Applications are open if the time of the build is
+// within the application window
+const applicationsOpen =
+	now >= windowStart.getTime() && now <= windowEnd.getTime();
 
 const formattedKickoff = DateFormatters.fullDateLongMonth(cohortKickoffDate);
 const [formattedWindowStart, formattedWindowEnd] = [
