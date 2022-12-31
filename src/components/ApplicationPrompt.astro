@@ -17,9 +17,10 @@ const {
 
 const now = Date.now();
 // Applications are open if the time of the build is
-// within the application window
+// within the application window. The window closes at the END of the final day
+// so we add 86,400,000 ms (24 hours) to the end of the window.
 const applicationsOpen =
-	now >= windowStart.getTime() && now <= windowEnd.getTime();
+	now >= windowStart.getTime() && now <= windowEnd.getTime() + 86_400_000;
 
 const formattedKickoff = DateFormatters.fullDateLongMonth(cohortKickoffDate);
 const [formattedWindowStart, formattedWindowEnd] = [
