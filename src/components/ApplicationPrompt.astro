@@ -15,7 +15,12 @@ const {
 	cohortRegions,
 } = Astro.props as Props;
 
-const applicationsOpen = Date.now() > windowStart.getTime();
+const now = Date.now();
+// Applications are open if the time of the build is
+// within the application window. The window closes at the END of the final day
+// so we add 86,400,000 ms (24 hours) to the end of the window.
+const applicationsOpen =
+	now >= windowStart.getTime() && now <= windowEnd.getTime() + 86_400_000;
 
 const formattedKickoff = DateFormatters.fullDateLongMonth(cohortKickoffDate);
 const [formattedWindowStart, formattedWindowEnd] = [
@@ -55,7 +60,7 @@ const regionList = listFormatter.format(cohortRegions);
 				<p class="u-text-small">
 					💡 Want a reminder of our next application window?
 					<a
-						href="/ics/Q1-2023-Application-Window.ics"
+						href="/ics/Q2-2023-Application-Window.ics"
 						download
 						style="color: var(--color-black-light);"
 					>
