@@ -35,6 +35,7 @@ const firstHeadingId = 'tech-talks';
 							frameborder="0"
 							loading="lazy"
 							height="315"
+							title={talk.title}
 							src={talk.youTubeEmbedUrl}
 							width="560"
 						/>
@@ -69,7 +70,10 @@ const firstHeadingId = 'tech-talks';
 	.c-box.pink {
 		background-color: var(--color-pink-mid);
 	}
-
+	.c-box.pink a,
+	.c-box.yellow a {
+		color: var(--color-black-dark);
+	}
 	.c-box.yellow {
 		background-color: var(--color-yellow-mid);
 	}
