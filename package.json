@@ -17,27 +17,27 @@
 	},
 	"devDependencies": {
 		"@types/stripe-v3": "^3.1.27",
-		"@typescript-eslint/eslint-plugin": "^5.47.0",
-		"@typescript-eslint/parser": "^5.47.0",
-		"astro": "^1.7.2",
-		"eslint": "^8.30.0",
-		"eslint-config-prettier": "^8.5.0",
-		"eslint-import-resolver-typescript": "^3.5.2",
+		"@typescript-eslint/eslint-plugin": "^5.48.1",
+		"@typescript-eslint/parser": "^5.48.1",
+		"astro": "^1.9.2",
+		"eslint": "^8.31.0",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-import-resolver-typescript": "^3.5.3",
 		"eslint-plugin-astro": "^0.21.1",
-		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-import": "^2.27.4",
 		"eslint-plugin-node": "^11.1.0",
 		"eslint-plugin-prettier": "^4.2.1",
-		"husky": "^8.0.2",
+		"husky": "^8.0.3",
 		"lint-staged": "^13.1.0",
-		"prettier": "^2.8.1",
-		"prettier-plugin-astro": "^0.7.0",
+		"prettier": "^2.8.2",
+		"prettier-plugin-astro": "^0.7.2",
 		"typescript": "^4.9.4"
 	},
 	"dependencies": {
 		"@astrojs/preact": "^1.2.0",
 		"graphql-request": "^5.1.0",
 		"preact": "^10.11.3",
-		"stripe": "^11.4.0"
+		"stripe": "^11.6.0"
 	},
 	"lint-staged": {
 		"*.{astro,js,ts,jsx,tsx}": "eslint --cache --fix",
