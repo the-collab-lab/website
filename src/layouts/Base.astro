@@ -27,13 +27,14 @@ const canonicalURL = new URL(
 
 const jsonLDSchema = JSON.stringify(
 	{
-		'@context': 'http://www.schema.org',
+		'@context': 'https://www.schema.org/',
 		'@type': 'EducationalOrganization',
-		name: 'The Collab Lab',
-		logo: 'https://the-collab-lab.codes/img/sig-logo.png',
-		image: 'https://the-collab-lab.codes/img/sig-logo.png',
-		description:
-			'Gain practical experience by working remotely on real world projects with other early-career developers.',
+		name: title,
+		logo: 'https://the-collab-lab.codes/img/logo.svg',
+		image:
+			'https://the-collab-lab.codes/img/participate-developers-collage.png',
+		description: description,
+		url: canonicalURL.href,
 	},
 	null,
 	0,
