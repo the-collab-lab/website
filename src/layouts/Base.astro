@@ -47,24 +47,16 @@ const jsonLDSchema = JSON.stringify(
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<meta
-			name="description"
-			content="Gain practical experience by working remotely on real world projects with other early-career developers."
-		/>
-		<meta property="og:title" content="The Collab Lab" />
-		<meta
-			property="og:description"
-			content="Gain practical experience by working remotely on real world projects with other early-career developers."
-		/>
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
 		<meta
 			property="og:image"
 			content={`${Astro.site}img/participate-developers-collage.png`}
 		/>
 		<meta property="og:url" content={canonicalURL.href} />
 		<meta property="og:type" content="website" />
-		<title>
-			{title === 'The Collab Lab' ? title : `${title} | The Collab Lab`}
-		</title>
+		<title>{title}</title>
 		<link rel="canonical" href={canonicalURL.href} />
 		<link rel="icon" type="image/ico" href="/favicon.ico" />
 		<link
