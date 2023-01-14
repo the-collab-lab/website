@@ -73,10 +73,7 @@ const jsonLDSchema = JSON.stringify(
 			href="/fonts/outfit-v6-latin-700.woff2"
 			crossorigin
 		/>
-		<script
-			type="application/ld+json"
-			set:html={JSON.stringify(jsonLDSchema, null, 0)}
-		></script>
+		<script type="application/ld+json" set:html={jsonLDSchema}></script>
 	</head>
 	<body>
 		<a href={`#${skipTargetId}`} class="c-skip-link">Skip to content</a>
