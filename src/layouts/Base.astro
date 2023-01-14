@@ -7,7 +7,18 @@ export interface Props {
 	title: string;
 }
 
-const { title, skipTargetId } = Astro.props as Props;
+const { title: _title, skipTargetId } = Astro.props as Props;
+
+// Create a title that includes the page title, if one is provided.
+// (e.g. `Participate | The Collab Lab`).
+// The homepage is just `The Collab Lab`.
+const title =
+	_title === 'The Collab Lab' ? _title : `${_title} | The Collab Lab`;
+
+// TODO: Allow the use of a custom description for each page,
+// (via prop?), and fall back to this description if none is provided.
+const description =
+	'Gain practical experience by working remotely on real world projects with other early-career developers.';
 
 const canonicalURL = new URL(
 	Astro.url.pathname.replace(/([^/])$/, '$1/'),
