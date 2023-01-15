@@ -7,7 +7,18 @@ export interface Props {
 	title: string;
 }
 
-const { title, skipTargetId } = Astro.props as Props;
+const { title: _title, skipTargetId } = Astro.props as Props;
+
+// Create a title that includes the page title, if one is provided.
+// (e.g. `Participate | The Collab Lab`).
+// The homepage is just `The Collab Lab`.
+const title =
+	_title === 'The Collab Lab' ? _title : `${_title} | The Collab Lab`;
+
+// TODO: Allow the use of a custom description for each page,
+// (via prop?), and fall back to this description if none is provided.
+const description =
+	'Gain practical experience by working remotely on real world projects with other early-career developers.';
 
 const canonicalURL = new URL(
 	Astro.url.pathname.replace(/([^/])$/, '$1/'),
@@ -16,13 +27,14 @@ const canonicalURL = new URL(
 
 const jsonLDSchema = JSON.stringify(
 	{
-		'@context': 'http://www.schema.org',
+		'@context': 'https://www.schema.org/',
 		'@type': 'EducationalOrganization',
-		name: 'The Collab Lab',
-		logo: 'https://the-collab-lab.codes/img/sig-logo.png',
-		image: 'https://the-collab-lab.codes/img/sig-logo.png',
-		description:
-			'Gain practical experience by working remotely on real world projects with other early-career developers.',
+		name: title,
+		logo: 'https://the-collab-lab.codes/img/logo.svg',
+		image:
+			'https://the-collab-lab.codes/img/participate-developers-collage.png',
+		description: description,
+		url: canonicalURL.href,
 	},
 	null,
 	0,
@@ -35,24 +47,16 @@ const jsonLDSchema = JSON.stringify(
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<meta
-			name="description"
-			content="Gain practical experience by working remotely on real world projects with other early-career developers."
-		/>
-		<meta property="og:title" content="The Collab Lab" />
-		<meta
-			property="og:description"
-			content="Gain practical experience by working remotely on real world projects with other early-career developers."
-		/>
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
 		<meta
 			property="og:image"
 			content={`${Astro.site}img/participate-developers-collage.png`}
 		/>
 		<meta property="og:url" content={canonicalURL.href} />
 		<meta property="og:type" content="website" />
-		<title>
-			{title === 'The Collab Lab' ? title : `${title} | The Collab Lab`}
-		</title>
+		<title>{title}</title>
 		<link rel="canonical" href={canonicalURL.href} />
 		<link rel="icon" type="image/ico" href="/favicon.ico" />
 		<link
@@ -69,10 +73,7 @@ const jsonLDSchema = JSON.stringify(
 			href="/fonts/outfit-v6-latin-700.woff2"
 			crossorigin
 		/>
-		<script
-			type="application/ld+json"
-			set:html={JSON.stringify(jsonLDSchema, null, 0)}
-		></script>
+		<script type="application/ld+json" set:html={jsonLDSchema}></script>
 	</head>
 	<body>
 		<a href={`#${skipTargetId}`} class="c-skip-link">Skip to content</a>
