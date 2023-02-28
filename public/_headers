@@ -1,4 +1,5 @@
 /*
   Content-Security-Policy: default-src 'self';
+	Content-Security-Policy: style-src 'unsafe-inline';
 	Content-Security-Policy: frame-ancestors 'self';
   X-Frame-Options: DENY;
