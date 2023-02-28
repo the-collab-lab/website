@@ -1,0 +1,9 @@
+# This file allows us to determine which GitHub users in the TCL community are
+# responsibel for certain parts of the codebase. When someone opens a pull
+# request that changes a file or directory listed below, GitHub will
+# automatically request a review from the users listed next to it.
+# @see: https://help.github.com/articles/about-codeowners/
+
+# These users will be requested to review pull requests made to
+# any part of the repository.
+* @mxmason @segdeha
