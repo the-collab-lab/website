@@ -1,3 +1,4 @@
 /*
   Content-Security-Policy: default-src 'self';
+	Content-Security-Policy: frame-ancestors 'self';
   X-Frame-Options: DENY;
