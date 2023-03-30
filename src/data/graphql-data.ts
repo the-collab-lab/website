@@ -31,7 +31,7 @@ const calculateTeamNumber = (anchor: string) =>
 		: parseInt(anchor.split('-').pop() as string, 10);
 
 const hygraphResponse = await request<ComposedQueryResponse>(
-	'https://api-us-east-1.hygraph.com/v2/ckfwosu634r7l01xpco7z3hvq/master',
+	'https://us-east-1.cdn.hygraph.com/content/ckfwosu634r7l01xpco7z3hvq/master',
 	ComposedQuery,
 );
 
