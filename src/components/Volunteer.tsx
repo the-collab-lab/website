@@ -86,10 +86,20 @@ function getBadgeColors(role: CollabieRoles) {
 				backgroundColor: '#0e8a16',
 				color: '#fff',
 			};
+		case 'Career Coach':
+			return {
+				backgroundColor: '#0a6cff',
+				color: '#fff',
+			};
 		case 'Code of Conduct Responder':
 			return {
 				backgroundColor: '#0e8a16',
 				color: '#fff',
+			};
+		case 'Community Manager':
+			return {
+				backgroundColor: '#ff94e8',
+				color: '#000',
 			};
 		case 'Mentor':
 			return {
