@@ -5,13 +5,12 @@ import {
 	fixAssetPath,
 } from '~utils';
 
-const englishCollator = new Intl.Collator('en', { sensitivity: 'base' });
-
 export interface VolunteerProps {
+	hideRoles?: boolean;
 	volunteer: Collabie;
 }
 
-export function Volunteer({ volunteer }: VolunteerProps) {
+export function VolunteerCard({ hideRoles, volunteer }: VolunteerProps) {
 	const { fullName, pathToPhoto, roles } = volunteer;
 	return (
 		<div className="volunteer__grid-item">
@@ -33,7 +32,7 @@ export function Volunteer({ volunteer }: VolunteerProps) {
 					<span style={{ fontSize: '1.6em', fontWeight: '600' }}>
 						{fullName}
 					</span>
-					{renderRolesList(roles)}
+					{!hideRoles && renderRolesList(roles)}
 					<hr style={{ width: '100%' }} />
 					{renderSocialsList(volunteer)}
 				</figcaption>
@@ -53,7 +52,7 @@ function renderRolesList(roles: CollabieRoles[]) {
 				gap: '20px',
 			}}
 		>
-			{roles.sort(englishCollator.compare).map((role) => (
+			{roles.map((role) => (
 				<li
 					className="volunteer__roles-item"
 					style={{

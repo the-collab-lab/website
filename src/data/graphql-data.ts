@@ -132,8 +132,8 @@ export const techTalks = getTechTalksData();
 export const testimonials = getTestimonials();
 
 export type Collabie =
-	| typeof founders[0]
-	| typeof mentors[0]
-	| typeof volunteers[0];
+	| (typeof founders)[number]
+	| (typeof mentors)[number]
+	| (typeof volunteers)[number];
 
-export type DeveloperTeam = typeof teams[0];
+export type DeveloperTeam = (typeof teams)[number];
