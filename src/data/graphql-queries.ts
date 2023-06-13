@@ -27,7 +27,7 @@ const CollabiesAndTeams = gql`
 			orderBy: firstName_ASC
 		) {
 			...collabieData
-			roles(where: { name_not: "Participant" }) {
+			roles(where: { name_not: "Participant" }, orderBy: name_ASC) {
 				name
 			}
 		}

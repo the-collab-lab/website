@@ -5,8 +5,6 @@ import {
 	fixAssetPath,
 } from '~utils';
 
-const englishCollator = new Intl.Collator('en', { sensitivity: 'base' });
-
 export interface VolunteerProps {
 	hideRoles?: boolean;
 	volunteer: Collabie;
@@ -54,7 +52,7 @@ function renderRolesList(roles: CollabieRoles[]) {
 				gap: '20px',
 			}}
 		>
-			{roles.sort(englishCollator.compare).map((role) => (
+			{roles.map((role) => (
 				<li
 					className="volunteer__roles-item"
 					style={{
