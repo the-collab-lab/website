@@ -106,6 +106,11 @@ function getBadgeColors(role: CollabieRoles) {
 				backgroundColor: '#fbca04',
 				color: '#000',
 			};
+		case 'Tech Talk Presenter':
+			return {
+				backgroundColor: '#0a6cff',
+				color: '#fff',
+			};
 		case 'Volunteer':
 			return {
 				backgroundColor: '#e34c26',
