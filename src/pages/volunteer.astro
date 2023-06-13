@@ -1,5 +1,5 @@
 ---
-import { Volunteer } from '~components';
+import { VolunteerCard } from '~components';
 import { volunteers } from '~data';
 import { BaseLayout } from '~layouts';
 
@@ -72,9 +72,9 @@ const firstHeadingId = 'volunteer-at-the-collab-lab';
 					conversations.
 				</p>
 				<p>
-					<b>Prerequisite:</b> Due to the nature of this role, we require
-					Community Managers to have participated as either a mentor or developer
-					on a project team.
+					<b>Prerequisite:</b> Due to the nature of this role, we require Community
+					Managers to have participated as either a mentor or developer on a project
+					team.
 				</p>
 			</details>
 
@@ -84,16 +84,15 @@ const firstHeadingId = 'volunteer-at-the-collab-lab';
 					At the Collab Lab, we’re dedicated to creating and maintaining an
 					inclusive and psychologically safe space for everyone in our community
 					to learn and grow in. Our Code of Conduct responders are
-					<a
-						href="https://otter.technology/code-of-conduct-training/"
+					<a href="https://otter.technology/code-of-conduct-training/"
 						>professionally trained</a
-					> and ensure everyone in our community is upholding the commitment to
-					our Code of Conduct.
+					> and ensure everyone in our community is upholding the commitment to our
+					Code of Conduct.
 				</p>
 				<p>
-					<b>Prerequisite:</b> Due to the nature of this role, we require
-					Code of Conduct Responders to have participated as either a mentor or
-					developer on a project team.
+					<b>Prerequisite:</b> Due to the nature of this role, we require Code of
+					Conduct Responders to have participated as either a mentor or developer
+					on a project team.
 				</p>
 			</details>
 			<p class="c-callout">
@@ -116,7 +115,7 @@ const firstHeadingId = 'volunteer-at-the-collab-lab';
 			<h2 id="volunteers" style="text-align: center;">Our volunteers</h2>
 
 			<div class="l-grid c-volunteers-grid">
-				{volunteers.map((volunteer) => <Volunteer volunteer={volunteer} />)}
+				{volunteers.map((volunteer) => <VolunteerCard volunteer={volunteer} />)}
 			</div>
 		</div>
 	</div>

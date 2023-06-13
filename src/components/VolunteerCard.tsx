@@ -11,7 +11,7 @@ export interface VolunteerProps {
 	volunteer: Collabie;
 }
 
-export function Volunteer({ volunteer }: VolunteerProps) {
+export function VolunteerCard({ volunteer }: VolunteerProps) {
 	const { fullName, pathToPhoto, roles } = volunteer;
 	return (
 		<div className="volunteer__grid-item">

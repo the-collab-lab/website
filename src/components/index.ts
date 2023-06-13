@@ -11,4 +11,4 @@ export { default as Header } from './Header.astro';
 // @ts-expect-error TypeScript doesn't like the .astro file extension
 export { default as Navigation } from './Navigation.astro';
 export * from './DeveloperTeam';
-export * from './Volunteer';
+export * from './VolunteerCard';
