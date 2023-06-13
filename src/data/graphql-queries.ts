@@ -17,7 +17,13 @@ const COLLABIE_DATA_FRAGMENT = gql`
 const CollabiesAndTeams = gql`
 	fragment CollabiesAndTeams on Query {
 		collabies(
-			where: { NOT: { roles_every: { name: "Participant" } }, visible: true }
+			where: {
+				AND: [
+					{ NOT: { roles_every: { name: "Participant" } } }
+					{ roles_some: {} }
+					{ visible: true }
+				]
+			}
 			orderBy: firstName_ASC
 		) {
 			...collabieData

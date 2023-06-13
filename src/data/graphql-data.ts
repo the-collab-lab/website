@@ -49,9 +49,6 @@ const getCollabiesData = () => {
 	const volunteers = [];
 
 	for (const collabie of collabies) {
-		// Skip collabies without roles (for now)
-		if (collabie.roles.length === 0) continue;
-
 		if (collabie.roles.includes('Founder')) {
 			founders.push(collabie);
 		} else {
