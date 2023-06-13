@@ -7,7 +7,8 @@ export type CollabieRoles =
 	| 'Community Manager'
 	| 'Founder'
 	| 'Volunteer'
-	| 'Mentor';
+	| 'Mentor'
+	| 'Tech Talk Presenter';
 
 interface Collabie {
 	bio?: {
