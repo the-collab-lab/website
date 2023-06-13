@@ -8,10 +8,11 @@ import {
 const englishCollator = new Intl.Collator('en', { sensitivity: 'base' });
 
 export interface VolunteerProps {
+	hideRoles?: boolean;
 	volunteer: Collabie;
 }
 
-export function VolunteerCard({ volunteer }: VolunteerProps) {
+export function VolunteerCard({ hideRoles, volunteer }: VolunteerProps) {
 	const { fullName, pathToPhoto, roles } = volunteer;
 	return (
 		<div className="volunteer__grid-item">
@@ -33,7 +34,7 @@ export function VolunteerCard({ volunteer }: VolunteerProps) {
 					<span style={{ fontSize: '1.6em', fontWeight: '600' }}>
 						{fullName}
 					</span>
-					{renderRolesList(roles)}
+					{!hideRoles && renderRolesList(roles)}
 					<hr style={{ width: '100%' }} />
 					{renderSocialsList(volunteer)}
 				</figcaption>
