@@ -1,6 +1,6 @@
 ---
 import { VolunteerCard } from '~components';
-import { volunteers } from '~data';
+import { founders, volunteers } from '~data';
 import { BaseLayout } from '~layouts';
 
 const firstHeadingId = 'volunteer-at-the-collab-lab';
@@ -111,6 +111,17 @@ const firstHeadingId = 'volunteer-at-the-collab-lab';
 			color: 'var(--color-black-light)',
 		}}
 	>
+		<div class="l-center--wide">
+			<h2 id="founders" style="text-align: center;">Our founders</h2>
+
+			<div class="l-grid c-volunteers-grid">
+				{
+					founders.map((founder) => (
+						<VolunteerCard volunteer={founder} hideRoles />
+					))
+				}
+			</div>
+		</div>
 		<div class="l-center--wide">
 			<h2 id="volunteers" style="text-align: center;">Our volunteers</h2>
 
