@@ -1,9 +1,5 @@
 import type { DeveloperTeam as DeveloperTeamT } from '~data';
-import {
-	SOCIAL_SITE_NAMES,
-	fixAssetPath,
-	getRandomGenericAvatarPath,
-} from '~utils';
+import { SOCIAL_SITE_NAMES, getRandomGenericAvatarPath } from '~utils';
 
 function renderSocialsList(volunteer: DeveloperTeamT['developers'][number]) {
 	const socialItems = SOCIAL_SITE_NAMES.map((site) => {
@@ -63,10 +59,7 @@ export function DeveloperTeam({ team }: { team: DeveloperTeamT }) {
 							className="team-member-photo"
 							loading="lazy"
 							height="240"
-							src={
-								fixAssetPath(developer.pathToPhoto) ||
-								getRandomGenericAvatarPath()
-							}
+							src={developer.pathToPhoto || getRandomGenericAvatarPath()}
 							width="240"
 						/>
 						<div class="member-caption">
