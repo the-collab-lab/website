@@ -1,16 +1,12 @@
 import type { Collabie, CollabieRoles } from '~data';
-import {
-	SOCIAL_SITE_NAMES,
-	getRandomGenericAvatarPath,
-	fixAssetPath,
-} from '~utils';
+import { SOCIAL_SITE_NAMES, getRandomGenericAvatarPath } from '~utils';
 
-export interface VolunteerProps {
+export interface VolunteerCardProps {
 	hideRoles?: boolean;
 	volunteer: Collabie;
 }
 
-export function VolunteerCard({ hideRoles, volunteer }: VolunteerProps) {
+export function VolunteerCard({ hideRoles, volunteer }: VolunteerCardProps) {
 	const { fullName, pathToPhoto, roles } = volunteer;
 	return (
 		<div className="volunteer__grid-item">
@@ -26,7 +22,7 @@ export function VolunteerCard({ hideRoles, volunteer }: VolunteerProps) {
 					className="volunteer__photo"
 					loading="lazy"
 					height="300"
-					src={fixAssetPath(pathToPhoto) || getRandomGenericAvatarPath()}
+					src={pathToPhoto || getRandomGenericAvatarPath()}
 				/>
 				<figcaption className="l-stack" style={{ marginBlock: '1.6em' }}>
 					<span style={{ fontSize: '1.6em', fontWeight: '600' }}>

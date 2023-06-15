@@ -24,16 +24,6 @@ export const DateFormatters = {
 	}).format,
 };
 
-/**
- * Fix the path to a static asset.
- */
-export function fixAssetPath(path?: string) {
-	// Our CMS expects an /assets/ folder in the path, but
-	// it doesn't exist in this project structure.
-	// TODO: Delete this once the path is fixed in Hygraph.
-	return path?.replace(/^\/assets/, '');
-}
-
 export function getRandomGenericAvatarPath() {
 	const randomIndex = Math.floor(Math.random() * 4);
 
