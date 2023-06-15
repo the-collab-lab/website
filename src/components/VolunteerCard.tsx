@@ -1,9 +1,5 @@
 import type { Collabie, CollabieRoles } from '~data';
-import {
-	SOCIAL_SITE_NAMES,
-	getRandomGenericAvatarPath,
-	fixAssetPath,
-} from '~utils';
+import { SOCIAL_SITE_NAMES, getRandomGenericAvatarPath } from '~utils';
 
 export interface VolunteerProps {
 	hideRoles?: boolean;
@@ -26,7 +22,7 @@ export function VolunteerCard({ hideRoles, volunteer }: VolunteerProps) {
 					className="volunteer__photo"
 					loading="lazy"
 					height="300"
-					src={fixAssetPath(pathToPhoto) || getRandomGenericAvatarPath()}
+					src={pathToPhoto || getRandomGenericAvatarPath()}
 				/>
 				<figcaption className="l-stack" style={{ marginBlock: '1.6em' }}>
 					<span style={{ fontSize: '1.6em', fontWeight: '600' }}>
@@ -85,30 +81,15 @@ function getBadgeColors(role: CollabieRoles) {
 				backgroundColor: '#0e8a16',
 				color: '#fff',
 			};
-		case 'Career Coach':
-			return {
-				backgroundColor: '#0a6cff',
-				color: '#fff',
-			};
 		case 'Code of Conduct Responder':
 			return {
 				backgroundColor: '#0e8a16',
 				color: '#fff',
 			};
-		case 'Community Manager':
-			return {
-				backgroundColor: '#ff94e8',
-				color: '#000',
-			};
 		case 'Mentor':
 			return {
 				backgroundColor: '#fbca04',
 				color: '#000',
-			};
-		case 'Tech Talk Presenter':
-			return {
-				backgroundColor: '#0a6cff',
-				color: '#fff',
 			};
 		case 'Volunteer':
 			return {
