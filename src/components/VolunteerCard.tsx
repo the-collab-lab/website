@@ -1,12 +1,12 @@
 import type { Collabie, CollabieRoles } from '~data';
 import { SOCIAL_SITE_NAMES, getRandomGenericAvatarPath } from '~utils';
 
-export interface VolunteerProps {
+export interface VolunteerCardProps {
 	hideRoles?: boolean;
 	volunteer: Collabie;
 }
 
-export function VolunteerCard({ hideRoles, volunteer }: VolunteerProps) {
+export function VolunteerCard({ hideRoles, volunteer }: VolunteerCardProps) {
 	const { fullName, pathToPhoto, roles } = volunteer;
 	return (
 		<div className="volunteer__grid-item">
