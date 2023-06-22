@@ -3,6 +3,9 @@ import preact from '@astrojs/preact';
 
 // https://astro.build/config
 export default defineConfig({
+	build: {
+		inlineStylesheets: 'auto',
+	},
 	integrations: [preact()],
 	vite: {
 		server: {
