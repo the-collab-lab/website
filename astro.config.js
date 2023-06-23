@@ -7,10 +7,8 @@ export default defineConfig({
 		inlineStylesheets: 'auto',
 	},
 	integrations: [preact()],
-	vite: {
-		server: {
-			open: true,
-		},
+	server: {
+		open: true,
 	},
 	site: 'https://the-collab-lab.codes/',
 });
