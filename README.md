@@ -76,7 +76,7 @@ gh repo clone the-collab-lab/website-next tcl-website
 Or:
 
 ```shell
-git repo clone git@github.com:the-collab-lab/website-next.git tcl-website
+git clone https://github.com/the-collab-lab/website.git tcl-website
 ```
 
 This command will create a new directory called `tcl-website` in your current working directory. Navigate into the new directory and install the project dependencies.
