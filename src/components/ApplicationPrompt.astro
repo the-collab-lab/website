@@ -1,7 +1,7 @@
 ---
 import { DateFormatters } from '~utils';
 
-export type CohortRegions = 'North America' | 'Europe/Africa' | 'Latin America' | 'South Asia';
+export type CohortRegions = 'North America' | 'Europe/Africa'	| 'Latin America' | 'South Asia';
 
 export interface Props {
 	cohortApplicationWindow: [Date, Date];
@@ -60,7 +60,7 @@ const regionList = listFormatter.format(cohortRegions);
 				<p class="u-text-small">
 					💡 Want a reminder of our next application window?
 					<a
-						href="/ics/Q3-2023-Application-Window.ics"
+						href="/ics/Feb-2024-Application-Window.ics"
 						download
 						style="color: var(--color-black-light);"
 					>
