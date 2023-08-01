@@ -25,8 +25,8 @@ END:VTIMEZONE
 BEGIN:VEVENT
 DTSTAMP:20230730T163918Z
 UID:20221226T163918Z-828471998@marudot.com
-DTSTART;VALUE=DATE:20240121
-DTEND;VALUE=DATE:20240128
+DTSTART;VALUE=DATE:20240114
+DTEND;VALUE=DATE:20240121
 SUMMARY:The Collab Lab Applications Open for February 2024
 URL:https://the-collab-lab.codes/participate/
 DESCRIPTION:Applications are now open for the February 2024 Collab Lab cohort. Go to our website to apply!\n\nLas postulaciones están abiertas para nuestro grupo de personas de Febrero 2024. Ve a nuestro sitio web para postularte!
