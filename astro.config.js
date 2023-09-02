@@ -12,4 +12,5 @@ export default defineConfig({
 		port: 3000,
 	},
 	site: 'https://the-collab-lab.codes/',
+	telemetry: false,
 });
