@@ -9,6 +9,7 @@ export default defineConfig({
 	integrations: [preact()],
 	server: {
 		open: true,
+		port: 3000,
 	},
 	site: 'https://the-collab-lab.codes/',
 });
