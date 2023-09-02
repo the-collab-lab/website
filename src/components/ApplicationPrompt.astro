@@ -1,8 +1,11 @@
 ---
 import { DateFormatters } from '~utils';
 
-export type CohortRegions =
-	| 'North America'
+// Astro's parser freaks out when it encounters multiline type exports, so we
+// can't let Prettier format this line the way it wants to.
+// @see: https://github.com/withastro/compiler/issues/554
+// prettier-ignore
+type CohortRegions = 'North America'
 	| 'Europe/Africa'
 	| 'Latin America'
 	| 'South Asia';
