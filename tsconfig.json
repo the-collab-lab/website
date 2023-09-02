@@ -14,7 +14,7 @@
 			"~data": ["src/data"],
 			"~layouts": ["src/layouts"],
 			"~layouts/*": ["src/layouts/*"],
-			"~utils": ["src/utils"],
+			"~utils": ["src/utils"]
 		}
 	},
 	"extends": "astro/tsconfigs/base"
