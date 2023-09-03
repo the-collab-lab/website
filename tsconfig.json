@@ -3,10 +3,6 @@
 		"baseUrl": ".",
 		"jsx": "react-jsx",
 		"jsxImportSource": "preact",
-		// Enable strict type checking.
-		"strict": true,
-		// Error when a value import is only used as a type.
-		"importsNotUsedAsValues": "error",
 		"paths": {
 			// Enable importing from the root of the project.
 			"~components": ["src/components"],
@@ -14,8 +10,12 @@
 			"~data": ["src/data"],
 			"~layouts": ["src/layouts"],
 			"~layouts/*": ["src/layouts/*"],
-			"~utils": ["src/utils"],
-		}
+			"~utils": ["src/utils"]
+		},
+		// Enable strict type checking.
+		"strict": true,
+		// Error when a value import is only used as a type.
+		"verbatimModuleSyntax": true
 	},
 	"extends": "astro/tsconfigs/base"
 }
