@@ -2,11 +2,11 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    schedule:
-      interval: "weekly"
-      assignees:
+    assignees:
         - "mentalcaries"
         - "mxmason"
       reviewers:
         - "mentalcaries"
         - "mxmason"
+    schedule:
+      interval: "weekly"
