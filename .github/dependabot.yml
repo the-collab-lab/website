@@ -1,13 +1,12 @@
-# Config file for enabling Dependabot to make weekly PRs against our NPM dependencies
 version: 2
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'weekly'
+      interval: "weekly"
       assignees:
-        - 'mentalcaries'
-        - 'mxmason'
+        - "mentalcaries"
+        - "mxmason"
       reviewers:
-        - 'mentalcaries'
-        - 'mxmason'
+        - "mentalcaries"
+        - "mxmason"
