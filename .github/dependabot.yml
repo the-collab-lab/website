@@ -1,3 +1,4 @@
+# Config file for enabling Dependabot to make weekly PRs against our NPM dependencies
 version: 2
 updates:
   - package-ecosystem: 'npm'
