@@ -104,7 +104,7 @@ html {
 
 body {
 	font-size: var(--font-size-base);
-	line-height: 1.445;
+	line-height: 1.5;
 	margin: 0;
 }
 
@@ -128,7 +128,7 @@ h6,
 .h6 {
 	font-family: var(--font-stack);
 	font-weight: 700;
-	line-height: 1.25;
+	line-height: 1.4;
 	text-align: left;
 }
 
