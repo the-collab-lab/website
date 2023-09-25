@@ -37,7 +37,7 @@
 		"@astrojs/preact": "^3.0.0",
 		"graphql-request": "^6.1.0",
 		"preact": "^10.17.1",
-		"stripe": "^13.6.0"
+		"stripe": "^13.7.0"
 	},
 	"lint-staged": {
 		"*.{astro,js,ts,jsx,tsx}": "eslint --cache --fix",
