@@ -34,10 +34,10 @@
 		"typescript": "^5.2.2"
 	},
 	"dependencies": {
-		"@astrojs/preact": "^3.0.0",
+		"@astrojs/preact": "^3.0.1",
 		"graphql-request": "^6.1.0",
 		"preact": "^10.18.1",
-		"stripe": "^13.8.0"
+		"stripe": "^13.9.0"
 	},
 	"lint-staged": {
 		"*.{astro,js,ts,jsx,tsx}": "eslint --cache --fix",
