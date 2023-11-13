@@ -16,11 +16,11 @@
 		"prepare": "husky install"
 	},
 	"devDependencies": {
-		"@types/stripe-v3": "^3.1.31",
-		"@typescript-eslint/eslint-plugin": "^6.9.0",
-		"@typescript-eslint/parser": "^6.9.0",
-		"astro": "^3.4.0",
-		"eslint": "^8.52.0",
+		"@types/stripe-v3": "^3.1.32",
+		"@typescript-eslint/eslint-plugin": "^6.10.0",
+		"@typescript-eslint/parser": "^6.10.0",
+		"astro": "^3.5.3",
+		"eslint": "^8.53.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-import-resolver-typescript": "^3.6.1",
 		"eslint-plugin-astro": "^0.29.1",
@@ -28,8 +28,8 @@
 		"eslint-plugin-node": "^11.1.0",
 		"eslint-plugin-prettier": "^5.0.1",
 		"husky": "^8.0.3",
-		"lint-staged": "^15.0.2",
-		"prettier": "^3.0.3",
+		"lint-staged": "^15.1.0",
+		"prettier": "^3.1.0",
 		"prettier-plugin-astro": "^0.12.1",
 		"typescript": "^5.2.2"
 	},
