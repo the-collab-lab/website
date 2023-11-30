@@ -81,13 +81,35 @@ const Testimonials = gql`
 	}
 `;
 
+const Projects = gql`
+	fragment Projects on Query {
+		projects {
+			title
+			pathToThumbnailImage
+			team {
+				anchor
+				displayName
+				startDate
+				endDate
+				developers: participants(orderBy: firstName_ASC) {
+					...collabieData
+				}
+			}
+			repoUrl
+			hostedSiteUrl
+		}
+	}
+`;
+
 export const ComposedQuery = gql`
 	{
 		...CollabiesAndTeams
 		...TechTalks
 		...Testimonials
+		...Projects
 	}
 	${CollabiesAndTeams}
 	${TechTalks}
 	${Testimonials}
+	${Projects}
 `;

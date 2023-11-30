@@ -87,6 +87,22 @@ function getTeams() {
 	});
 }
 
+function getProjects() {
+	return hygraphResponse.projects.map((project) => {
+		return {
+			...project,
+			team: {
+				...project.team,
+				calculatedDate: calculatedDate({
+					startDate: project.team.startDate,
+					endDate: project.team.endDate,
+				}),
+				teamNumber: calculateTeamNumber(project.team.anchor),
+			},
+		};
+	});
+}
+
 function getTechTalksData() {
 	return hygraphResponse.techTalks.map((talk) => {
 		const rgx = /(v=([\w-]+))|(be\/([\w-]+))/; // there's probably room for improvement here
@@ -130,6 +146,7 @@ export const { founders, mentors, volunteers } = getCollabiesData();
 export const teams = getTeams();
 export const techTalks = getTechTalksData();
 export const testimonials = getTestimonials();
+export const projects = getProjects();
 
 export type Collabie =
 	| (typeof founders)[number]
@@ -137,3 +154,5 @@ export type Collabie =
 	| (typeof volunteers)[number];
 
 export type DeveloperTeam = (typeof teams)[number];
+
+export type Project = (typeof projects)[number];

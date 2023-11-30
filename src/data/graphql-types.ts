@@ -33,6 +33,14 @@ interface DeveloperTeam {
 	startDate: string;
 }
 
+interface Project {
+	title: string;
+	pathToThumbnailImage: string;
+	team: DeveloperTeam;
+	repoUrL: string;
+	hostedSiteUrl: string;
+}
+
 export interface TechTalk {
 	title: string;
 	presenters: Pick<Collabie, 'fullName'>;
@@ -60,4 +68,5 @@ export interface ComposedQueryResponse {
 	teams: DeveloperTeam[];
 	techTalks: TechTalk[];
 	testimonials: Testimonial[];
+	projects: Project[];
 }

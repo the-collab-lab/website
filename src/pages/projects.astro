@@ -1,0 +1,39 @@
+---
+import { BaseLayout } from '~layouts';
+import { projects } from '~data';
+import { ProjectGallery } from '~components';
+
+const firstHeadingId = 'collab-lab-projects';
+---
+
+<BaseLayout title="ProjectGallery" skipTargetId={firstHeadingId}>
+	<div class="l-center--wide">
+		<h1 id={firstHeadingId} class="h2">Collab Lab Projects</h1>
+		<p>Copy to be added here about projects...</p>
+	</div>
+	<div class="c-developers-container">
+		<div class="l-center--wide c-developers">
+			<h2>Project Gallery</h2>
+			{projects.map((project) => <ProjectGallery project={project} />)}
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	.c-developers-container {
+		background-color: var(--color-black-dark);
+	}
+
+	.c-developers {
+		color: var(--color-black-light);
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 3em;
+	}
+
+	.c-developers > h2 {
+		text-align: center;
+		margin-block-end: 0;
+	}
+</style>
