@@ -12,9 +12,8 @@ const firstHeadingId = 'collab-lab-projects';
 		<p>A lovely description of the projects will go here...</p>
 	</div>
 	<div class="c-developers-container">
-		<h2>Project Gallery</h2>
-
-		<div class="l-grid c-projects-grid">
+		<div class="l-center--wide c-developers">
+			<h2>Project Gallery</h2>
 			{projects.map((project) => <ProjectGallery project={project} />)}
 		</div>
 	</div>
@@ -25,12 +24,16 @@ const firstHeadingId = 'collab-lab-projects';
 		background-color: var(--color-black-dark);
 	}
 
-	.l-grid.c-projects-grid {
+	.c-developers {
 		color: var(--color-black-light);
-		column-gap: 7.7rem;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 3em;
 	}
 
-	.l-grid.c-projects-grid > h2 {
+	.c-developers > h2 {
+		text-align: center;
 		margin-block-end: 0;
 	}
 </style>
