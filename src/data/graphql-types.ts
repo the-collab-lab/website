@@ -37,8 +37,12 @@ interface Project {
 	title: string;
 	pathToThumbnailImage: string;
 	team: DeveloperTeam;
-	repoUrL: string;
-	hostedSiteUrl: string;
+	gitHubUrl: string;
+	firebaseUrl: string;
+	previewImage: {
+		url: string;
+		thumbnail: string;
+	};
 }
 
 export interface TechTalk {

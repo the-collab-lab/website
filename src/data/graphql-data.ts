@@ -94,8 +94,8 @@ function getProjects() {
 			team: {
 				...project.team,
 				calculatedDate: calculatedDate({
-					startDate: project.team.startDate,
-					endDate: project.team.endDate,
+					startDate: project.team?.startDate,
+					endDate: project.team?.endDate,
 				}),
 				teamNumber: calculateTeamNumber(project.team.anchor),
 			},

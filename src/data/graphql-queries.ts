@@ -91,12 +91,18 @@ const Projects = gql`
 				displayName
 				startDate
 				endDate
-				developers: participants(orderBy: firstName_ASC) {
-					...collabieData
-				}
 			}
-			repoUrl
-			hostedSiteUrl
+			gitHubUrl
+			firebaseUrl
+			previewImage {
+				thumbnail: url(
+					transformation: {
+						image: { resize: { width: 50, height: 50, fit: clip } }
+						document: { output: { format: png } }
+					}
+				)
+				url(transformation: { document: { output: { format: png } } })
+			}
 		}
 	}
 `;

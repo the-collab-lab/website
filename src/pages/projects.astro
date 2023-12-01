@@ -9,11 +9,12 @@ const firstHeadingId = 'collab-lab-projects';
 <BaseLayout title="ProjectGallery" skipTargetId={firstHeadingId}>
 	<div class="l-center--wide">
 		<h1 id={firstHeadingId} class="h2">Collab Lab Projects</h1>
-		<p>Copy to be added here about projects...</p>
+		<p>A lovely description of the projects will go here...</p>
 	</div>
 	<div class="c-developers-container">
-		<div class="l-center--wide c-developers">
-			<h2>Project Gallery</h2>
+		<h2>Project Gallery</h2>
+
+		<div class="l-grid c-projects-grid">
 			{projects.map((project) => <ProjectGallery project={project} />)}
 		</div>
 	</div>
@@ -24,16 +25,12 @@ const firstHeadingId = 'collab-lab-projects';
 		background-color: var(--color-black-dark);
 	}
 
-	.c-developers {
+	.l-grid.c-projects-grid {
 		color: var(--color-black-light);
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 3em;
+		column-gap: 7.7rem;
 	}
 
-	.c-developers > h2 {
-		text-align: center;
+	.l-grid.c-projects-grid > h2 {
 		margin-block-end: 0;
 	}
 </style>
