@@ -7,6 +7,10 @@ export default defineConfig({
 		inlineStylesheets: 'auto',
 	},
 	integrations: [preact()],
+	prefetch: {
+		defaultStrategy: 'hover',
+		prefetchAll: true,
+	},
 	server: {
 		open: true,
 		port: 3000,
