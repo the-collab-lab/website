@@ -1,5 +1,10 @@
 import type { DeveloperTeam as DeveloperTeamT } from '~data';
-import { SOCIAL_SITE_NAMES, getRandomGenericAvatarPath } from '~utils';
+import {
+	PROJECT_SITE_NAMES,
+	SOCIAL_SITE_NAMES,
+	getRandomGenericAvatarPath,
+} from '~utils';
+import type { Project as ProjectT } from '~data';
 
 function renderSocialsList(volunteer: DeveloperTeamT['developers'][number]) {
 	const socialItems = SOCIAL_SITE_NAMES.map((site) => {
@@ -28,7 +33,35 @@ function renderSocialsList(volunteer: DeveloperTeamT['developers'][number]) {
 	);
 }
 
+function renderProjectSiteAndRepo(project: Omit<ProjectT, 'team'>) {
+	const socialItems = PROJECT_SITE_NAMES.map((site) => {
+		const siteUrl = project && project[`${site}Url` as const];
+
+		if (!siteUrl || siteUrl.length === 0) return null;
+		const formattedSiteName = site.charAt(0).toUpperCase() + site.slice(1);
+		return (
+			<li className="project__social-item">
+				<a href={siteUrl}>
+					<img
+						src={`/img/icons/${site.toLowerCase()}.svg`}
+						alt={`${project.title}'s ${formattedSiteName}`}
+						height="24"
+						width="24"
+					/>
+				</a>
+			</li>
+		);
+	});
+
+	return (
+		<ul className="project__links" style={{ display: 'flex', gap: '10px' }}>
+			{socialItems}
+		</ul>
+	);
+}
+
 export function DeveloperTeam({ team }: { team: DeveloperTeamT }) {
+	console.log({ team });
 	return (
 		<div
 			class="c-developer-team"
@@ -52,6 +85,19 @@ export function DeveloperTeam({ team }: { team: DeveloperTeamT }) {
 					)`,
 				}}
 			>
+				<li class="project-container">
+					<img
+						alt={team.project?.title}
+						height="240"
+						loading="lazy"
+						src={team.project?.previewImage?.url}
+						width="240"
+					/>
+					<div class="member-caption">
+						<p>{team.project?.title}</p>
+						{renderProjectSiteAndRepo(team.project)}
+					</div>
+				</li>
 				{team.developers.map((developer) => (
 					<li class="member-container">
 						<img

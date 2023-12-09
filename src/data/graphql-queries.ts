@@ -39,6 +39,19 @@ const CollabiesAndTeams = gql`
 			developers: participants(orderBy: firstName_ASC) {
 				...collabieData
 			}
+			project {
+				title
+				gitHubUrl
+				firebaseUrl
+				previewImage {
+					url(
+						transformation: {
+							image: { resize: { width: 240, height: 240, fit: crop } }
+							document: { output: { format: png } }
+						}
+					)
+				}
+			}
 		}
 	}
 	${COLLABIE_DATA_FRAGMENT}
@@ -85,7 +98,6 @@ const Projects = gql`
 	fragment Projects on Query {
 		projects {
 			title
-			pathToThumbnailImage
 			team {
 				anchor
 				displayName

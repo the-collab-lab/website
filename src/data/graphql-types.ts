@@ -31,6 +31,7 @@ interface DeveloperTeam {
 	displayName: string;
 	endDate: string;
 	startDate: string;
+	project: Project;
 }
 
 interface Project {
