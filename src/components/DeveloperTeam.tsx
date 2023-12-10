@@ -84,19 +84,21 @@ export function DeveloperTeam({ team }: { team: DeveloperTeamT }) {
 					)`,
 				}}
 			>
-				<li class="project-container">
-					<img
-						alt={team.project?.title}
-						height="240"
-						loading="lazy"
-						src={team.project?.previewImage?.url}
-						width="240"
-					/>
-					<div class="member-caption">
-						<p>{team.project?.title}</p>
-						{renderProjectSiteAndRepo(team.project)}
-					</div>
-				</li>
+				{team.project && (
+					<li class="project-container">
+						<img
+							alt={team.project.title}
+							height="240"
+							loading="lazy"
+							src={team.project.previewImage.url}
+							width="240"
+						/>
+						<div class="member-caption">
+							<p>{team.project.title}</p>
+							{renderProjectSiteAndRepo(team.project)}
+						</div>
+					</li>
+				)}
 				{team.developers.map((developer) => (
 					<li class="member-container">
 						<img
