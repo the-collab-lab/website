@@ -33,7 +33,7 @@ function renderSocialsList(volunteer: DeveloperTeamT['developers'][number]) {
 	);
 }
 
-function renderProjectSiteAndRepo(project: Omit<ProjectT, 'team'>) {
+function renderProjectSiteAndRepo(project: ProjectT) {
 	const projectLinks = PROJECT_SITE_NAMES.map((site) => {
 		const siteUrl = project && project[`${site}Url` as const];
 

@@ -1,6 +1,6 @@
 export const SOCIAL_SITE_NAMES = ['gitHub', 'linkedIn', 'twitter'] as const;
 
-export const PROJECT_SITE_NAMES = ['gitHub', 'firebase'] as const;
+export const PROJECT_SITE_NAMES = ['gitHub', 'project'] as const;
 
 export const DateFormatters = {
 	dayMonth: new Intl.DateTimeFormat('en-US', {

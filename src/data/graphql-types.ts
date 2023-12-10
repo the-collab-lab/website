@@ -37,7 +37,7 @@ interface DeveloperTeam {
 export interface Project {
 	title: string;
 	gitHubUrl: string;
-	firebaseUrl: string;
+	projectUrl: string;
 	previewImage: {
 		url: string;
 	};

@@ -42,7 +42,7 @@ const CollabiesAndTeams = gql`
 			project {
 				title
 				gitHubUrl
-				firebaseUrl
+				projectUrl
 				previewImage {
 					url(
 						transformation: {
