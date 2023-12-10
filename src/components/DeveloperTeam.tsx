@@ -95,7 +95,7 @@ export function DeveloperTeam({ team }: { team: DeveloperTeamT }) {
 								width="240"
 							/>
 						</a>
-						<div class="member-caption">
+						<div class="project-caption">
 							<p>{team.project.title}</p>
 							{renderProjectSiteAndRepo(team.project)}
 						</div>
