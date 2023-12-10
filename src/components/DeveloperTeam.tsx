@@ -86,13 +86,15 @@ export function DeveloperTeam({ team }: { team: DeveloperTeamT }) {
 			>
 				{team.project && (
 					<li class="project-container">
-						<img
-							alt={team.project.title}
-							height="240"
-							loading="lazy"
-							src={team.project.previewImage.url}
-							width="240"
-						/>
+						<a href={team.project.projectUrl}>
+							<img
+								alt={team.project.title}
+								height="240"
+								loading="lazy"
+								src={team.project.previewImage.url}
+								width="240"
+							/>
+						</a>
 						<div class="member-caption">
 							<p>{team.project.title}</p>
 							{renderProjectSiteAndRepo(team.project)}
