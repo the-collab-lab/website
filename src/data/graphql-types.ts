@@ -34,15 +34,12 @@ interface DeveloperTeam {
 	project: Project;
 }
 
-interface Project {
+export interface Project {
 	title: string;
-	pathToThumbnailImage: string;
-	team: DeveloperTeam;
 	gitHubUrl: string;
 	firebaseUrl: string;
 	previewImage: {
 		url: string;
-		thumbnail: string;
 	};
 }
 

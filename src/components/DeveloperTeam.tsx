@@ -27,14 +27,14 @@ function renderSocialsList(volunteer: DeveloperTeamT['developers'][number]) {
 	});
 
 	return (
-		<ul className="volunteer__socials" style={{ display: 'flex', gap: '10px' }}>
+		<ul className="project__links" style={{ display: 'flex', gap: '10px' }}>
 			{socialItems}
 		</ul>
 	);
 }
 
 function renderProjectSiteAndRepo(project: Omit<ProjectT, 'team'>) {
-	const socialItems = PROJECT_SITE_NAMES.map((site) => {
+	const projectLinks = PROJECT_SITE_NAMES.map((site) => {
 		const siteUrl = project && project[`${site}Url` as const];
 
 		if (!siteUrl || siteUrl.length === 0) return null;
@@ -55,13 +55,12 @@ function renderProjectSiteAndRepo(project: Omit<ProjectT, 'team'>) {
 
 	return (
 		<ul className="project__links" style={{ display: 'flex', gap: '10px' }}>
-			{socialItems}
+			{projectLinks}
 		</ul>
 	);
 }
 
 export function DeveloperTeam({ team }: { team: DeveloperTeamT }) {
-	console.log({ team });
 	return (
 		<div
 			class="c-developer-team"

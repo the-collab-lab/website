@@ -94,40 +94,13 @@ const Testimonials = gql`
 	}
 `;
 
-const Projects = gql`
-	fragment Projects on Query {
-		projects {
-			title
-			team {
-				anchor
-				displayName
-				startDate
-				endDate
-			}
-			gitHubUrl
-			firebaseUrl
-			previewImage {
-				thumbnail: url(
-					transformation: {
-						image: { resize: { width: 50, height: 50, fit: clip } }
-						document: { output: { format: png } }
-					}
-				)
-				url(transformation: { document: { output: { format: png } } })
-			}
-		}
-	}
-`;
-
 export const ComposedQuery = gql`
 	{
 		...CollabiesAndTeams
 		...TechTalks
 		...Testimonials
-		...Projects
 	}
 	${CollabiesAndTeams}
 	${TechTalks}
 	${Testimonials}
-	${Projects}
 `;
