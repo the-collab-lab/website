@@ -35,6 +35,7 @@
 	},
 	"dependencies": {
 		"@astrojs/preact": "^3.0.1",
+		"@astrojs/sitemap": "^3.0.3",
 		"graphql-request": "^6.1.0",
 		"preact": "^10.19.3",
 		"stripe": "^14.9.0"
