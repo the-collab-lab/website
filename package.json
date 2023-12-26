@@ -38,7 +38,7 @@
 		"@astrojs/sitemap": "^3.0.3",
 		"graphql-request": "^6.1.0",
 		"preact": "^10.19.3",
-		"stripe": "^14.9.0"
+		"stripe": "^14.10.0"
 	},
 	"lint-staged": {
 		"*.{astro,js,ts,jsx,tsx}": "eslint --cache --fix",
