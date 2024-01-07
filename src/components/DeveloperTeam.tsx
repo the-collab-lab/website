@@ -1,5 +1,10 @@
 import type { DeveloperTeam as DeveloperTeamT } from '~data';
-import { SOCIAL_SITE_NAMES, getRandomGenericAvatarPath } from '~utils';
+import {
+	PROJECT_SITE_NAMES,
+	SOCIAL_SITE_NAMES,
+	getRandomGenericAvatarPath,
+} from '~utils';
+import type { Project as ProjectT } from '~data';
 
 function renderSocialsList(volunteer: DeveloperTeamT['developers'][number]) {
 	const socialItems = SOCIAL_SITE_NAMES.map((site) => {
@@ -22,8 +27,35 @@ function renderSocialsList(volunteer: DeveloperTeamT['developers'][number]) {
 	});
 
 	return (
-		<ul className="volunteer__socials" style={{ display: 'flex', gap: '10px' }}>
+		<ul className="project__links" style={{ display: 'flex', gap: '10px' }}>
 			{socialItems}
+		</ul>
+	);
+}
+
+function renderProjectSiteAndRepo(project: ProjectT) {
+	const projectLinks = PROJECT_SITE_NAMES.map((site) => {
+		const siteUrl = project && project[`${site}Url` as const];
+
+		if (!siteUrl || siteUrl.length === 0) return null;
+		const formattedSiteName = site.charAt(0).toUpperCase() + site.slice(1);
+		return (
+			<li className="project__social-item">
+				<a href={siteUrl}>
+					<img
+						src={`/img/icons/${site.toLowerCase()}.svg`}
+						alt={`${project.title}'s ${formattedSiteName}`}
+						height="24"
+						width="24"
+					/>
+				</a>
+			</li>
+		);
+	});
+
+	return (
+		<ul className="project__links" style={{ display: 'flex', gap: '10px' }}>
+			{projectLinks}
 		</ul>
 	);
 }
@@ -52,6 +84,23 @@ export function DeveloperTeam({ team }: { team: DeveloperTeamT }) {
 					)`,
 				}}
 			>
+				{team.project && (
+					<li class="project-container">
+						<a href={team.project.projectUrl}>
+							<img
+								alt={team.project.title}
+								height="240"
+								loading="lazy"
+								src={team.project.previewImage.url}
+								width="240"
+							/>
+						</a>
+						<div class="project-caption">
+							<p>{team.project.title}</p>
+							{renderProjectSiteAndRepo(team.project)}
+						</div>
+					</li>
+				)}
 				{team.developers.map((developer) => (
 					<li class="member-container">
 						<img

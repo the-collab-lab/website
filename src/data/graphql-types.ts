@@ -31,6 +31,16 @@ interface DeveloperTeam {
 	displayName: string;
 	endDate: string;
 	startDate: string;
+	project: Project;
+}
+
+export interface Project {
+	title: string;
+	gitHubUrl: string;
+	projectUrl: string;
+	previewImage: {
+		url: string;
+	};
 }
 
 export interface TechTalk {
@@ -60,4 +70,5 @@ export interface ComposedQueryResponse {
 	teams: DeveloperTeam[];
 	techTalks: TechTalk[];
 	testimonials: Testimonial[];
+	projects: Project[];
 }

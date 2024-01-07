@@ -39,6 +39,19 @@ const CollabiesAndTeams = gql`
 			developers: participants(orderBy: firstName_ASC) {
 				...collabieData
 			}
+			project {
+				title
+				gitHubUrl
+				projectUrl
+				previewImage {
+					url(
+						transformation: {
+							image: { resize: { width: 240, height: 240, fit: crop } }
+							document: { output: { format: png } }
+						}
+					)
+				}
+			}
 		}
 	}
 	${COLLABIE_DATA_FRAGMENT}
