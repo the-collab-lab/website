@@ -1,0 +1,92 @@
+---
+import { DateFormatters } from '~utils';
+
+// Astro's parser freaks out when it encounters multiline type exports, so we
+// can't let Prettier format this line the way it wants to.
+// @see: https://github.com/withastro/compiler/issues/554
+// prettier-ignore
+type CohortRegions = 'North America'
+	| 'Europe/Africa'
+	| 'Latin America'
+	| 'South Asia';
+
+export interface Props {
+	cohortApplicationWindow: [Date, Date];
+	cohortKickoffDate: Date;
+	cohortRegions: readonly CohortRegions[];
+}
+
+const {
+	cohortApplicationWindow: [windowStart, windowEnd],
+	cohortKickoffDate,
+	cohortRegions,
+} = Astro.props as Props;
+
+const now = Date.now();
+// Applications are open if the time of the build is
+// within the application window. The window closes at the END of the final day
+// so we add 86,400,000 ms (24 hours) to the end of the window.
+const applicationsOpen =
+	now >= windowStart.getTime() && now <= windowEnd.getTime() + 86_400_000;
+
+const formattedKickoff = DateFormatters.fullDateLongMonth(cohortKickoffDate);
+const [formattedWindowStart, formattedWindowEnd] = [
+	DateFormatters.dayMonth(windowStart),
+	DateFormatters.dayMonth(windowEnd),
+];
+
+const listFormatter = new Intl.ListFormat('en-US', {
+	style: 'long',
+	type: 'conjunction',
+});
+
+const regionList = listFormatter.format(cohortRegions);
+---
+
+<p class="u-text-large">
+	Our next cohort will kick off on {formattedKickoff}. We plan to run teams in
+	{regionList} time zones. The application window will be open from {
+		formattedWindowStart
+	} to
+	{formattedWindowEnd}. We will notify you of your status the following week.
+</p>
+<>
+	{
+		applicationsOpen ? (
+			<p class="u-text-large">
+				<a href="https://airtable.com/shrv9cqaTVHNhCvT1" class="c-button">
+					Apply now!
+				</a>
+			</p>
+		) : (
+			<>
+				<p class="u-text-bold u-text-large">
+					Return to this page between {formattedWindowStart} and{' '}
+					{formattedWindowEnd} to submit your application
+				</p>
+				<p class="u-text-small">
+					💡 Want a reminder of our next application window?
+					<a
+						href="/ics/Aug-2024-Application-Window.ics"
+						download
+						style="color: var(--color-black-light);"
+					>
+						Download this iCal file!
+					</a>
+				</p>
+			</>
+		)
+	}
+</>
+
+<style>
+	.c-button {
+		appearance: button;
+		background-color: var(--color-black-light);
+		border: 1px solid var(--color-black-light);
+		border-radius: 4px;
+		color: var(--color-blue-mid);
+		padding: 0.5rem 1.6rem;
+		text-decoration: none;
+	}
+</style>
