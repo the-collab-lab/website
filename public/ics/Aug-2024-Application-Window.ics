@@ -23,16 +23,16 @@ RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-DTSTAMP:20221226T163918Z
+DTSTAMP:20230730T163918Z
 UID:20221226T163918Z-828471998@marudot.com
-DTSTART;VALUE=DATE:20220313
-DTEND;VALUE=DATE:20220319
-SUMMARY:The Collab Lab Applications Open for Q2 2022
-URL:https://the-collab-lab.codes/apply/
-DESCRIPTION:Applications are now open for the Q2 2022 Collab Lab cohort. Go to our website to apply!\n\nLas postulaciones están abiertas para nuestro grupo de personas de Q2 2022. Ve a nuestro sitio web para postularte!
+DTSTART;VALUE=DATE:20240721
+DTEND;VALUE=DATE:20240728
+SUMMARY:The Collab Lab Applications Open for August 2024
+URL:https://the-collab-lab.codes/participate/
+DESCRIPTION:Applications are now open for the August 2024 Collab Lab cohort. Go to our website to apply!\n\nLas postulaciones están abiertas para nuestro grupo de personas de Agosto 2024. Ve a nuestro sitio web para postularte!
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:The Collab Lab Applications Open for Q2 2022
+DESCRIPTION:The Collab Lab Applications Open for August 2024
 TRIGGER:-PT0M
 END:VALARM
 END:VEVENT
