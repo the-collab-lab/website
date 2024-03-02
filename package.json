@@ -37,7 +37,7 @@
 		"@astrojs/preact": "^3.1.0",
 		"@astrojs/sitemap": "^3.0.4",
 		"graphql-request": "^6.1.0",
-		"preact": "^10.19.3",
+		"preact": "^10.19.6",
 		"stripe": "^14.10.0"
 	},
 	"lint-staged": {
