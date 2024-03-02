@@ -13,7 +13,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@types/stripe-v3": "^3.1.33",
