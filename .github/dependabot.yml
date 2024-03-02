@@ -10,6 +10,8 @@ updates:
         - "mxmason"
     schedule:
       interval: "monthly"
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major"]
+    groups:
+      minor-and-patch-dependencies:
+        update-types:
+          - "minor"
+          - "patch"
