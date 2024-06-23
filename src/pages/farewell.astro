@@ -1,0 +1,124 @@
+---
+import { BaseLayout } from '~layouts';
+
+const firstHeadingId = 'farewell';
+---
+
+<BaseLayout title="A Memorable Journey's End" skipTargetId={firstHeadingId}>
+	<div class="l-center">
+		<h1 id="{firstHeadingId}" class="h2">A Memorable Journey's End</h1>
+		<p>Dear Collab Lab Community and friends of The Collab Lab,</p>
+		<p>
+			After much thought, we’ve decided to close The Collab Lab at the end of
+			this year. It was an incredibly tough decision, but we believe it’s the
+			right move. Before we wrap up, we have one final cohort ahead of us, and
+			we hope you'll help make it unforgettable! ⭐️
+		</p>
+		<p>
+			Over the years, we've achieved amazing things together.
+			<a href="#developers" style="color: var(--color-blue-mid)"
+				>Hundreds of Collab Lab developers across 25+ countries</a
+			>
+			have found their footing in tech, and many of you have come back to reach a
+			hand back to the next wave of early-career people behind you. Thank you so
+			much for giving back. ❤️
+		</p>
+		<p>
+			So, why are we closing? Running a non-profit solely with volunteers is
+			incredibly challenging. Despite our wonderful community, maintaining
+			sustainability has become tough. We explored many options to keep The
+			Collab Lab going, but they required significant resources and didn’t quite
+			feel right. In consultation with the Board, we’ve decided it was best to
+			close things down cleanly to preserve the legacy we've all built together.
+		</p>
+		<p>
+			Although this decision may come as a shock to many of you who have
+			invested so much into our community, this isn’t goodbye to the spirit of
+			The Collab Lab! We encourage you to take everything you’ve learned and
+			built here and create your own communities, whether local or global. Keep
+			supporting early-career folks and continue the cycle of mentorship and
+			growth.
+		</p>
+
+		<div class="call-to-action-box">
+			<strong>A Call to Action for Employers</strong>
+			<p>
+				To the companies and organizations out there, we have a special message:
+				Please consider hiring early-career engineers. The Collab Lab has been a
+				testament to the incredible potential and talent that these individuals
+				possess.
+			</p>
+			<p>There are myriad benefits to hiring early-career developers:</p>
+			<ul>
+				<li>
+					<strong>Enthusiasm and Motivation:</strong> The enthusiasm they bring to
+					a team is contagious. They can serve as motivation to better document requirements,
+					systems, and processes.
+				</li>
+				<li>
+					<strong>Diversity:</strong> This group tends to include more people from
+					groups underrepresented in tech, making it a great way to increase diversity
+					on your teams.
+				</li>
+			</ul>
+			<p>
+				However, like anything worth doing, you may need to make changes to make
+				the effort successful. Harnessing that enthusiasm takes planning and
+				organization. Increasing the diversity of your team by hiring bootcamp
+				grads only works in the long term if you do the hard work of creating an
+				inclusive, supportive working environment. There are no shortcuts in
+				life or tech, but if you lay the proper groundwork, you’ll set yourself
+				up to help your early-career developers succeed.
+			</p>
+		</div>
+		<p>
+			As we close this chapter, we are excited to announce that we will be
+			running one final cohort. Let's make it our best one yet! This is your
+			chance to be part of something truly special and help us make a lasting
+			impact. We encourage everyone to get involved, share your knowledge, and
+			support our final group of early-career engineers.
+			<strong
+				>If you are an early-career developer,
+				<a href="#participate" style="color: var(--color-blue-mid)"
+					>learn how to apply here</a
+				>! Experienced professionals, your guidance is invaluable and we
+				encourage you to volunteer
+				<a href="#volunteer" style="color: var(--color-blue-mid)">here</a
+				>.</strong
+			>
+		</p>
+		<p>
+			Thank you for being part of this incredible journey with us. We couldn’t
+			have done it without each and every one of you.
+		</p>
+		<p>With all the love, Andrew & Stacie</p>
+	</div>
+</BaseLayout>
+
+<style>
+	* + h2 {
+		margin-bottom: 1em;
+		margin-top: 1em;
+	}
+	p {
+		margin-left: initial;
+		margin-right: initial;
+	}
+	ul {
+		list-style: disc;
+		margin-left: 1.5em;
+	}
+
+	li + li {
+		margin-top: 1em;
+	}
+
+	.call-to-action-box {
+		border: 2px solid #ccc;
+		padding: 1em;
+		margin-top: 1em;
+		margin-bottom: 1em;
+		border-radius: 8px;
+		background-color: #f9f9f9;
+	}
+</style>
