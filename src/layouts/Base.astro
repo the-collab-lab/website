@@ -1,6 +1,7 @@
 ---
 import { Footer, Header } from '~components';
 import '../styles/global.css';
+import Banner from '~components/Banner.astro';
 
 export interface Props {
 	subtitle?: string;
@@ -81,6 +82,7 @@ const jsonLDSchema = JSON.stringify(
 		<a href={`#${skipTargetId}`} class="c-skip-link">Skip to content</a>
 		<a href="#support-collab-lab" class="c-skip-link">Skip to footer</a>
 		<Header />
+		<Banner />
 		<main>
 			<slot />
 		</main>
