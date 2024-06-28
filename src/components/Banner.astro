@@ -1,10 +1,10 @@
 <div class="banner">
 	<p class="u-text-large">
 		<span class="u-text-bold">Notice: </span>The Collab Lab is closing at the
-		end of 2024 -- <a href="/farewell">more details here</a>. We're excited to
-		announce that we will be running one final cohort. <a href=" /participate"
-			>Learn how to apply here!</a
-		>
+		end of 2024 — read <a href="/farewell">our farewell anouncement</a> for more
+		info. We&rsquo;re excited to announce that we'll be running one final cohort.
+		Head to <a href="/participate">our &ldquo;participate&rdquo; page</a> to learn
+		more.
 	</p>
 </div>
 
@@ -12,11 +12,13 @@
 	.banner {
 		align-self: flex-start;
 		box-sizing: content-box;
-		border: 16px solid var(--color-blue-mid);
-		padding-block: 2rem;
-		padding-inline: 2rem;
-		margin: 3rem auto;
+		padding: 2rem;
 		background-color: var(--color-yellow-light);
-		max-width: 70vw;
+
+		& > p {
+			line-height: 1.4;
+			margin: 0 auto;
+			max-inline-size: min(95vw, 98rem);
+		}
 	}
 </style>
