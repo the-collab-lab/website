@@ -78,7 +78,7 @@ async function getDonationOptions(): Promise<{
 							amount: 15,
 							name: 'Amplifier',
 						},
-				  ] as DonationOption[])
+					] as DonationOption[])
 				: [];
 		return {
 			options,
