@@ -30,7 +30,7 @@
 		"prettier": "^3.3.2",
 		"prettier-plugin-astro": "^0.14.0",
 		"typescript": "^5.5.2",
-		"typescript-eslint": "^8.0.0-alpha.36"
+		"typescript-eslint": "^8.0.0-alpha.38"
 	},
 	"dependencies": {
 		"@astrojs/preact": "^3.5.0",
