@@ -1,17 +1,16 @@
 ---
 import { BaseLayout } from '~layouts';
-import { ApplicationPrompt } from '~components';
-import type { CohortRegions } from '~components';
+// import type { CohortRegions } from '~components';
 
 // These date strings must be in UTC time,
 // and must be in the format YYYY-MM-DD
-const cohortApplicationWindow: [Date, Date] = [
-	new Date('2024-07-21 UTC'),
-	new Date('2024-07-28 UTC'),
-];
-const cohortKickoffDate = new Date('2024-08-11 UTC');
+// const cohortApplicationWindow: [Date, Date] = [
+// 	new Date('2024-07-21 UTC'),
+// 	new Date('2024-07-28 UTC'),
+// ];
+// const cohortKickoffDate = new Date('2024-08-11 UTC');
 
-const cohortRegions: CohortRegions[] = ['North America', 'Europe/Africa'];
+// const cohortRegions: CohortRegions[] = ['North America', 'Europe/Africa'];
 
 const firstHeadingId = 'about-the-collab-lab-program';
 ---
@@ -75,19 +74,6 @@ const firstHeadingId = 'about-the-collab-lab-program';
 					each of the early career engineers who have contributed to The Collab Lab!
 				</p>
 			</div>
-		</div>
-	</section>
-
-	<section
-		style="background-color: var(--color-blue-mid); color: var(--color-white);"
-	>
-		<div class="l-center--wide u-center-text">
-			<h2 id="how-to-apply" class="u-center-text">How to apply</h2>
-			<ApplicationPrompt
-				cohortApplicationWindow={cohortApplicationWindow}
-				cohortKickoffDate={cohortKickoffDate}
-				cohortRegions={cohortRegions}
-			/>
 		</div>
 	</section>
 
