@@ -63,7 +63,7 @@ Want to contribute? Check [the issues tab](https://github.com/the-collab-lab/web
 
 This website requires Node (16.17.1 or later) and NPM to be installed in order to run locally. You can view the NPM documentation to [learn more about installation](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
-You may also need the [Netlify CLI](https://cli.netlify.com/) to test certain features, such as the Stripe donation buttons. If you need access to Netlify, you can request access in [#committee-website](https://the-collab-lab.slack.com/archives/CUS0DJ614) and someone will invite you to the Netlify project.
+You may also need the [Netlify CLI](https://cli.netlify.com/) to test certain features. If you need access to Netlify, you can request access in [#committee-website](https://the-collab-lab.slack.com/archives/CUS0DJ614) and someone will invite you to the Netlify project.
 
 ### Installation
 
