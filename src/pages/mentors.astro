@@ -1,0 +1,92 @@
+---
+import { VolunteerCard } from '~components';
+import { founders, volunteers } from '~data';
+import { BaseLayout } from '~layouts';
+
+const firstHeadingId = 'mentors-at-the-collab-lab';
+---
+
+<BaseLayout title="mentors" skipTargetId={firstHeadingId}>
+	<div
+		style={{
+			backgroundColor: 'var(--color-black-dark)',
+			color: 'var(--color-black-light)',
+		}}
+	>
+		<div class="l-center--wide">
+			<h1 id={firstHeadingId} class="h2">The People Who Made It Happen</h1>
+			<div class="l-grid">
+				<p>
+					Our team comprised dedicated volunteers from all over the globe who
+					took on various roles. We were 100% remote, and fully aligned on our
+					vision of helping early career engineers!
+				</p>
+			</div>
+		</div>
+		<div class="l-center--wide">
+			<h2 id="founders" style="text-align: center;">Our founders</h2>
+
+			<div class="l-grid c-volunteers-grid">
+				{
+					founders.map((founder) => (
+						<VolunteerCard volunteer={founder} hideRoles />
+					))
+				}
+			</div>
+		</div>
+		<div class="l-center--wide">
+			<h2 id="volunteers" style="text-align: center;">Our volunteers</h2>
+
+			<div class="l-grid c-volunteers-grid">
+				{volunteers.map((volunteer) => <VolunteerCard volunteer={volunteer} />)}
+			</div>
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	details {
+		border-top: 2px solid var(--color-black-mid);
+	}
+	details:last-of-type {
+		border-bottom: 2px solid var(--color-black-mid);
+	}
+
+	details[open] {
+		padding-block-end: 1.2em;
+	}
+
+	details > :last-child {
+		margin-block-end: 0;
+	}
+	summary {
+		cursor: pointer;
+		font-weight: 700;
+		font-size: 1.2em;
+		padding: 0.8em 0;
+	}
+
+	summary ~ * {
+		margin-inline-start: 1.6em;
+	}
+
+	.role-title {
+		display: inline-block;
+		margin-inline-start: 0.5em;
+	}
+
+	.l-grid.c-volunteers-grid {
+		column-gap: 7.7rem;
+	}
+
+	.c-callout {
+		padding: 1.6em;
+		background-color: var(--color-pink-mid);
+		font-size: 0.8em;
+		margin-block-start: 1.6em;
+	}
+
+	.c-callout > a {
+		color: inherit;
+	}
+</style>
