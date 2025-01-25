@@ -1,0 +1,138 @@
+---
+import { BaseLayout } from '~layouts';
+
+const firstHeadingId = 'our-processes';
+---
+
+<BaseLayout title="Our Processes" skipTargetId={firstHeadingId}>
+	<div class="l-center--wide">
+		<h1 id={firstHeadingId} class="h2">Our Processes</h1>
+		<div class="c-processes">
+			<p>
+				The Collab Lab's mission doesn't have to end here! If you're inspired by
+				the work we've done to create inclusive opportunities and support
+				early-career developers, we encourage you to carry it forward.
+			</p>
+			<p>
+				We've made all of our materials freely available so that anyone can
+				build on the foundation we've laid. Whether you're interested in running
+				a similar program, mentoring new developers, or simply leveraging the
+				resources we've created, you're more than welcome to use them.
+			</p>
+			<p>Here's how you can get started:</p>
+			<ul class="processes-list">
+				<li>
+					<p>
+						Explore Our GitHub OrganizationAccess all our project materials,
+						collaboration tools, and templates:
+					</p>
+					<p>
+						👉
+						<a
+							class="processes-link"
+							href="https://github.com/the-collab-lab"
+							>The Collab Lab GitHub Org</a
+						>
+					</p>
+				</li>
+				<li>
+					<p>
+						Job Search ResourcesFind helpful guides and resources to support
+						early-career developers in their job search:
+					</p>
+					<p>
+						👉
+						<a
+							class="processes-link"
+							href="https://github.com/the-collab-lab/job-search-resources"
+							>Job Search Resources</a
+						>
+					</p>
+				</li>
+				<li>
+					<p>
+						Historical Website ContentSee links below for our historical website
+						content, which may be helpful as a reference or inspiration:
+					</p>
+					<ul class="historical-list">
+						<li>
+							👉 <a class="processes-link" href="/participate"> Participate </a>
+						</li>
+						<li>
+							👉 <a class="processes-link" href="/volunteer">Volunteer </a>
+						</li>
+						<li>
+							👉 <a class="processes-link" href="/code-of-conduct"
+								>Code of Conduct
+							</a>
+						</li>
+					</ul>
+					<p></p>
+				</li>
+			</ul>
+			<p>
+				We wish you the best of luck as you take these resources and continue
+				creating opportunities for early-career developers!
+			</p>
+		</div>
+	</div>
+	<ul class="l-center--wide l-grid">
+		{(<li class="c-talk" />)}
+	</ul>
+</BaseLayout>
+<style>
+	iframe {
+		max-width: 100%;
+	}
+
+	.c-box {
+		font-size: 1.35em;
+		padding: 1em;
+	}
+
+	.c-box.pink {
+		background-color: var(--color-pink-mid);
+	}
+	.c-box.pink a,
+	.c-box.yellow a {
+		color: var(--color-black-dark);
+	}
+	.c-box.yellow {
+		background-color: var(--color-yellow-mid);
+	}
+	.c-talk {
+		font-size: 0.8em;
+		line-height: 1.4;
+	}
+
+	.c-talk > * + * {
+		margin-block-start: 1em;
+	}
+
+	.c-talk--title {
+		font-size: 1.25em;
+	}
+
+	.c-talk--date {
+		font-style: italic;
+		margin-block-end: 1em;
+	}
+
+	.c-processes {
+		max-width: 60vw;
+	}
+
+	.processes-list {
+		list-style-type: disc;
+		padding-left: 2em;
+	}
+
+	.processes-link {
+		color: #000;
+	}
+
+	.historical-list {
+		display: flex;
+		gap: 1.5em;
+	}
+</style>
